@@ -1,7 +1,16 @@
+ATAC
+bisulfite
 dimensionality
 genomic
 janeroe
 johndoe
+methylation
 omics
+scATAC
+scGEM
+scNMT
+scRNA
+scTrio
+SNPs
 XXXX
 XXXXXXXX
