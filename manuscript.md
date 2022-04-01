@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/6461b449696e0d7466fc76ddeab91b9d31653e6e/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/6461b449696e0d7466fc76ddeab91b9d31653e6e/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/6461b449696e0d7466fc76ddeab91b9d31653e6e/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/db28e916c399dc6a75859209532a776b77b7e064/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/db28e916c399dc6a75859209532a776b77b7e064/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/db28e916c399dc6a75859209532a776b77b7e064/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/6461b449696e0d7466fc76ddeab91b9d31653e6e/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/db28e916c399dc6a75859209532a776b77b7e064/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@6461b44](https://github.com/codingpoppy/multiomics_review_manubot/tree/6461b449696e0d7466fc76ddeab91b9d31653e6e)
+from [codingpoppy/multiomics_review_manubot@db28e91](https://github.com/codingpoppy/multiomics_review_manubot/tree/db28e916c399dc6a75859209532a776b77b7e064)
 on April 1, 2022.
 </em></small>
 
@@ -99,8 +99,7 @@ on April 1, 2022.
 
 
 ## Abstract {.page_break_before}
-
-
+Recently developed technologies to generate single-cell genomic data have made a revolutionary impact in the field of biology. Multi-omics assays offer even greater opportunities to understand cellular states and biological processes. However, the problem of integrating different -omics data with very different dimensionality and statistical properties remains quite challenging. A growing body of computational tools are being developed for this task, leveraging ideas ranging from machine translation to the theory of networks and representing a new frontier on the interface of biology and data science. Our goal in this review paper is to provide a comprehensive, up-to-date survey of computational techniques for the integration of multi-omics and alignment of multiple modalities of genomics data in the single cell research field.
 
 
 ## References {.page_break_before}
