@@ -1,7 +1,7 @@
 # Output directory containing the formatted manuscript
 
 The [`gh-pages`](https://github.com/codingpoppy/multiomics_review_manubot/tree/gh-pages) branch hosts the contents of this directory at <https://codingpoppy.github.io/multiomics_review_manubot/>.
-The permalink for this webpage version is <https://codingpoppy.github.io/multiomics_review_manubot/v/b4e23090fbd3512798f9302faa16b970a65d663c/>.
+The permalink for this webpage version is <https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/>.
 To redirect to the permalink for the latest manuscript version at anytime, use the link <https://codingpoppy.github.io/multiomics_review_manubot/v/freeze/>.
 
 ## Files
@@ -35,4 +35,4 @@ Verifying timestamps with the `ots verify` command requires running a local bitc
 ## Source
 
 The manuscripts in this directory were built from
-[`b4e23090fbd3512798f9302faa16b970a65d663c`](https://github.com/codingpoppy/multiomics_review_manubot/commit/b4e23090fbd3512798f9302faa16b970a65d663c).
+[`179133c698e605af5e2cfed3a382996650090bfa`](https://github.com/codingpoppy/multiomics_review_manubot/commit/179133c698e605af5e2cfed3a382996650090bfa).
