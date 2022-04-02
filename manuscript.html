@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="John Doe" />
   <meta name="author" content="Jane Roe" />
-  <meta name="dcterms.date" content="2022-04-01" />
+  <meta name="dcterms.date" content="2022-04-02" />
   <meta name="keywords" content="markdown, publishing, manubot" />
   <title>Manuscript Title</title>
   <style>
@@ -45,8 +45,8 @@
   <meta name="citation_title" content="Manuscript Title" />
   <meta property="og:title" content="Manuscript Title" />
   <meta property="twitter:title" content="Manuscript Title" />
-  <meta name="dc.date" content="2022-04-01" />
-  <meta name="citation_publication_date" content="2022-04-01" />
+  <meta name="dc.date" content="2022-04-02" />
+  <meta name="citation_publication_date" content="2022-04-02" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -67,9 +67,9 @@
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/3660c1cb8fea0cc111c4b9beaba25c38968917d9/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/3660c1cb8fea0cc111c4b9beaba25c38968917d9/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/3660c1cb8fea0cc111c4b9beaba25c38968917d9/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/9dd643e9c042fa3e17d81d290d32ff66d4b6560c/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/9dd643e9c042fa3e17d81d290d32ff66d4b6560c/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/9dd643e9c042fa3e17d81d290d32ff66d4b6560c/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -86,10 +86,10 @@
 </header>
 <p><small><em>
 This manuscript
-(<a href="https://codingpoppy.github.io/multiomics_review_manubot/v/3660c1cb8fea0cc111c4b9beaba25c38968917d9/">permalink</a>)
+(<a href="https://codingpoppy.github.io/multiomics_review_manubot/v/9dd643e9c042fa3e17d81d290d32ff66d4b6560c/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/codingpoppy/multiomics_review_manubot/tree/3660c1cb8fea0cc111c4b9beaba25c38968917d9">codingpoppy/multiomics_review_manubot@3660c1c</a>
-on April 1, 2022.
+from <a href="https://github.com/codingpoppy/multiomics_review_manubot/tree/9dd643e9c042fa3e17d81d290d32ff66d4b6560c">codingpoppy/multiomics_review_manubot@9dd643e</a>
+on April 2, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
 <ul>
@@ -123,6 +123,152 @@ Department of Something, University of Whatever; Department of Whatever, Univers
 <figcaption aria-hidden="true">Multi-omics data can sometimes be sequenced from the same set of single cells (left); at other times, only the data sequenced from the same/similar sample, but different single cells are available (right). In the former case, we have the task of integrating the different data modalities (left); in the latter case, we need to first identify similar cells across the samples (right) - this is the computational task of alignment.</figcaption>
 </figure>
 <p>The application of data fusion algorithms for multi-omics sequencing data predates the single-cell technologies; bulk-level data have been integrated using a variety of computational tools as reviewed in <span class="citation" data-cites="156UVA1sT">[<a href="#ref-156UVA1sT" role="doc-biblioref">10</a>]</span>. In this review, we aim to give a comprehensive, up-to-date summary of existing computational tools of multi-omics data integration and alignment in the single-cell field, for researchers in the field of computational biology. For more general surveys, the readers are encouraged to check other single-cell multi-omics reviews <span class="citation" data-cites="4Jvlha3z 1HWpkr3ZK 1A8BRhgKH v8EY6Y3W 9lrRlyX2 SLbB6cV8">[<a href="#ref-4Jvlha3z" role="doc-biblioref">11</a>,<a href="#ref-1HWpkr3ZK" role="doc-biblioref">12</a>,<a href="#ref-1A8BRhgKH" role="doc-biblioref">13</a>,<a href="#ref-v8EY6Y3W" role="doc-biblioref">14</a>,<a href="#ref-9lrRlyX2" role="doc-biblioref">15</a>,<a href="#ref-SLbB6cV8" role="doc-biblioref">16</a>]</span>.</p>
+<h2 id="integration-methods-handling-multi-omics-data-generated-from-the-same-single-cells">Integration methods handling multi-omics data generated from the same single cells</h2>
+<p>The integration methods for multi-modal data assayed from the same set of single cells can be broadly categorized into at least three main types by methodology: mathematical matrix factorization methods, AI (eg. neural-network) based methods and network-based methods. The scheme of these methods is illustrated in Figure {<span class="citation" data-cites="fig-2">[<a href="#ref-fig-2" role="doc-biblioref"><strong>fig-2?</strong></a>]</span>}. Additional less diversified approaches include a Bayesian statistical method and a metric learning method. The list of the currently implemented methods is summarized in Table <span class="citation" data-cites="tbl-1">[<a href="#ref-tbl-1" role="doc-biblioref"><strong>tbl-1?</strong></a>]</span>.</p>
+<figure>
+<img src="images/Fig_2.png" id="fig-2" data-tag="F2" style="width:100.0%;height:100.0%" alt="Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches." />
+<figcaption aria-hidden="true">Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches.</figcaption>
+</figure>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 13%" />
+<col style="width: 24%" />
+<col style="width: 40%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methodology Category</th>
+<th>Method</th>
+<th>Data</th>
+<th>Algorithm</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Matrix Factorization</td>
+<td>MOFA+</td>
+<td>Transcriptomic, Epigenetic</td>
+<td>Matrix Factorization with Automatic Relevance Determination</td>
+<td><span class="citation" data-cites="FSXUv1xQ">[<a href="#ref-FSXUv1xQ" role="doc-biblioref">8</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>scAI</td>
+<td>Transcriptomic, Epigenetic</td>
+<td>Matrix factorization, with custom aggregation of epigenetic data</td>
+<td><span class="citation" data-cites="156UVA1sT">[<a href="#ref-156UVA1sT" role="doc-biblioref">10</a>]</span></td>
+</tr>
+<tr class="odd">
+<td>Neural Network</td>
+<td>totalVI</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Variational autoencoder</td>
+<td><span class="citation" data-cites="1HWpkr3ZK">[<a href="#ref-1HWpkr3ZK" role="doc-biblioref">12</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>scMVAE</td>
+<td>Transcriptomic, Epigenetic</td>
+<td></td>
+<td><span class="citation" data-cites="1A8BRhgKH">[<a href="#ref-1A8BRhgKH" role="doc-biblioref">13</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>DCCA</td>
+<td>Transcriptomic, Epigenetic</td>
+<td></td>
+<td><span class="citation" data-cites="t5lJC7T4">[<a href="#ref-t5lJC7T4" role="doc-biblioref">17</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>LIBRA</td>
+<td>Transcriptomic, Proteomic, Epigenetic</td>
+<td>Split-brain autoencoder</td>
+<td><span class="citation" data-cites="SLbB6cV8">[<a href="#ref-SLbB6cV8" role="doc-biblioref">16</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>BABEL</td>
+<td>Transcriptomic, Proteomic, Epigenetic</td>
+<td>Autoencoder translating between modalities</td>
+<td><span class="citation" data-cites="luLU3n8O">[<a href="#ref-luLU3n8O" role="doc-biblioref">18</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>DeepMAPS</td>
+<td>Transcriptomic, Epigenetic, Proteomic</td>
+<td>Graph Neural Network</td>
+<td><span class="citation" data-cites="xZQR38QC">[<a href="#ref-xZQR38QC" role="doc-biblioref">19</a>]</span></td>
+</tr>
+<tr class="odd">
+<td>Network - Based</td>
+<td>citeFUSE</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Similarity network fusion</td>
+<td><span class="citation" data-cites="13FKN3V7y">[<a href="#ref-13FKN3V7y" role="doc-biblioref">20</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Seurat v4</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Weighted averaging of nearest neighbor graphs</td>
+<td><span class="citation" data-cites="aNdbBIHQ">[<a href="#ref-aNdbBIHQ" role="doc-biblioref">21</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Integrated Diffusion</td>
+<td>Transcriptomic</td>
+<td>Joint Manifold Learning through Integrated Diffusion</td>
+<td><span class="citation" data-cites="1EGetPJhg">[<a href="#ref-1EGetPJhg" role="doc-biblioref">22</a>]</span></td>
+</tr>
+<tr class="even">
+<td>Other</td>
+<td>BREM-SC</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Bayesian mixture model</td>
+<td><span class="citation" data-cites="nKC0gy2d">[<a href="#ref-nKC0gy2d" role="doc-biblioref">23</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SCHEMA</td>
+<td>Transcriptomic, Epigenetic</td>
+<td>Metric Learning</td>
+<td><span class="citation" data-cites="6w16Pjmi">[<a href="#ref-6w16Pjmi" role="doc-biblioref">24</a>]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Table {#tbl-1}: Summary of the methods for integrating multi-omics data from the same cells.</p>
+<h3 id="matrix-factorization-based-methods">Matrix Factorization based methods</h3>
+<p>Matrix factorization methods aim to describe each cell as the product between a vector that describes each -omics element (genes, epigenetic loci, proteins, etc.) and a vector of reduced and common features (“factors”) capturing its basic properties (Figure {<span class="citation" data-cites="fig-2">[<a href="#ref-fig-2" role="doc-biblioref"><strong>fig-2?</strong></a>]</span>}A). Mathematically, if we represent each -omics as matrix <span class="math display">\[X_{i (i=1,2,\cdots)}\]</span> then matrix factorization decomposes it as the product of a shared matrix H across all omics data types, and -omics specific matrix <span class="math display">\[W_{i (i=1,2,\cdots)}\]</span>, together with random noise <span class="math display">\[\epsilon_{i (i=1,2,\cdots)}\]</span> as
+<span class="math display">\[X_1=W_1H+\epsilon_1, X_2=W_2H+\epsilon_2, \cdots, X_i=W_iH+\epsilon_i\]</span>
+Such methods are simple and easily interpretable since the cell and -omics factors both carry clearly discernible biological meaning, but may lack the ability to capture nonlinear effects. We describe the variations in this type of methods below:</p>
+<p><strong>MOFA+</strong> <span class="citation" data-cites="A7ouflxZ">[<a href="#ref-A7ouflxZ" role="doc-biblioref">25</a>]</span> is a sequel to the MOFA (Multi-Omics Factor Analysis) <span class="citation" data-cites="13FKN3V7y">[<a href="#ref-13FKN3V7y" role="doc-biblioref">20</a>]</span>. Both studies perform factor analysis, equipped with sparsity-inducing Bayesian elements including Automatic Relevance Determination <span class="citation" data-cites="wfwGeMRv">[<a href="#ref-wfwGeMRv" role="doc-biblioref">26</a>]</span>. MOFA+ integrates data over both views (corresponding to different modalities) and groups (corresponding to different experimental conditions). The model scales easily to large datasets. MOFA+ was applied to integrate gene expression, chromatin accessibility and DNA methylation data assayed using scNMT from mouse embryos, as well as to integrate several datasets over different experimental conditions rather than different -omics. After performing factor analysis on the mouse dataset, the most relevant factors are related to biological processes shaping embryo development. MOFA+ provides an elegant and successful general framework for integration, which could potentially be superseded in specific cases by more specialized models designed for integrating specific -omics layers.</p>
+<p><strong>scAI</strong> (“single-cell aggregation and inference”) [doi:10.1186/s13059-020-1932-8] features a twist on matrix factorization and is designed specifically for integration of epigenetic (chromatin accessibility, DNA methylation) and transcriptomic data. It addresses the sparsity of epigenetic data by aggregating (averaging) such data between similar cells. This requires a notion of cell-cell similarity which is learned as a part of the model, rather than being postulated prior to the integration. Their model solves the following optimization problem</p>
+<p><span class="math display">\[\min_{W_1, W_2, H, Z}\alpha||X_1-W_1H||^2_F + ||X_2(Z\cdot R-W_2H)||^2_F + \lambda||Z_H^TH||^2_F +\gamma\sum_j||H_{\cdot j}||_1^2\]</span></p>
+<p>where <span class="math display">\[X_1\]</span> represents the transcriptomic data, <span class="math display">\[X_2\]</span> the epigenomic data, <span class="math display">\[H\]</span> are the common (cell-specific) factors, <span class="math display">\[W_1\]</span>, <span class="math display">\[W_2\]</span> are the assay-specific factors, <span class="math display">\[Z\]</span> is the cell-cell similarity matrix, and entries of are Bernoulli-distributed random variables. The twist on the usual matrix factorization is made by factoring aggregated epigenetic data <span class="math display">\[X_2(Z\cdot R)\]</span>, rather than directly factoring the epigenetic data <span class="math display">\[X_2\]</span>. After the learning is complete, the matrix of cell factors is used to cluster the cells and the importance of genes and epigenetic marks is ranked using the magnitude of the values in loading matrices. In order to jointly visualize different factors, scAI implements a novel VscAI algorithm utilizing Sammon mappings <span class="citation" data-cites="18QucLaYQ">[<a href="#ref-18QucLaYQ" role="doc-biblioref">27</a>]</span>. The relationships between epigenetics and gene expression can be explored using correlation analysis and nonnegative least square regression. The model was tested on simulations using MOSim <span class="citation" data-cites="9bsaBUNu">[<a href="#ref-9bsaBUNu" role="doc-biblioref">28</a>]</span>, and several real world datasets, and performed better than the earlier MOFA version, in terms of identifying natural clusters and condensing epigenetic data into meaningful factors.</p>
+<h3 id="neural-network-based-methods">Neural Network based methods</h3>
+<p>While neural networks are generally well-suited for supervised tasks, a class of neural networks called autoencoders is commonly used for unsupervised learning, such as the multi-omics integration problem in single cells. Deep autoencoders perform nonlinear dimensionality reduction by squeezing the input through a lower-dimensional hidden layer (“bottle neck”) and attempting to reconstruct the original input as the output of the neural network (Figure {<span class="citation" data-cites="fig-2">[<a href="#ref-fig-2" role="doc-biblioref"><strong>fig-2?</strong></a>]</span>}B). They consist of two parts: the “encoder” network performing the dimensionality reduction and the “decoder” network reconstructing based on the dimensionally reduced data. In principle, autoencoders generalize the principal component analysis by allowing for nonlinear transformations. Many variations of autoencoder models exist, and among them variational autoencoders
+have proven useful for analyzing single-cell data. Rather than directly encoding the data in a dimensionally reduced (“latent”) space, variational autoencoders sample from a probability distribution (usually Gaussian) in the latent space, and use the encoder network to produce the parameters of this distribution. As such, they combine deep learning and Bayesian inference to produce generative models, which not only dimensionally reduce the original data but also produce realistic synthetic data points. Below we review the methods using certain variations of the autoencoder architecture to integrate single-cell multi-omics data.</p>
+<p><strong>scMVAE</strong> (“Single Cell Multimodal Variational Autoencoder”) <span class="citation" data-cites="x2VcF9PC">[<a href="#ref-x2VcF9PC" role="doc-biblioref">29</a>]</span> was designed to integrate transcriptomic and chromatin accessibility data, using a version of a variational autoencoder. The key question in multi-omics integration is how to encode the multi-omics data into a single latent space representation. In the case of scMVAE, a combination of 3 different methods was used for this task, including a neural network acting on the concatenated input data, neural networks encoding transcriptomic and chromatin accessibility data separately prior to merging, and a “Product of Experts” technique for combining different representations <span class="citation" data-cites="11CpvywyO">[<a href="#ref-11CpvywyO" role="doc-biblioref">30</a>]</span>. At the same time, cell-specific scales used to normalize expression across cells are learned (called “library factors”). The input data are reconstructed by processing the latent representations via decoder neural networks, which calculate the probabilities of gene dropouts and predict the expression of measured genes modelled as a negative binomial distribution.</p>
+<p>This model incorporates the task of constructing shared representations of the multi-modal data with clustering. Namely, one of the latent variables is constructed to correspond to the clustering label <span class="math display">\[c\]</span>. Furthermore, the model incorporates tools to deal with tasks such as data imputation, and can be used for studying the association between epigenetics and gene expression. scMVAE was applied to integrate two real datasets assaying mRNA and chromatin accessibility using SNARE - seq method, as well as simulated data generated by “Splatter” <span class="citation" data-cites="117yS2Kkv">[<a href="#ref-117yS2Kkv" role="doc-biblioref">31</a>]</span>. It takes into account the known relationships between appropriately located transcription factors and gene expression, and uses them to test the imputed (denoised) data. According to the authors, scMVAE performed better than MOFA in terms of clustering and enhancing the consistency between different -omics layers on several real and simulated datasets.</p>
+<p><strong>DCCA</strong>, denoting “Deep cross-omics cycle attention model”, is another method in this category for joint analysis of single-cell multi-omics data <span class="citation" data-cites="t5lJC7T4">[<a href="#ref-t5lJC7T4" role="doc-biblioref">17</a>]</span>. It uses variational autoencoders to integrate multi-omics data, and builds on the scMVAE algorithm described above. However, DCCA diverges from scMVAE in one important aspect: DCCA uses separate but coupled autoencoders to dimensionally reduce different -omics layers, while scMVAE constructs a shared dimensionally reduced representation of transcriptomic and
+epigenetic data. This strategy is inspired by the theory of machine translation, notably the so-called “attention transfer”; in this case, the “teacher network” working with the scRNA-seq data guides the learning of the “student network” working with scATAC-seq data. Their model compares favorably to scAI and MOFA+ on metrics such as clustering accuracy, denoising quality and consistency between different -omics.</p>
+<p><strong>totalVI</strong> <span class="citation" data-cites="wqtpCLXo">[<a href="#ref-wqtpCLXo" role="doc-biblioref">32</a>]</span> combines Bayesian inference and a neural network to create a generative model for data integration. It was created to handle gene expression and protein data. Joint latent space representations are learned via an encoder network and used to reconstruct the original data while accounting for the difference between the original data modalities. The model generates latent representations capturing both -omics, and at the same time models experimental conditions through an additional set of latent variables. The gene expression data are sampled from a negative binomial distribution, and the parameters are obtained as outputs of a decoder neural network. The protein data are sampled from a mixture model with two negative binomial distributions simulating the experimental background and the actual signal respectively. The model was applied to two datasets containing transcriptomic and proteomic measurements, and generated shared representations of cells with interpretable components.</p>
+<p><strong>LIBRA</strong> <span class="citation" data-cites="1Asjj6N9F">[<a href="#ref-1Asjj6N9F" role="doc-biblioref">33</a>]</span> uses an autoencoder-like neural network to “translate” between different omics. Motivated by “split-brain autoencoder”<span class="citation" data-cites="fiG9LqBq">[<a href="#ref-fiG9LqBq" role="doc-biblioref">34</a>]</span>, and “machine translation” approach, the model consists of two separate neural networks. The first network takes as input elements of the first dataset and aims to reconstruct a corresponding element of the second dataset. The second network performs an inverse task. Taken together, the bottlenecks of two networks aim to convert the two datasets into the same latent space. This method is quite general and can be applied to various pairs of -omics data. It produced clusters of similar quality compared to Seurat v4.</p>
+<p><strong>BABEL</strong> <span class="citation" data-cites="luLU3n8O">[<a href="#ref-luLU3n8O" role="doc-biblioref">18</a>]</span> also uses autoencoder-like neural networks to translate between gene expression (modeled by Negative Binomial distribution) and binarized chromatin accessibility data. There are two encoder and two decoder neural networks, each encoder/decoder handles one data type of gene expression or chromatin accessibility. As a result, four combinations between encoders and decoders are formed, and the loss function is optimized to minimize reconstruction error for four combinations of encoders and decoders. In this approach, the two encoders are prone to produce similar representations, as the encoded gene accessibility is decoded as chromatin accessibility and vice versa.
+BABEL provides a promising generic framework to multi-omics inference at a single-cell level from single-omics data, by using the model that was previously trained on multi-omics data sequenced from the same single cells. The modular nature of BABEL provides additional flexibility, as the model can be extended to work with additional modalities when the corresponding data becomes available. Despite the potential for generalization, one should be cautioned that if the training is conducted on cell types that are very different, the transfer learning using BABEL is not very successful.</p>
+<p><strong>DeepMAPS</strong> <span class="citation" data-cites="xZQR38QC">[<a href="#ref-xZQR38QC" role="doc-biblioref">19</a>]</span> integrates different data modalities by a graph transformer neural network architecture for interpretable representation learning. The data is represented using a heterogenous graph in which some of the nodes represent cells and others represent genes. An autoencoder-like graph neural network architecture is used for representation learning, with an attention mechanism. The attention mechanism learns the weights by the contribution of the neighbors to the node of interest. This not only achieves better performance, but also enhances the interpretability to identify genes most relevant to cell state differences. DeepMAPS method learns relevant gene-gene interaction networks and cell-cell similarities, which can be used for downstream steps such as clustering to infer novel cell types. It compared favorably on clustering, compared to state-of-the art techniques such as MOFA+ and totalVI.</p>
+<h3 id="network-based-methods">Network-based methods</h3>
+<p>Network-based methods represent the relationships between different cells using a weighted graph, where cells serve as nodes (Figure {<span class="citation" data-cites="fig-2">[<a href="#ref-fig-2" role="doc-biblioref"><strong>fig-2?</strong></a>]</span>}C). Integration is then accomplished by manipulating such graph representation. This approach emphasizes the neighborhood structure and sometimes pools the information between neighbors, leading to additional robustness against the noise. Below are the currently available methods.</p>
+<p><strong>citeFUSE</strong> <span class="citation" data-cites="g445TrK1">[<a href="#ref-g445TrK1" role="doc-biblioref">35</a>]</span> integrates transcriptomic and proteomic CITE-seq data using network fusion of similarity graphs corresponding to different modalities. This idea traces back to computer science work <span class="citation" data-cites="7P93YgG5">[<a href="#ref-7P93YgG5" role="doc-biblioref">36</a>]</span> on fusing multi-view networks through cross-diffusion, and to the follow-up SNF method <span class="citation" data-cites="1Hk7MyXmO">[<a href="#ref-1Hk7MyXmO" role="doc-biblioref">37</a>]</span> that was used to integrate bulk level multi-omics data. The algorithm adjusts the graph connectivities by a process of diffusion, which allows for the distance information to be aggregated between neighbors. Namely, the algorithm consists of two iterative steps: separate diffusion on different -omics layers and fusion across the -omics layers. It results in a fused consensus matrix of distances between cells, borrowing information from multiple -omics. citeFUSE used spectral clustering to identify cell types, and showed an improvement over single-modality based clusters. Additional benefits of the method include inference of ligand-receptor interactions and a novel tool for doublet detection.</p>
+<p><strong>Joint Diffusion</strong> <span class="citation" data-cites="1EGetPJhg">[<a href="#ref-1EGetPJhg" role="doc-biblioref">22</a>]</span> constructs graph representations of different -omics and then performs a joint diffusion process on the two graphs in order to denoise and integrate the data. This approach builds upon MAGIC <span class="citation" data-cites="7EPbbJtM">[<a href="#ref-7EPbbJtM" role="doc-biblioref">38</a>]</span>, a method for denoising scRNA-seq data, and generalizes it to multi-modal data. Diffusion can be conceptualized as a random walk process. In a graph diffusion algorithm, random walking on the graph can help discover the intrinsic structure of the data hidden behind the noise. In Joint Diffusion random walks are performed while allowing for transitions from one graph to another. A key idea in this work is to quantify the amount of noise in different datasets, through a spectral entropy of the corresponding graphs, and adjust the time one spends on different graphs in accordance with their relative levels of noise. In this way, the transcriptomic and epigenetic data will not be weighted equally, as the transcriptomic data is generally of better quality. This method excels at denoising and visualizations, and was shown to present an improved clustering performance compared to single-modality clustering and the one based on a more naive alternating diffusion process.</p>
+<p><strong>Seurat v4</strong> <span class="citation" data-cites="5pid8c90">[<a href="#ref-5pid8c90" role="doc-biblioref">39</a>]</span> aims to represent the data as a WNN (weighted nearest neighbor) graph in which cells that are similar according to the consensus of both modalities are connected. In the process of constructing a WNN graph, a set of cell-specific weights dictating the relative importance of different -omics data is learned. Such weights often carry important biological meaning. Specifically, Seurat v4 pipeline has the following steps: first, data corresponding to different -omics are dimensionally reduced using PCA to the same number of dimensions. Then, kNN (k nearest neighbor) graphs corresponding to different -omics are constructed. In a kNN graph, each datapoint (a node of this graph) is connected to nearest neighboring nodes. Cell-specific coefficients determining the relative importance of different -omics are then learned by considering the accuracy of inter-modality and cross-modality predictions by nearest neighbor graphs. Lastly, a linear combination of data from different omics is done, using the coefficients learned in the previous step. The nearest neighbors with respect to those linear combinations are then connected to build the WNN graph. Seurat v4 was applied to a CITE-seq based transcriptomic and proteomic dataset, and several other datasets involving mRNA, proteins and chromatin accessibility. The authors compared this method with MOFA+ and totalVI, using correlations (Pearson and Spearman) between the data corresponding to a cell and the average of its nearest latent space neighbors, and claimed that it performed better than MOFA+ or totalVI.</p>
+<h3 id="other-models">Other Models</h3>
+<p><strong>BREMSC</strong> <span class="citation" data-cites="nKC0gy2d">[<a href="#ref-nKC0gy2d" role="doc-biblioref">23</a>]</span> is a Bayesian mixture method. It integrates single-cell gene expression and protein data by modeling them as a mixture of probability distributions that share the same underlying set of parameters. The model is useful for performing joint clustering, where confidence in cluster assignments can be quantified via posterior probabilities. It performed favorably compared to single-omics clustering methods. While the MCMC procedure used to train the model can be computationally intensive, the model provides an effective way of integration by accounting the differences between the two -omics layers using probability distributions.</p>
+<p><strong>SCHEMA</strong> <span class="citation" data-cites="6w16Pjmi">[<a href="#ref-6w16Pjmi" role="doc-biblioref">24</a>]</span> is a different metric learning approach that aims to construct a notion of distances on the space of samples, taking into account different -omics data. One of the -omics (usually, scRNA-seq) is considered the primary base for distance, additional omics are then used to modify this distance. This is formulated as optimization of the quadratic function using quadratic programming. The scRNA-seq and scATAC-seq data can thus be integrated, yielding downstream insights into cell developmental trajectories. This method showed a better clustering performance than those based on clustering different modalities separately or integrating them using canonical correlation analysis. It is a useful method for asymmetrically integrating data modalities of different qualities, such as the case of scRNA-seq and scATAC-seq data.</p>
 <h2 class="page_break_before" id="references">References</h2>
 <!-- Explicitly insert bibliography here -->
 <div id="refs" class="references csl-bib-body" role="doc-bibliography">
@@ -151,7 +297,7 @@ Department of Something, University of Whatever; Department of Whatever, Univers
 <div class="csl-left-margin">8. </div><div class="csl-right-inline"><strong>Single-cell multimodal profiling reveals cellular epigenetic heterogeneity</strong> <div class="csl-block">Lih Feng Cheow, Elise T Courtois, Yuliana Tan, Ramya Viswanathan, Qiaorui Xing, Rui Zhen Tan, Daniel SW Tan, Paul Robson, Yuin-Han Loh, Stephen R Quake, William F Burkholder</div> <em>Nature Methods</em> (2016-08-15) <a href="https://doi.org/gps357">https://doi.org/gps357</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1038/nmeth.3961">10.1038/nmeth.3961</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/27525975">27525975</a></div></div>
 </div>
 <div id="ref-pzB7tkD3" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline"><strong>Single-cell multiomics sequencing and analyses of human colorectal cancer</strong> <div class="csl-block">Shuhui Bian, Yu Hou, Xin Zhou, Xianlong Li, Jun Yong, Yicheng Wang, Wendong Wang, Jia Yan, Boqiang Hu, Hongshan Guo, … Wei Fu</div> <em>Science</em> (2018-11-29) <a href="https://doi.org/gfkwwk">https://doi.org/gfkwwk</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1126/science.aao3791">10.1126/science.aao3791</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30498128">30498128</a></div></div>
+<div class="csl-left-margin">9. </div><div class="csl-right-inline"><strong>Single-cell multiomics sequencing and analyses of human colorectal cancer</strong> <div class="csl-block">Shuhui Bian, Yu Hou, Xin Zhou, Xianlong Li, Jun Yong, Yicheng Wang, Wendong Wang, Jia Yan, Boqiang Hu, Hongshan Guo, … Wei Fu</div> <em>Science</em> (2018-11-30) <a href="https://doi.org/gfkwwk">https://doi.org/gfkwwk</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1126/science.aao3791">10.1126/science.aao3791</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/30498128">30498128</a></div></div>
 </div>
 <div id="ref-156UVA1sT" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">10. </div><div class="csl-right-inline"><strong>More Is Better: Recent Progress in Multi-Omics Data Integration Methods</strong> <div class="csl-block">Sijia Huang, Kumardeep Chaudhary, Lana X Garmire</div> <em>Frontiers in Genetics</em> (2017-06-16) <a href="https://doi.org/gcz6m3">https://doi.org/gcz6m3</a> <div class="csl-block">DOI: <a href="https://doi.org/10.3389/fgene.2017.00084">10.3389/fgene.2017.00084</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28670325">28670325</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5472696">PMC5472696</a></div></div>
@@ -173,6 +319,75 @@ Department of Something, University of Whatever; Department of Whatever, Univers
 </div>
 <div id="ref-SLbB6cV8" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">16. </div><div class="csl-right-inline"><strong>Multi-omics integration in the age of million single-cell data</strong> <div class="csl-block">Zhen Miao, Benjamin D Humphreys, Andrew P McMahon, Junhyong Kim</div> <em>Nature Reviews Nephrology</em> (2021-08-20) <a href="https://doi.org/gmzwc3">https://doi.org/gmzwc3</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1038/s41581-021-00463-x">10.1038/s41581-021-00463-x</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/34417589">34417589</a></div></div>
+</div>
+<div id="ref-t5lJC7T4" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">17. </div><div class="csl-right-inline"><strong>Deep cross-omics cycle attention model for joint analysis of single-cell multi-omics data</strong> <div class="csl-block">Chunman Zuo, Hao Dai, Luonan Chen</div> <em>Bioinformatics</em> (2021-05-24) <a href="https://doi.org/gj5qs3">https://doi.org/gj5qs3</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1093/bioinformatics/btab403">10.1093/bioinformatics/btab403</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/34028557">34028557</a></div></div>
+</div>
+<div id="ref-luLU3n8O" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">18. </div><div class="csl-right-inline"><strong>BABEL enables cross-modality translation between multi-omic profiles at single-cell resolution</strong> <div class="csl-block">Kevin E Wu, Kathryn E Yost, Howard Y Chang, James Zou</div> <em>Cold Spring Harbor Laboratory</em> (2020-11-10) <a href="https://doi.org/gps5d7">https://doi.org/gps5d7</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1101/2020.11.09.375550">10.1101/2020.11.09.375550</a></div></div>
+</div>
+<div id="ref-xZQR38QC" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">19. </div><div class="csl-right-inline"><strong>DeepMAPS: Single-cell biological network inference using heterogeneous graph transformer</strong> <div class="csl-block">Anjun Ma, Xiaoying Wang, Cankun Wang, Jingxian Li, Tong Xiao, Juexing Wang, Yang Li, Yuntao Liu, Yuzhou Chang, Duolin Wang, … Qin Ma</div> <em>Cold Spring Harbor Laboratory</em> (2021-11-03) <a href="https://doi.org/gps5d9">https://doi.org/gps5d9</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1101/2021.10.31.466658">10.1101/2021.10.31.466658</a></div></div>
+</div>
+<div id="ref-13FKN3V7y" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">20. </div><div class="csl-right-inline"><strong>Multi‐Omics Factor Analysis—a framework for unsupervised integration of multi‐omics data sets</strong> <div class="csl-block">Ricard Argelaguet, Britta Velten, Damien Arnol, Sascha Dietrich, Thorsten Zenz, John C Marioni, Florian Buettner, Wolfgang Huber, Oliver Stegle</div> <em>Molecular Systems Biology</em> (2018-06) <a href="https://doi.org/gdqq3f">https://doi.org/gdqq3f</a> <div class="csl-block">DOI: <a href="https://doi.org/10.15252/msb.20178124">10.15252/msb.20178124</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29925568">29925568</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6010767">PMC6010767</a></div></div>
+</div>
+<div id="ref-aNdbBIHQ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">21. </div><div class="csl-right-inline"><strong>scAI: an unsupervised approach for the integrative analysis of parallel single-cell transcriptomic and epigenomic profiles</strong> <div class="csl-block">Suoqin Jin, Lihua Zhang, Qing Nie</div> <em>Genome Biology</em> (2020-02-03) <a href="https://doi.org/gps5fb">https://doi.org/gps5fb</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/s13059-020-1932-8">10.1186/s13059-020-1932-8</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/32014031">32014031</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6996200">PMC6996200</a></div></div>
+</div>
+<div id="ref-1EGetPJhg" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">22. </div><div class="csl-right-inline"><strong>Multimodal Data Visualization and Denoising with Integrated Diffusion</strong> <div class="csl-block">Manik Kuchroo, Abhinav Godavarthi, Alexander Tong, Guy Wolf, Smita Krishnaswamy</div> <em>arXiv</em> (2021) <a href="https://doi.org/gps5fc">https://doi.org/gps5fc</a> <div class="csl-block">DOI: <a href="https://doi.org/10.48550/arxiv.2102.06757">10.48550/arxiv.2102.06757</a></div></div>
+</div>
+<div id="ref-nKC0gy2d" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">23. </div><div class="csl-right-inline"><strong>BREM-SC: a bayesian random effects mixture model for joint clustering single cell multi-omics data</strong> <div class="csl-block">Xinjun Wang, Zhe Sun, Yanfu Zhang, Zhongli Xu, Hongyi Xin, Heng Huang, Richard H Duerr, Kong Chen, Ying Ding, Wei Chen</div> <em>Nucleic Acids Research</em> (2020-05-07) <a href="https://doi.org/gm37hd">https://doi.org/gm37hd</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1093/nar/gkaa314">10.1093/nar/gkaa314</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/32379315">32379315</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7293045">PMC7293045</a></div></div>
+</div>
+<div id="ref-6w16Pjmi" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">24. </div><div class="csl-right-inline"><strong>Schema: metric learning enables interpretable synthesis of heterogeneous single-cell modalities</strong> <div class="csl-block">Rohit Singh, Brian L Hie, Ashwin Narayan, Bonnie Berger</div> <em>Genome Biology</em> (2021-05-03) <a href="https://doi.org/gjzh4x">https://doi.org/gjzh4x</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/s13059-021-02313-2">10.1186/s13059-021-02313-2</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/33941239">33941239</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8091541">PMC8091541</a></div></div>
+</div>
+<div id="ref-A7ouflxZ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">25. </div><div class="csl-right-inline"><strong>MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data</strong> <div class="csl-block">Ricard Argelaguet, Damien Arnol, Danila Bredikhin, Yonatan Deloro, Britta Velten, John C Marioni, Oliver Stegle</div> <em>Genome Biology</em> (2020-05-11) <a href="https://doi.org/ggvwsr">https://doi.org/ggvwsr</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/s13059-020-02015-1">10.1186/s13059-020-02015-1</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/32393329">32393329</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7212577">PMC7212577</a></div></div>
+</div>
+<div id="ref-wfwGeMRv" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">26. </div><div class="csl-right-inline"><strong>Bayesian learning for neural networks</strong> <div class="csl-block">Radford M Neal</div> <em>Springer</em> (1996) <div class="csl-block">ISBN: 9780387947242</div></div>
+</div>
+<div id="ref-18QucLaYQ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">27. </div><div class="csl-right-inline"><strong>A Nonlinear Mapping for Data Structure Analysis</strong> <div class="csl-block">JW Sammon</div> <em>IEEE Transactions on Computers</em> (1969-05) <a href="https://doi.org/frbptp">https://doi.org/frbptp</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1109/t-c.1969.222678">10.1109/t-c.1969.222678</a></div></div>
+</div>
+<div id="ref-9bsaBUNu" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">28. </div><div class="csl-right-inline"><strong>MOSim: Multi-Omics Simulation in R</strong> <div class="csl-block">Carlos Martínez-Mira, Ana Conesa, Sonia Tarazona</div> <em>Cold Spring Harbor Laboratory</em> (2018-09-20) <a href="https://doi.org/gkwhng">https://doi.org/gkwhng</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1101/421834">10.1101/421834</a></div></div>
+</div>
+<div id="ref-x2VcF9PC" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">29. </div><div class="csl-right-inline"><strong>Deep-joint-learning analysis model of single cell transcriptome and open chromatin accessibility data</strong> <div class="csl-block">Chunman Zuo, Luonan Chen</div> <em>Briefings in Bioinformatics</em> (2020-11-17) <a href="https://doi.org/gps5d4">https://doi.org/gps5d4</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1093/bib/bbaa287">10.1093/bib/bbaa287</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/33200787">33200787</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8293818">PMC8293818</a></div></div>
+</div>
+<div id="ref-11CpvywyO" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">30. </div><div class="csl-right-inline"><strong>Training Products of Experts by Minimizing Contrastive Divergence</strong> <div class="csl-block">Geoffrey E Hinton</div> <em>Neural Computation</em> (2002-08-01) <a href="https://doi.org/ct8dwx">https://doi.org/ct8dwx</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1162/089976602760128018">10.1162/089976602760128018</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/12180402">12180402</a></div></div>
+</div>
+<div id="ref-117yS2Kkv" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">31. </div><div class="csl-right-inline"><strong>Splatter: simulation of single-cell RNA sequencing data</strong> <div class="csl-block">Luke Zappia, Belinda Phipson, Alicia Oshlack</div> <em>Genome Biology</em> (2017-09-12) <a href="https://doi.org/gc3h3g">https://doi.org/gc3h3g</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1186/s13059-017-1305-0">10.1186/s13059-017-1305-0</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/28899397">28899397</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5596896">PMC5596896</a></div></div>
+</div>
+<div id="ref-wqtpCLXo" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">32. </div><div class="csl-right-inline"><strong>A Joint Model of RNA Expression and Surface Protein Abundance in Single Cells</strong> <div class="csl-block">Adam Gayoso, Romain Lopez, Zoë Steier, Jeffrey Regier, Aaron Streets, Nir Yosef</div> <em>Cold Spring Harbor Laboratory</em> (2019-10-07) <a href="https://doi.org/dcnc">https://doi.org/dcnc</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1101/791947">10.1101/791947</a></div></div>
+</div>
+<div id="ref-1Asjj6N9F" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">33. </div><div class="csl-right-inline"><strong>Machine Translation between paired Single Cell Multi Omics Data</strong> <div class="csl-block">Xabier Martinez-de-Morentin, Sumeer A Khan, Robert Lehmann, Jesper Tegner, David Gomez-Cabrero</div> <em>Cold Spring Harbor Laboratory</em> (2021-01-28) <a href="https://doi.org/gps5d8">https://doi.org/gps5d8</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1101/2021.01.27.428400">10.1101/2021.01.27.428400</a></div></div>
+</div>
+<div id="ref-fiG9LqBq" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">34. </div><div class="csl-right-inline"><strong>Split-Brain Autoencoders: Unsupervised Learning by Cross-Channel Prediction</strong> <a href="https://ieeexplore.ieee.org/document/8099559">https://ieeexplore.ieee.org/document/8099559</a></div>
+</div>
+<div id="ref-g445TrK1" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">35. </div><div class="csl-right-inline"><strong>CiteFuse enables multi-modal analysis of CITE-seq data</strong> <div class="csl-block">Hani Jieun Kim, Yingxin Lin, Thomas A Geddes, Jean Yang, Pengyi Yang</div> <em>Cold Spring Harbor Laboratory</em> (2019-11-25) <a href="https://doi.org/gktx8j">https://doi.org/gktx8j</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1101/854299">10.1101/854299</a></div></div>
+</div>
+<div id="ref-7P93YgG5" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">36. </div><div class="csl-right-inline"><strong>Unsupervised Metric Fusion Over Multiview Data by Graph Random Walk-Based Cross-View Diffusion</strong> <a href="https://ieeexplore.ieee.org/document/7348699">https://ieeexplore.ieee.org/document/7348699</a></div>
+</div>
+<div id="ref-1Hk7MyXmO" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">37. </div><div class="csl-right-inline"><strong>Similarity network fusion for aggregating data types on a genomic scale</strong> <div class="csl-block">Bo Wang, Aziz M Mezlini, Feyyaz Demir, Marc Fiume, Zhuowen Tu, Michael Brudno, Benjamin Haibe-Kains, Anna Goldenberg</div> <em>Nature Methods</em> (2014-01-26) <a href="https://doi.org/f5v9f5">https://doi.org/f5v9f5</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1038/nmeth.2810">10.1038/nmeth.2810</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/24464287">24464287</a></div></div>
+</div>
+<div id="ref-7EPbbJtM" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">38. </div><div class="csl-right-inline"><strong>Recovering Gene Interactions from Single-Cell Data Using Data Diffusion</strong> <div class="csl-block">David van Dijk, Roshan Sharma, Juozas Nainys, Kristina Yim, Pooja Kathail, Ambrose J Carr, Cassandra Burdziak, Kevin R Moon, Christine L Chaffer, Diwakar Pattabiraman, … Dana Pe’er</div> <em>Cell</em> (2018-07) <a href="https://doi.org/gdqdwj">https://doi.org/gdqdwj</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1016/j.cell.2018.05.061">10.1016/j.cell.2018.05.061</a> · PMID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/29961576">29961576</a> · PMCID: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6771278">PMC6771278</a></div></div>
+</div>
+<div id="ref-5pid8c90" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">39. </div><div class="csl-right-inline"><strong>Integrated analysis of multimodal single-cell data</strong> <div class="csl-block">Yuhan Hao, Stephanie Hao, Erica Andersen-Nissen, William M Mauck III, Shiwei Zheng, Andrew Butler, Maddie J Lee, Aaron J Wilk, Charlotte Darby, Michael Zagar, … Rahul Satija</div> <em>Cold Spring Harbor Laboratory</em> (2020-10-12) <a href="https://doi.org/ghhj3m">https://doi.org/ghhj3m</a> <div class="csl-block">DOI: <a href="https://doi.org/10.1101/2020.10.12.335331">10.1101/2020.10.12.335331</a></div></div>
 </div>
 </div>
 <!-- default theme -->
