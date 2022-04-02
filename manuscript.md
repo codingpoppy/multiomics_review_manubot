@@ -41,9 +41,9 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/b4e23090fbd3512798f9302faa16b970a65d663c/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/b4e23090fbd3512798f9302faa16b970a65d663c/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/b4e23090fbd3512798f9302faa16b970a65d663c/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
@@ -65,9 +65,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/b4e23090fbd3512798f9302faa16b970a65d663c/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@b4e2309](https://github.com/codingpoppy/multiomics_review_manubot/tree/b4e23090fbd3512798f9302faa16b970a65d663c)
+from [codingpoppy/multiomics_review_manubot@179133c](https://github.com/codingpoppy/multiomics_review_manubot/tree/179133c698e605af5e2cfed3a382996650090bfa)
 on April 2, 2022.
 </em></small>
 
@@ -253,6 +253,22 @@ a shared latent space. While somewhat similar to the scMVAE model [@doi:10.1093/
 **CCA** (Canonical Correlation Analysis) based methods reduce the dimensionality of data by selecting for the degrees of freedom that are correlated between the datasets. Seurat v3 [@doi:10.1016/j.cell.2019.05.031] combines CCA with network concepts in order to align and integrate single-cell multi-omics data. After performing the CCA, the algorithm identifies anchors between the datasets and scores the quality of those anchors. Anchors are identified by MNNs (mutual nearest neighbors), and their quality is scored by considering the overlap between the neighborhoods of anchors. Similar to Seurat v3, MAESTRO [@doi:10.1186/s13059-020-02116-x] also utilized canonical correlation analysis for the integration of transcriptomic and epigenetic data, and provided a comprehensive analysis pipeline. bindSC [@doi:10.1101/2020.12.11.422014] also uses canonical correlation analysis to construct shared representations of the data, iteratively optimized using a custom procedure.
 
 **LIGER** [@doi:10.1016/j.cell.2019.05.006] performs an iNMF (integrative non-negative matrix factorization) to learn factors explaining the variation within and across datasets. Data such as DNA methylation are first aggregated over genes. Cells corresponding to different datasets are described by separate sets of cell-specific factors. Gene factors consist of two components: one that is shared across datasets and one that is dataset specific; the model aims to make the dataset-specific portion as small as possible. After performing the matrix factorization, the shared factor neighborhood graph is formed, in which cells are connected based on the similarity of their factors, and used for aligning the cells across modalities. Recently, this nonnegative matrix factorization approach has been extended to incorporate the idea of online learning. It iteratively updates the model in real-time, and leads to better scalability and computational efficiency [@doi:10.1038/s41587-021-00867-x].
+
+
+## Concluding Remarks
+
+The landscape of experimental techniques for -omics sequencing and analyzing the data has grown significantly last few years. Accompanying the thrust of technological advancement, an increasing body of computational methods to handle multi-omics data integration or alignment have been proposed. Geared towards computational biologists and genomics scientists, here we reviewed in-depth and extensively these computational methods by their working principles. Among these methods, AI and machine learning based methods account for the majority, demonstrating the influence in single cell computational biology. Other approaches using matrix factorization and or Bayesian’s methods have also been proposed. As demonstrated in a range of methods, the integration of multi-omics data at the single-cell level improves the quality of downstream biological interpretation steps, such as clustering. With the advent of technologies for sequencing multi-omics data from the same single cells, efficient multi-omics integration methods to provide further biological and medical insights at larger scales will be of continued demand.
+
+
+Meanwhile the rapidly growing number of computational methods pose an urgent need for benchmarking studies on their performances, in order to provide guidelines to choose appropriate methods for specific datasets. Current comparisons are either incomplete, or using a small set of benchmark datasets, with inconsistent metrics in various studies, impeding the selection of appropriate methods for the dataset to analyze. This is made more difficult by the generally unsupervised nature of the integration task, where commonly required ground truths are not known for certain. Moreover, different methods have different prerequisites regarding preprocessing steps, normalization, etc and as a result, careful consideration of these steps and their impacts on the model performances is needed. Oftentimes, the integration methods were developed with one specific application/assay in mind, generalization of these methods with the emergence of new technologies needs to be demonstrated. Fortunately, some benchmarking studies have been conducted in other sub-fields of single cell computational biology for reference, such as those focused on the integration of data from different cells and atlas study [@doi:10.1101/2020.05.22.111161], cell-type annotation [@doi:10.1016/j.gpb.2020.07.004], and integration algorithms to spatial transcriptomics [@doi:10.1101/2021.08.27.457741]. Creating standardized high-quality benchmarking datasets would aid such efforts, as proposed in [@doi:10.1101/2021.12.08.471773] for scRNA-seq data. Finally, comprehensive and flexible benchmarking pipelines that can accommodate the ever-increasing body of integration methods will be extremely useful, in keeping the field up-to-date on multi-omics integration. One such example is the dynverse [@{https://dynverse.org/}].
+
+## Competing Interests
+
+The authors declare no competing interests.
+
+## Acknowledgements
+
+This work was supported by R01 LM012373 and LM012907 awarded by NLM, and R01 HD084633 awarded by NICHD to L.X. Garmire.
 
 
 ## References {.page_break_before}
