@@ -45,13 +45,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/5e21519546f06699a166d24ab4f1d0f73bbc143f/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/5e21519546f06699a166d24ab4f1d0f73bbc143f/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/25583968251e0ca3b1215375fda8c836b56e6ffd/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/25583968251e0ca3b1215375fda8c836b56e6ffd/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -71,9 +71,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@5e21519](https://github.com/codingpoppy/multiomics_review_manubot/tree/5e21519546f06699a166d24ab4f1d0f73bbc143f)
+from [codingpoppy/multiomics_review_manubot@2558396](https://github.com/codingpoppy/multiomics_review_manubot/tree/25583968251e0ca3b1215375fda8c836b56e6ffd)
 on April 3, 2022.
 </em></small>
 
@@ -132,7 +132,7 @@ The integration methods for multi-modal data assayed from the same set of single
 
 ![Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches.](images/Fig_2.png){#fig:2 width="75%" height="75%"}
 
-**Table {#tbl:1}**: Summary of the methods for integrating multi-omics data from the same cells.
+Table {#tbl:1}: Summary of the methods for integrating multi-omics data from the same cells.
 
 | Methodology  Category | Method               | Data                                  | Algorithm                                                        | Reference |
 |-----------------------|----------------------|---------------------------------------|------------------------------------------------------------------|-----------|
@@ -206,7 +206,7 @@ Compared to multi-omics data, it is experimentally much easier to obtain multipl
 
 ![Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models.](images/Fig_3.png){#fig:3 width="75%" height="75%"}
 
-**Table {#tbl:2}**: Summary of the computational methods for aligning multiple omics data from different single cells
+Table {#tbl:2}: Summary of the computational methods for aligning multiple omics data from different single cells
 
 | Methodology Category | Method      | Algorithm                                                            | Data                                              | Reference |
 |----------------------|-------------|----------------------------------------------------------------------|---------------------------------------------------|-----------|

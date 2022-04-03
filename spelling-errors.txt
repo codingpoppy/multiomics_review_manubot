@@ -36,7 +36,7 @@ dysregulated
 effectsway
 eg
 Eigenmaps
-Epigenetic
+epigenetic
 epigenetics
 epigenomic
 GAN
@@ -75,14 +75,14 @@ NICHD
 NLM
 nonnegative
 omic
-Omics
+omics
 Pamona
 PCA
 phenotypes
 preprocessing
 probabilistically
 PROSSTT
-Proteomic
+proteomic
 pseudotime
 Sammon
 scAI
