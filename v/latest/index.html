@@ -70,13 +70,13 @@
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -91,9 +91,9 @@
 </header>
 <p><small><em>
 This manuscript
-(<a href="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/">permalink</a>)
+(<a href="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/codingpoppy/multiomics_review_manubot/tree/fe9b8ac258f2ea1fda40747c5e565f4978b05230">codingpoppy/multiomics_review_manubot@fe9b8ac</a>
+from <a href="https://github.com/codingpoppy/multiomics_review_manubot/tree/04866afebf1c7816adc0d0d0c1e3e46f25833c1a">codingpoppy/multiomics_review_manubot@04866af</a>
 on April 3, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
@@ -284,14 +284,16 @@ BABEL provides a promising generic framework to multi-omics inference at a singl
 <p><strong>BREMSC</strong> <span class="citation" data-cites="nKC0gy2d">[<a href="#ref-nKC0gy2d" role="doc-biblioref">23</a>]</span> is a Bayesian mixture method. It integrates single-cell gene expression and protein data by modeling them as a mixture of probability distributions that share the same underlying set of parameters. The model is useful for performing joint clustering, where confidence in cluster assignments can be quantified via posterior probabilities. It performed favorably compared to single-omics clustering methods. While the MCMC procedure used to train the model can be computationally intensive, the model provides an effective way of integration by accounting the differences between the two -omics layers using probability distributions.</p>
 <p><strong>SCHEMA</strong> <span class="citation" data-cites="6w16Pjmi">[<a href="#ref-6w16Pjmi" role="doc-biblioref">24</a>]</span> is a different metric learning approach that aims to construct a notion of distances on the space of samples, taking into account different -omics data. One of the -omics (usually, scRNA-seq) is considered the primary base for distance, additional omics are then used to modify this distance. This is formulated as optimization of the quadratic function using quadratic programming. The scRNA-seq and scATAC-seq data can thus be integrated, yielding downstream insights into cell developmental trajectories. This method showed a better clustering performance than those based on clustering different modalities separately or integrating them using canonical correlation analysis. It is a useful method for asymmetrically integrating data modalities of different qualities, such as the case of scRNA-seq and scATAC-seq data.</p>
 <h2 id="alignment-methods-handling-multiple-genomics-data-generated-from-different-single-cells-of-the-same-tissue">Alignment methods handling multiple genomics data generated from different single cells of the same tissue</h2>
-<p>Compared to multi-omics data, it is experimentally much easier to obtain multiple modalities of data where each modality is obtained from similar but different cells of the same tissue. The task to harmonize these data is called alignment (Figure <a href="#fig:1">1</a>). The body of literature applying machine learning and statistical methods to this task is rich, including manifold learning, neural-network based methods, and Bayesian methods, as summarized in Table ?? and depicted in Figure <a href="#fig:3">3</a>. Note that some of the methods developed for batch-correct different scRNA-seq datasets, could in principle be repurposed for single-cell multiple omics alignment; we refer readers to previous benchmark studies <span class="citation" data-cites="Js5cG2rA">[<a href="#ref-Js5cG2rA" role="doc-biblioref">40</a>]</span>.</p>
+<p>Compared to multi-omics data, it is experimentally much easier to obtain multiple modalities of data where each modality is obtained from similar but different cells of the same tissue. The task to harmonize these data is called alignment (Figure <a href="#fig:1">1</a>). The body of literature applying machine learning and statistical methods to this task is rich, including manifold learning, neural-network based methods, and Bayesian methods, as summarized in Table <a href="#tbl:2">1</a> and depicted in Figure <a href="#fig:3">3</a>. Note that some of the methods developed for batch-correct different scRNA-seq datasets, could in principle be repurposed for single-cell multiple omics alignment; we refer readers to previous benchmark studies <span class="citation" data-cites="Js5cG2rA">[<a href="#ref-Js5cG2rA" role="doc-biblioref">40</a>]</span>.</p>
 <div id="fig:3" class="fignos">
 <figure>
 <img src="images/Fig_3.png" style="width:75.0%;height:75.0%" alt="Figure 3: Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models." />
 <figcaption aria-hidden="true"><span>Figure 3:</span> Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models.</figcaption>
 </figure>
 </div>
-<table>
+<div id="tbl:2" class="tablenos">
+<table id="tbl:2">
+<caption><span>Table 1:</span> Summary of the computational methods for aligning multiple omics data from different single cells. </caption>
 <colgroup>
 <col style="width: 13%" />
 <col style="width: 7%" />
@@ -409,7 +411,7 @@ BABEL provides a promising generic framework to multi-omics inference at a singl
 </tr>
 </tbody>
 </table>
-<p>Table {#tbl:2}: Summary of the computational methods for aligning multiple omics data from different single cells</p>
+</div>
 <h3 id="bayesian-methods">Bayesian Methods</h3>
 <p><strong>Clonealign</strong> <span class="citation" data-cites="13iVSlhcW">[<a href="#ref-13iVSlhcW" role="doc-biblioref">49</a>]</span> integrates single-cell RNA and DNA sequencing data from heterogeneous populations by assigning cells measured by RNA-seq to clones derived from DNA-seq data. Clonealign is based on a Bayesian latent variable model, where a categorical variable is used to specify cell assignment. The model maps the copy number of a gene to its expression value by introducing a copy number dosage effect on the gene expression. The model is also flexible enough to allow for additional covariates such as batch effects or biological information that can be inferred from the gene expression (cell cycle, etc.). In addition to simulation studies that demonstrated robustness, Clonealign was also applied on real cancer datasets to discover novel clone-specific dysregulated biological pathways.</p>
 <p><strong>MUSIC</strong> <span class="citation" data-cites="VIuxeSfj">[<a href="#ref-VIuxeSfj" role="doc-biblioref">50</a>]</span> is an unsupervised topic modeling method for integrative analysis of single-cell RNA data and pooled CRISPR screening data <span class="citation" data-cites="i8ILJavt">[<a href="#ref-i8ILJavt" role="doc-biblioref">55</a>]</span>. The model links the gene expression profile of the cells and specific biological function by delineating perturbation effects,, allowing for better understanding of perturbation functions in single cell CRISPR data. In the perturbation effect prioritizing step, MUSIC utilizes the output from the topic model and estimates individual gene perturbation effects on cell phenotypes. It takes three different schemes in modeling combined single-cell and CRISPR data: an overall perturbation effect which represents the gene perturbation effect, a topic model which specifies the function of perturbation effectsway, and with respect to relationships between different perturbation effects. MUSIC was applied to 14 real single-cell CRISPR screening datasets and accurately quantified and prioritized the individual gene perturbation effect on cell phenotypes, with tolerance for substantial noise.</p>
@@ -545,13 +547,13 @@ a shared latent space. While somewhat similar to the scMVAE model <span class="c
 <div class="csl-left-margin">[33] </div><div class="csl-right-inline">Martinez-de-Morentin X, Khan SA, Lehmann R, Tegner J, Gomez-Cabrero D. Machine Translation between paired Single Cell Multi Omics Data 2021. <a href="https://doi.org/10.1101/2021.01.27.428400">https://doi.org/10.1101/2021.01.27.428400</a>.</div>
 </div>
 <div id="ref-fiG9LqBq" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[34] </div><div class="csl-right-inline">Split-Brain Autoencoders: Unsupervised Learning by Cross-Channel Prediction n.d. <a href="https://ieeexplore.ieee.org/document/8099559">https://ieeexplore.ieee.org/document/8099559</a> (accessed April 2, 2022).</div>
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline">Split-Brain Autoencoders: Unsupervised Learning by Cross-Channel Prediction n.d. <a href="https://ieeexplore.ieee.org/document/8099559">https://ieeexplore.ieee.org/document/8099559</a> (accessed April 3, 2022).</div>
 </div>
 <div id="ref-g445TrK1" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[35] </div><div class="csl-right-inline">Kim HJ, Lin Y, Geddes TA, Yang J, Yang P. CiteFuse enables multi-modal analysis of CITE-seq data 2019. <a href="https://doi.org/10.1101/854299">https://doi.org/10.1101/854299</a>.</div>
 </div>
 <div id="ref-7P93YgG5" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[36] </div><div class="csl-right-inline">Unsupervised Metric Fusion Over Multiview Data by Graph Random Walk-Based Cross-View Diffusion n.d. <a href="https://ieeexplore.ieee.org/document/7348699">https://ieeexplore.ieee.org/document/7348699</a> (accessed April 2, 2022).</div>
+<div class="csl-left-margin">[36] </div><div class="csl-right-inline">Unsupervised Metric Fusion Over Multiview Data by Graph Random Walk-Based Cross-View Diffusion n.d. <a href="https://ieeexplore.ieee.org/document/7348699">https://ieeexplore.ieee.org/document/7348699</a> (accessed April 3, 2022).</div>
 </div>
 <div id="ref-1Hk7MyXmO" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">[37] </div><div class="csl-right-inline">Wang B, Mezlini AM, Demir F, Fiume M, Tu Z, Brudno M, et al. Similarity network fusion for aggregating data types on a genomic scale. Nat Methods 2014;11:333–7. <a href="https://doi.org/10.1038/nmeth.2810">https://doi.org/10.1038/nmeth.2810</a>.</div>
@@ -656,7 +658,7 @@ a shared latent space. While somewhat similar to the scMVAE model <span class="c
 <div class="csl-left-margin">[70] </div><div class="csl-right-inline">Swechha, Mendonca D, Focsa O, Díaz-Mejía JJ, Cooper S. scMARK an ‘MNIST’ like benchmark to evaluate and optimize models for unifying scRNA data 2021. <a href="https://doi.org/10.1101/2021.12.08.471773">https://doi.org/10.1101/2021.12.08.471773</a>.</div>
 </div>
 <div id="ref-9HFbKAgB" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[71] </div><div class="csl-right-inline">:: dynverse n.d. <a href="https://dynverse.org/">https://dynverse.org/</a> (accessed April 2, 2022).</div>
+<div class="csl-left-margin">[71] </div><div class="csl-right-inline">:: dynverse n.d. <a href="https://dynverse.org/">https://dynverse.org/</a> (accessed April 3, 2022).</div>
 </div>
 </div>
 <!-- default theme -->
