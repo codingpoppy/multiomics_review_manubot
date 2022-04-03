@@ -1,51 +1,57 @@
 ---
-title: Manuscript Title
+title: Computational Methods for Single-Cell Multi-Omics Integration and Alignment
 keywords:
-- markdown
-- publishing
-- manubot
+- Single-cell
+- Multi-omics
+- Machine learning
+- Integration
 lang: en-US
-date-meta: '2022-04-02'
+date-meta: '2022-04-03'
 author-meta:
-- John Doe
-- Jane Roe
+- Stefan Stanojevic
+- Yijun Li
+- Lana Garmire
 header-includes: |-
   <!--
   Manubot generated metadata rendered from header-includes-template.html.
   Suggest improvements at https://github.com/manubot/manubot/blob/main/manubot/process/header-includes-template.html
   -->
   <meta name="dc.format" content="text/html" />
-  <meta name="dc.title" content="Manuscript Title" />
-  <meta name="citation_title" content="Manuscript Title" />
-  <meta property="og:title" content="Manuscript Title" />
-  <meta property="twitter:title" content="Manuscript Title" />
-  <meta name="dc.date" content="2022-04-02" />
-  <meta name="citation_publication_date" content="2022-04-02" />
+  <meta name="dc.title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta name="citation_title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta property="og:title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta property="twitter:title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta name="dc.date" content="2022-04-03" />
+  <meta name="citation_publication_date" content="2022-04-03" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
   <meta name="dc.publisher" content="Manubot" />
   <meta name="citation_journal_title" content="Manubot" />
   <meta name="citation_technical_report_institution" content="Manubot" />
-  <meta name="citation_author" content="John Doe" />
-  <meta name="citation_author_institution" content="Department of Something, University of Whatever" />
-  <meta name="citation_author_orcid" content="XXXX-XXXX-XXXX-XXXX" />
-  <meta name="twitter:creator" content="@johndoe" />
-  <meta name="citation_author" content="Jane Roe" />
-  <meta name="citation_author_institution" content="Department of Something, University of Whatever" />
-  <meta name="citation_author_institution" content="Department of Whatever, University of Something" />
-  <meta name="citation_author_orcid" content="XXXX-XXXX-XXXX-XXXX" />
+  <meta name="citation_author" content="Stefan Stanojevic" />
+  <meta name="citation_author_institution" content="Department of Computational Medicine and Bioinformatics, University of Michigan" />
+  <meta name="citation_author" content="Yijun Li" />
+  <meta name="citation_author_institution" content="Department of Biostatistics, University of Michigan" />
+  <meta name="citation_author_orcid" content="0000-0003-0513-9565" />
+  <meta name="twitter:creator" content="@jenny589446011" />
+  <meta name="citation_author" content="Lana Garmire" />
+  <meta name="citation_author_institution" content="Department of Computational Medicine and Bioinformatics, University of Michigan" />
+  <meta name="citation_author_orcid" content="0000-0003-1672-6917" />
+  <meta name="twitter:creator" content="@GarmireGroup" />
   <link rel="canonical" href="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta property="og:url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta property="twitter:url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/e8a743dac1514b3ae836f6a501e858461f587d67/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/e8a743dac1514b3ae836f6a501e858461f587d67/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/e8a743dac1514b3ae836f6a501e858461f587d67/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/e8a743dac1514b3ae836f6a501e858461f587d67/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/e8a743dac1514b3ae836f6a501e858461f587d67/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -65,35 +71,41 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/179133c698e605af5e2cfed3a382996650090bfa/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/e8a743dac1514b3ae836f6a501e858461f587d67/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@179133c](https://github.com/codingpoppy/multiomics_review_manubot/tree/179133c698e605af5e2cfed3a382996650090bfa)
-on April 2, 2022.
+from [codingpoppy/multiomics_review_manubot@e8a743d](https://github.com/codingpoppy/multiomics_review_manubot/tree/e8a743dac1514b3ae836f6a501e858461f587d67)
+on April 3, 2022.
 </em></small>
 
 ## Authors
 
 
 
-+ **John Doe**<br>
-    ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
-    [XXXX-XXXX-XXXX-XXXX](https://orcid.org/XXXX-XXXX-XXXX-XXXX)
-    · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
-    [johndoe](https://github.com/johndoe)
-    · ![Twitter icon](images/twitter.svg){.inline_icon width=16 height=16}
-    [johndoe](https://twitter.com/johndoe)<br>
++ **Stefan Stanojevic**<br><br>
   <small>
-     Department of Something, University of Whatever
-     · Funded by Grant XXXXXXXX
+     Department of Computational Medicine and Bioinformatics, University of Michigan
   </small>
 
-+ **Jane Roe**<br>
++ **Yijun Li**<br>
     ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
-    [XXXX-XXXX-XXXX-XXXX](https://orcid.org/XXXX-XXXX-XXXX-XXXX)
+    [0000-0003-0513-9565](https://orcid.org/0000-0003-0513-9565)
     · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
-    [janeroe](https://github.com/janeroe)<br>
+    [codingpoppy](https://github.com/codingpoppy)
+    · ![Twitter icon](images/twitter.svg){.inline_icon width=16 height=16}
+    [jenny589446011](https://twitter.com/jenny589446011)<br>
   <small>
-     Department of Something, University of Whatever; Department of Whatever, University of Something
+     Department of Biostatistics, University of Michigan
+  </small>
+
++ **Lana Garmire**<br>
+    ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
+    [0000-0003-1672-6917](https://orcid.org/0000-0003-1672-6917)
+    · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
+    [lanagarmire](https://github.com/lanagarmire)
+    · ![Twitter icon](images/twitter.svg){.inline_icon width=16 height=16}
+    [GarmireGroup](https://twitter.com/GarmireGroup)<br>
+  <small>
+     Department of Computational Medicine and Bioinformatics, University of Michigan
   </small>
 
 
