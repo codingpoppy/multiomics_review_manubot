@@ -70,13 +70,13 @@
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/25583968251e0ca3b1215375fda8c836b56e6ffd/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/25583968251e0ca3b1215375fda8c836b56e6ffd/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -91,9 +91,9 @@
 </header>
 <p><small><em>
 This manuscript
-(<a href="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/">permalink</a>)
+(<a href="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/">permalink</a>)
 was automatically generated
-from <a href="https://github.com/codingpoppy/multiomics_review_manubot/tree/25583968251e0ca3b1215375fda8c836b56e6ffd">codingpoppy/multiomics_review_manubot@2558396</a>
+from <a href="https://github.com/codingpoppy/multiomics_review_manubot/tree/fe9b8ac258f2ea1fda40747c5e565f4978b05230">codingpoppy/multiomics_review_manubot@fe9b8ac</a>
 on April 3, 2022.
 </em></small></p>
 <h2 id="authors">Authors</h2>
@@ -291,7 +291,6 @@ BABEL provides a promising generic framework to multi-omics inference at a singl
 <figcaption aria-hidden="true"><span>Figure 3:</span> Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models.</figcaption>
 </figure>
 </div>
-<p>Table {#tbl:2}: Summary of the computational methods for aligning multiple omics data from different single cells</p>
 <table>
 <colgroup>
 <col style="width: 13%" />
@@ -410,6 +409,7 @@ BABEL provides a promising generic framework to multi-omics inference at a singl
 </tr>
 </tbody>
 </table>
+<p>Table {#tbl:2}: Summary of the computational methods for aligning multiple omics data from different single cells</p>
 <h3 id="bayesian-methods">Bayesian Methods</h3>
 <p><strong>Clonealign</strong> <span class="citation" data-cites="13iVSlhcW">[<a href="#ref-13iVSlhcW" role="doc-biblioref">49</a>]</span> integrates single-cell RNA and DNA sequencing data from heterogeneous populations by assigning cells measured by RNA-seq to clones derived from DNA-seq data. Clonealign is based on a Bayesian latent variable model, where a categorical variable is used to specify cell assignment. The model maps the copy number of a gene to its expression value by introducing a copy number dosage effect on the gene expression. The model is also flexible enough to allow for additional covariates such as batch effects or biological information that can be inferred from the gene expression (cell cycle, etc.). In addition to simulation studies that demonstrated robustness, Clonealign was also applied on real cancer datasets to discover novel clone-specific dysregulated biological pathways.</p>
 <p><strong>MUSIC</strong> <span class="citation" data-cites="VIuxeSfj">[<a href="#ref-VIuxeSfj" role="doc-biblioref">50</a>]</span> is an unsupervised topic modeling method for integrative analysis of single-cell RNA data and pooled CRISPR screening data <span class="citation" data-cites="i8ILJavt">[<a href="#ref-i8ILJavt" role="doc-biblioref">55</a>]</span>. The model links the gene expression profile of the cells and specific biological function by delineating perturbation effects,, allowing for better understanding of perturbation functions in single cell CRISPR data. In the perturbation effect prioritizing step, MUSIC utilizes the output from the topic model and estimates individual gene perturbation effects on cell phenotypes. It takes three different schemes in modeling combined single-cell and CRISPR data: an overall perturbation effect which represents the gene perturbation effect, a topic model which specifies the function of perturbation effectsway, and with respect to relationships between different perturbation effects. MUSIC was applied to 14 real single-cell CRISPR screening datasets and accurately quantified and prioritized the individual gene perturbation effect on cell phenotypes, with tolerance for substantial noise.</p>
