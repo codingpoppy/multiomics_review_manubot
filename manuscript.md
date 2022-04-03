@@ -45,13 +45,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/409a41161091da8d14116425d6ce3e4d606f4e9f/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/409a41161091da8d14116425d6ce3e4d606f4e9f/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -71,9 +71,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@04866af](https://github.com/codingpoppy/multiomics_review_manubot/tree/04866afebf1c7816adc0d0d0c1e3e46f25833c1a)
+from [codingpoppy/multiomics_review_manubot@409a411](https://github.com/codingpoppy/multiomics_review_manubot/tree/409a41161091da8d14116425d6ce3e4d606f4e9f)
 on April 3, 2022.
 </em></small>
 
@@ -128,11 +128,9 @@ The application of data fusion algorithms for multi-omics sequencing data predat
 
 ## Integration methods handling multi-omics data generated from the same single cells
 
-The integration methods for multi-modal data assayed from the same set of single cells can be broadly categorized into at least three main types by methodology: mathematical matrix factorization methods, AI (eg. neural-network) based methods and network-based methods. The scheme of these methods is illustrated in Figure {@fig:2}. Additional less diversified approaches include a Bayesian statistical method and a metric learning method. The list of the currently implemented methods is summarized in Table {@tbl:1}.
+The integration methods for multi-modal data assayed from the same set of single cells can be broadly categorized into at least three main types by methodology: mathematical matrix factorization methods, AI (eg. neural-network) based methods and network-based methods. The scheme of these methods is illustrated in Figure {@fig:2}. Additional less diversified approaches include a Bayesian statistical method and a metric learning method. The list of the currently implemented methods is summarized in Table @tbl:1.
 
 ![Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches.](images/Fig_2.png){#fig:2 width="75%" height="75%"}
-
-Table {#tbl:1}: Summary of the methods for integrating multi-omics data from the same cells.
 
 | Methodology  Category | Method               | Data                                  | Algorithm                                                        | Reference |
 |-----------------------|----------------------|---------------------------------------|------------------------------------------------------------------|-----------|
@@ -149,6 +147,8 @@ Table {#tbl:1}: Summary of the methods for integrating multi-omics data from the
 |                       | Integrated Diffusion | Transcriptomic                        | Joint Manifold Learning through Integrated Diffusion             | [@doi:10.48550/arXiv.2102.06757]      |
 | Other                 | BREM-SC              | Transcriptomic, Proteomic             | Bayesian mixture model                                           | [@doi:10.1093/nar/gkaa314]      |
 |                       | SCHEMA               | Transcriptomic, Epigenetic            | Metric Learning                                                  | [@doi:10.1186/s13059-021-02313-2]      |
+
+Table: Summary of the methods for integrating multi-omics data from the same cells. {#tbl:1}
 
 ### Matrix Factorization based methods
 

@@ -1,6 +1,6 @@
 ATAC
 autoencoder
-Autoencoders
+autoencoders
 Benchmarked
 benchmarking
 binarized
@@ -12,7 +12,7 @@ BREM
 BREMSC
 CCA
 citeFUSE
-clonealign
+Clonealign
 codingpoppy
 connectivities
 covariates
@@ -75,7 +75,7 @@ NICHD
 NLM
 nonnegative
 omic
-Omics
+omics
 Pamona
 PCA
 phenotypes
@@ -101,9 +101,9 @@ Spearman
 Stanojevic
 Topologies
 totalVI
-transcriptomic
+Transcriptomic
 transcriptomics
-variational
+Variational
 VscAI
 Wasserstein
 WNN
