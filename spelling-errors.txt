@@ -69,7 +69,7 @@ MNNs
 MOFA
 MOSim
 mRNA
-MULTIGRATE
+Multigrate
 Multimodal
 NICHD
 NLM
@@ -82,7 +82,7 @@ phenotypes
 preprocessing
 probabilistically
 PROSSTT
-Proteomic
+proteomic
 pseudotime
 Sammon
 scAI
@@ -103,7 +103,7 @@ Topologies
 totalVI
 Transcriptomic
 transcriptomics
-Variational
+variational
 VscAI
 Wasserstein
 WNN
