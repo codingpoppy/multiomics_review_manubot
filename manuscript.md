@@ -45,13 +45,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/0854422d7f42fd05a7cc4807e6c443d94ca9f76f/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/0854422d7f42fd05a7cc4807e6c443d94ca9f76f/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/0854422d7f42fd05a7cc4807e6c443d94ca9f76f/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/0854422d7f42fd05a7cc4807e6c443d94ca9f76f/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/0854422d7f42fd05a7cc4807e6c443d94ca9f76f/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/08598ba15ee3b95931d0eb1862a341882a5a7f66/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/08598ba15ee3b95931d0eb1862a341882a5a7f66/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -71,9 +71,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/0854422d7f42fd05a7cc4807e6c443d94ca9f76f/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@0854422](https://github.com/codingpoppy/multiomics_review_manubot/tree/0854422d7f42fd05a7cc4807e6c443d94ca9f76f)
+from [codingpoppy/multiomics_review_manubot@08598ba](https://github.com/codingpoppy/multiomics_review_manubot/tree/08598ba15ee3b95931d0eb1862a341882a5a7f66)
 on April 3, 2022.
 </em></small>
 
@@ -233,7 +233,7 @@ Compared to multi-omics data, it is experimentally much easier to obtain multipl
 
 Manifold alignment methods aim to infer a lower-dimensional structure within multiple complex datasets (Figure {@fig:3}B). Once this is done, points can be matched across the datasets. This is a very broad class of algorithms, and we here review several representative ones based on distinct ideas, such as the use of pseudotime trajectories, Kernel methods and distance-based matching of cells. The distance-based matching (Figure {@fig:4}) is a general idea containing several different realizations, such as **UNION-Com** [@doi:10.1093/bioinformatics/btaa443], **SCOT** [@doi:10.1101/2020.04.28.066787] and **Pamona** [@doi:10.1093/bioinformatics/btab594], which are reviewed below, among other methods.
 
-![**Figure 4** Summary of the distance-based alignment algorithm: cells are represented by nodes in two different graph representations and matched in order to preserve a notion of the distance on the graph.](images/Fig_4.png){#fig:4 width="100%" height="100%"}
+![**Figure 4** Summary of the distance-based alignment algorithm: cells are represented by nodes in two different graph representations and matched in order to preserve a notion of the distance on the graph.](images/Fig_4.png){#fig:4 width="75%" height="75%"}
 
 **MATCHER** [@doi:10.1186/s13059-017-1269-0] is the first manifold alignment technique to align different forms of single-cell data. Their approach builds on trajectory inference [@doi:10.1038/nbt.2859]. It constructs pseudotime trajectories corresponding to cellular processes for each omic first, and then aligns them between different -omics. Pseudotime trajectory models the corresponding cellular process as a Gaussian process and infers the latent variable corresponding to pseudotime. This results in a set of curves capturing the biological processes, one for each -omics layer. Such curves are then projected onto a reference line so that different cells can be matched across -omics. The model makes a strong assumption that there is only one common biological process to be modeled.
 
