@@ -45,13 +45,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/25583968251e0ca3b1215375fda8c836b56e6ffd/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/25583968251e0ca3b1215375fda8c836b56e6ffd/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -71,9 +71,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/25583968251e0ca3b1215375fda8c836b56e6ffd/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@2558396](https://github.com/codingpoppy/multiomics_review_manubot/tree/25583968251e0ca3b1215375fda8c836b56e6ffd)
+from [codingpoppy/multiomics_review_manubot@fe9b8ac](https://github.com/codingpoppy/multiomics_review_manubot/tree/fe9b8ac258f2ea1fda40747c5e565f4978b05230)
 on April 3, 2022.
 </em></small>
 
@@ -128,7 +128,7 @@ The application of data fusion algorithms for multi-omics sequencing data predat
 
 ## Integration methods handling multi-omics data generated from the same single cells
 
-The integration methods for multi-modal data assayed from the same set of single cells can be broadly categorized into at least three main types by methodology: mathematical matrix factorization methods, AI (eg. neural-network) based methods and network-based methods. The scheme of these methods is illustrated in Figure {@fig:2}. Additional less diversified approaches include a Bayesian statistical method and a metric learning method. The list of the currently implemented methods is summarized in Table @tbl:1.
+The integration methods for multi-modal data assayed from the same set of single cells can be broadly categorized into at least three main types by methodology: mathematical matrix factorization methods, AI (eg. neural-network) based methods and network-based methods. The scheme of these methods is illustrated in Figure {@fig:2}. Additional less diversified approaches include a Bayesian statistical method and a metric learning method. The list of the currently implemented methods is summarized in Table {@tbl:1}.
 
 ![Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches.](images/Fig_2.png){#fig:2 width="75%" height="75%"}
 
@@ -206,8 +206,6 @@ Compared to multi-omics data, it is experimentally much easier to obtain multipl
 
 ![Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models.](images/Fig_3.png){#fig:3 width="75%" height="75%"}
 
-Table {#tbl:2}: Summary of the computational methods for aligning multiple omics data from different single cells
-
 | Methodology Category | Method      | Algorithm                                                            | Data                                              | Reference |
 |----------------------|-------------|----------------------------------------------------------------------|---------------------------------------------------|-----------|
 | Manifold Alignment   | UNION - Com | Topological Alignment                                                | Transcriptomic, Epigenetic                        | [@doi:10.1093/bioinformatics/btaa443]      |
@@ -224,6 +222,8 @@ Table {#tbl:2}: Summary of the computational methods for aligning multiple omics
 |                      | bindSC      |  Canonical Correlation Analysis                                      | RNA-seq, ATAC-seq                                 | [@doi:10.1101/2020.12.11.422014]      |
 |                      | MAESTRO     |                                                                      | RNA-seq, ATAC-seq                                 | [@doi:10.1186/s13059-020-02116-x]      |
 |                      | LIGER       | Matrix factorization                                                 | RNA-seq, methylation                              | [@doi:10.1016/j.cell.2019.05.031; @doi:10.1016/j.cell.2019.05.006]   |
+
+Table {#tbl:2}: Summary of the computational methods for aligning multiple omics data from different single cells
 
 ### Bayesian Methods
 

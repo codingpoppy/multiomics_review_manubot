@@ -1,6 +1,6 @@
 ATAC
 autoencoder
-autoencoders
+Autoencoders
 Benchmarked
 benchmarking
 binarized
@@ -69,7 +69,7 @@ MNNs
 MOFA
 MOSim
 mRNA
-Multigrate
+MULTIGRATE
 Multimodal
 NICHD
 NLM
@@ -83,7 +83,7 @@ preprocessing
 probabilistically
 PROSSTT
 proteomic
-pseudotime
+Pseudotime
 Sammon
 scAI
 scalability
@@ -103,7 +103,7 @@ Topologies
 totalVI
 Transcriptomic
 transcriptomics
-Variational
+variational
 VscAI
 Wasserstein
 WNN
