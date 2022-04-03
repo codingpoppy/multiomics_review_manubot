@@ -12,7 +12,7 @@ BREM
 BREMSC
 CCA
 citeFUSE
-Clonealign
+clonealign
 codingpoppy
 connectivities
 covariates
@@ -36,7 +36,7 @@ dysregulated
 effectsway
 eg
 Eigenmaps
-epigenetic
+Epigenetic
 epigenetics
 epigenomic
 GAN
@@ -75,15 +75,15 @@ NICHD
 NLM
 nonnegative
 omic
-omics
+Omics
 Pamona
 PCA
 phenotypes
 preprocessing
 probabilistically
 PROSSTT
-proteomic
-Pseudotime
+Proteomic
+pseudotime
 Sammon
 scAI
 scalability
@@ -101,7 +101,7 @@ Spearman
 Stanojevic
 Topologies
 totalVI
-Transcriptomic
+transcriptomic
 transcriptomics
 variational
 VscAI

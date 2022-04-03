@@ -45,13 +45,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/fe9b8ac258f2ea1fda40747c5e565f4978b05230/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -71,9 +71,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/fe9b8ac258f2ea1fda40747c5e565f4978b05230/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/04866afebf1c7816adc0d0d0c1e3e46f25833c1a/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@fe9b8ac](https://github.com/codingpoppy/multiomics_review_manubot/tree/fe9b8ac258f2ea1fda40747c5e565f4978b05230)
+from [codingpoppy/multiomics_review_manubot@04866af](https://github.com/codingpoppy/multiomics_review_manubot/tree/04866afebf1c7816adc0d0d0c1e3e46f25833c1a)
 on April 3, 2022.
 </em></small>
 
@@ -223,7 +223,7 @@ Compared to multi-omics data, it is experimentally much easier to obtain multipl
 |                      | MAESTRO     |                                                                      | RNA-seq, ATAC-seq                                 | [@doi:10.1186/s13059-020-02116-x]      |
 |                      | LIGER       | Matrix factorization                                                 | RNA-seq, methylation                              | [@doi:10.1016/j.cell.2019.05.031; @doi:10.1016/j.cell.2019.05.006]   |
 
-Table {#tbl:2}: Summary of the computational methods for aligning multiple omics data from different single cells
+Table: Summary of the computational methods for aligning multiple omics data from different single cells. {#tbl:2}
 
 ### Bayesian Methods
 
