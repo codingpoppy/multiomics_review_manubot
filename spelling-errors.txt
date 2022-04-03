@@ -1,6 +1,6 @@
 ATAC
 autoencoder
-Autoencoders
+autoencoders
 Benchmarked
 benchmarking
 binarized
@@ -69,7 +69,7 @@ MNNs
 MOFA
 MOSim
 mRNA
-MULTIGRATE
+Multigrate
 Multimodal
 NICHD
 NLM

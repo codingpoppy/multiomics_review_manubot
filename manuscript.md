@@ -45,13 +45,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/08598ba15ee3b95931d0eb1862a341882a5a7f66/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/08598ba15ee3b95931d0eb1862a341882a5a7f66/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/5e21519546f06699a166d24ab4f1d0f73bbc143f/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/5e21519546f06699a166d24ab4f1d0f73bbc143f/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -71,9 +71,9 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/08598ba15ee3b95931d0eb1862a341882a5a7f66/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/5e21519546f06699a166d24ab4f1d0f73bbc143f/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@08598ba](https://github.com/codingpoppy/multiomics_review_manubot/tree/08598ba15ee3b95931d0eb1862a341882a5a7f66)
+from [codingpoppy/multiomics_review_manubot@5e21519](https://github.com/codingpoppy/multiomics_review_manubot/tree/5e21519546f06699a166d24ab4f1d0f73bbc143f)
 on April 3, 2022.
 </em></small>
 
@@ -121,7 +121,7 @@ Single-cell sequencing technologies have opened the door to investigating biolog
 
 Recently, however, a number of experimental techniques capable of assaying multiple modalities simultaneously from the same set of single cells have been developed. CITE-seq [@doi:10.1038/nmeth.4380] and REAP-seq [@doi:10.1038/nbt.3973] measure proteins and gene expression. SNARE-seq [@doi:10.1038/nbt.3973; @doi:10.1038/s41587-019-0290-0], SHARE-seq [@doi:10.1038/s41576-020-00308-6] and sci-CAR [@doi:10.1126/science.aau0730] measure gene expression and chromatin accessibility, while scGEM [@doi:10.1038/nmeth.3961] measures gene expression and DNA methylation. For triple-omics data generation, scNMT [@doi:10.1038/s41467-018-03149-4] measures gene expression, chromatin accessibility and DNA methylation, and scTrio-seq [@doi:10.1038/nmeth.3961; @doi:10.1126/science.aao3791] captures SNPs, gene expression and DNA methylation simultaneously. Integrative analysis of such data obtained from the same cells remains a challenging computational task due to a combination of reasons, such as the noise and sparsity in the assays, and different statistical distributions for different modalities. For clarity, we distinguish between integration methods that combine multiple -omics data from the set of the same single cells (Section I), from alignment methods designed to work with multi-modal data coming from the same tissue but different cells (Section II). The difference in their approaches is shown in Figure {@fig:1}.
 
-![**Figure 1**. Multi-omics data can sometimes be sequenced from the same set of single cells (left); at other times, only the data sequenced from the same/similar sample, but different single cells are available (right). In the former case, we have the task of integrating the different data modalities (left); in the latter case, we need to first identify similar cells across the samples (right) - this is the computational task of alignment.](images/Fig_1.png){#fig:1 width="75%" height="75%"}
+![Multi-omics data can sometimes be sequenced from the same set of single cells (left); at other times, only the data sequenced from the same/similar sample, but different single cells are available (right). In the former case, we have the task of integrating the different data modalities (left); in the latter case, we need to first identify similar cells across the samples (right) - this is the computational task of alignment.](images/Fig_1.png){#fig:1 width="75%" height="75%"}
 
 The application of data fusion algorithms for multi-omics sequencing data predates the single-cell technologies; bulk-level data have been integrated using a variety of computational tools as reviewed in [@doi:10.3389/fgene.2017.00084]. In this review, we aim to give a comprehensive, up-to-date summary of existing computational tools of multi-omics data integration and alignment in the single-cell field, for researchers in the field of computational biology. For more general surveys, the readers are encouraged to check other single-cell multi-omics reviews [@doi:10.1016/j.coisb.2018.01.003; @doi:10.1016/j.tibtech.2020.02.013; @doi:10.1093/bib/bbaa042; @doi:10.1038/s41587-021-00895-7; @doi:10.1016/j.csbj.2021.04.060; @doi:10.1038/s41581-021-00463-x].
 
@@ -130,9 +130,10 @@ The application of data fusion algorithms for multi-omics sequencing data predat
 
 The integration methods for multi-modal data assayed from the same set of single cells can be broadly categorized into at least three main types by methodology: mathematical matrix factorization methods, AI (eg. neural-network) based methods and network-based methods. The scheme of these methods is illustrated in Figure {@fig:2}. Additional less diversified approaches include a Bayesian statistical method and a metric learning method. The list of the currently implemented methods is summarized in Table @tbl:1.
 
-![**Figure 2**. Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches.](images/Fig_2.png){#fig:2 width="75%" height="75%"}
+![Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches.](images/Fig_2.png){#fig:2 width="75%" height="75%"}
 
 **Table {#tbl:1}**: Summary of the methods for integrating multi-omics data from the same cells.
+
 | Methodology  Category | Method               | Data                                  | Algorithm                                                        | Reference |
 |-----------------------|----------------------|---------------------------------------|------------------------------------------------------------------|-----------|
 | Matrix Factorization  | MOFA+                | Transcriptomic, Epigenetic            | Matrix Factorization with Automatic Relevance Determination      | [@doi:10.1038/nmeth.3961]       |
@@ -203,9 +204,10 @@ Network-based methods represent the relationships between different cells using 
 
 Compared to multi-omics data, it is experimentally much easier to obtain multiple modalities of data where each modality is obtained from similar but different cells of the same tissue. The task to harmonize these data is called alignment (Figure {@fig:1}). The body of literature applying machine learning and statistical methods to this task is rich, including manifold learning, neural-network based methods, and Bayesian methods, as summarized in Table @tbl:2 and depicted in Figure {@fig:3}. Note that some of the methods developed for batch-correct different scRNA-seq datasets, could in principle be repurposed for single-cell multiple omics alignment; we refer readers to previous benchmark studies [@doi:10.1186/s13059-019-1850-9].
 
-![**Figure 3** Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models.](images/Fig_3.png){#fig:3 width="75%" height="75%"}
+![Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models.](images/Fig_3.png){#fig:3 width="75%" height="75%"}
 
 **Table {#tbl:2}**: Summary of the computational methods for aligning multiple omics data from different single cells
+
 | Methodology Category | Method      | Algorithm                                                            | Data                                              | Reference |
 |----------------------|-------------|----------------------------------------------------------------------|---------------------------------------------------|-----------|
 | Manifold Alignment   | UNION - Com | Topological Alignment                                                | Transcriptomic, Epigenetic                        | [@doi:10.1093/bioinformatics/btaa443]      |
@@ -233,7 +235,7 @@ Compared to multi-omics data, it is experimentally much easier to obtain multipl
 
 Manifold alignment methods aim to infer a lower-dimensional structure within multiple complex datasets (Figure {@fig:3}B). Once this is done, points can be matched across the datasets. This is a very broad class of algorithms, and we here review several representative ones based on distinct ideas, such as the use of pseudotime trajectories, Kernel methods and distance-based matching of cells. The distance-based matching (Figure {@fig:4}) is a general idea containing several different realizations, such as **UNION-Com** [@doi:10.1093/bioinformatics/btaa443], **SCOT** [@doi:10.1101/2020.04.28.066787] and **Pamona** [@doi:10.1093/bioinformatics/btab594], which are reviewed below, among other methods.
 
-![**Figure 4** Summary of the distance-based alignment algorithm: cells are represented by nodes in two different graph representations and matched in order to preserve a notion of the distance on the graph.](images/Fig_4.png){#fig:4 width="75%" height="75%"}
+![Summary of the distance-based alignment algorithm: cells are represented by nodes in two different graph representations and matched in order to preserve a notion of the distance on the graph.](images/Fig_4.png){#fig:4 width="75%" height="75%"}
 
 **MATCHER** [@doi:10.1186/s13059-017-1269-0] is the first manifold alignment technique to align different forms of single-cell data. Their approach builds on trajectory inference [@doi:10.1038/nbt.2859]. It constructs pseudotime trajectories corresponding to cellular processes for each omic first, and then aligns them between different -omics. Pseudotime trajectory models the corresponding cellular process as a Gaussian process and infers the latent variable corresponding to pseudotime. This results in a set of curves capturing the biological processes, one for each -omics layer. Such curves are then projected onto a reference line so that different cells can be matched across -omics. The model makes a strong assumption that there is only one common biological process to be modeled.
 
