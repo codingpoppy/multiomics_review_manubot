@@ -1,26 +1,30 @@
 ---
-title: "Manuscript Title"
+title: "Computational Methods for Single-Cell Multi-Omics Integration and Alignment"
 keywords:
-  - markdown
-  - publishing
-  - manubot
+  - Single-cell
+  - Multi-omics
+  - Machine learning
+  - Integration
 lang: en-US
 authors:
-  - github: johndoe
-    name: John Doe
-    initials: JD
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
+  - name: Stefan Stanojevic
+    initials: SS
+    email: stanojes@med.umich.edu
     affiliations:
-      - Department of Something, University of Whatever
-    funders:
-      - Grant XXXXXXXX
-  - github: janeroe
-    name: Jane Roe
-    initials: JR
-    orcid: XXXX-XXXX-XXXX-XXXX
-    email: jane.roe@whatever.edu
+      - Department of Computational Medicine and Bioinformatics, University of Michigan
+  - github: codingpoppy
+    name: Yijun Li
+    initials: YL
+    orcid: 0000-0003-0513-9565
+    twitter: jenny589446011
+    email: liyijun@umich.edu
     affiliations:
-      - Department of Something, University of Whatever
-      - Department of Whatever, University of Something
+      - Department of Biostatistics, University of Michigan
+  - github: lanagarmire
+    name: Lana Garmire
+    initials: LG
+    orcid: 0000-0003-1672-6917
+    twitter: GarmireGroup
+    email: lgarmire@med.umich.edu
+    affiliations:
+      - Department of Computational Medicine and Bioinformatics, University of Michigan
