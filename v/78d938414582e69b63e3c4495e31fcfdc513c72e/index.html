@@ -1,0 +1,3882 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Stefan Stanojevic" />
+  <meta name="author" content="Yijun Li" />
+  <meta name="author" content="Lana Garmire" />
+  <meta name="dcterms.date" content="2022-04-06" />
+  <meta name="keywords" content="Single-cell, Multi-omics, Machine learning, Integration" />
+  <title>Computational Methods for Single-Cell Multi-Omics Integration and Alignment</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <!--
+  Manubot generated metadata rendered from header-includes-template.html.
+  Suggest improvements at https://github.com/manubot/manubot/blob/main/manubot/process/header-includes-template.html
+  -->
+  <meta name="dc.format" content="text/html" />
+  <meta name="dc.title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta name="citation_title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta property="og:title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta property="twitter:title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
+  <meta name="dc.date" content="2022-04-06" />
+  <meta name="citation_publication_date" content="2022-04-06" />
+  <meta name="dc.language" content="en-US" />
+  <meta name="citation_language" content="en-US" />
+  <meta name="dc.relation.ispartof" content="Manubot" />
+  <meta name="dc.publisher" content="Manubot" />
+  <meta name="citation_journal_title" content="Manubot" />
+  <meta name="citation_technical_report_institution" content="Manubot" />
+  <meta name="citation_author" content="Stefan Stanojevic" />
+  <meta name="citation_author_institution" content="Department of Computational Medicine and Bioinformatics, University of Michigan" />
+  <meta name="citation_author_orcid" content="0000-0002-9692-5301" />
+  <meta name="citation_author" content="Yijun Li" />
+  <meta name="citation_author_institution" content="Department of Biostatistics, University of Michigan" />
+  <meta name="citation_author_orcid" content="0000-0003-0513-9565" />
+  <meta name="twitter:creator" content="@jenny589446011" />
+  <meta name="citation_author" content="Lana Garmire" />
+  <meta name="citation_author_institution" content="Department of Computational Medicine and Bioinformatics, University of Michigan" />
+  <meta name="citation_author_orcid" content="0000-0003-1672-6917" />
+  <meta name="twitter:creator" content="@GarmireGroup" />
+  <link rel="canonical" href="https://codingpoppy.github.io/multiomics_review_manubot/" />
+  <meta property="og:url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
+  <meta property="twitter:url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
+  <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
+  <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
+  <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/manuscript.pdf" />
+  <meta property="og:type" content="article" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/78d938414582e69b63e3c4495e31fcfdc513c72e/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/78d938414582e69b63e3c4495e31fcfdc513c72e/content/images/thumbnail.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
+  <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
+  <meta name="theme-color" content="#ad1457" />
+  <!-- end Manubot generated metadata -->
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Computational Methods for Single-Cell Multi-Omics Integration and Alignment</h1>
+</header>
+<p><small><em>
+This manuscript
+(<a href="https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/">permalink</a>)
+was automatically generated
+from <a href="https://github.com/codingpoppy/multiomics_review_manubot/tree/78d938414582e69b63e3c4495e31fcfdc513c72e">codingpoppy/multiomics_review_manubot@78d9384</a>
+on April 6, 2022.
+</em></small></p>
+<h2 id="authors">Authors</h2>
+<ul>
+<li><p><strong>Stefan Stanojevic</strong><br>
+<img src="images/orcid.svg" class="inline_icon" width="16" height="16" alt="ORCID icon" />
+<a href="https://orcid.org/0000-0002-9692-5301">0000-0002-9692-5301</a>
+· <img src="images/github.svg" class="inline_icon" width="16" height="16" alt="GitHub icon" />
+<a href="https://github.com/stefs92">stefs92</a><br>
+<small>
+Department of Computational Medicine and Bioinformatics, University of Michigan
+</small></p></li>
+<li><p><strong>Yijun Li</strong><br>
+<img src="images/orcid.svg" class="inline_icon" width="16" height="16" alt="ORCID icon" />
+<a href="https://orcid.org/0000-0003-0513-9565">0000-0003-0513-9565</a>
+· <img src="images/github.svg" class="inline_icon" width="16" height="16" alt="GitHub icon" />
+<a href="https://github.com/codingpoppy">codingpoppy</a>
+· <img src="images/twitter.svg" class="inline_icon" width="16" height="16" alt="Twitter icon" />
+<a href="https://twitter.com/jenny589446011">jenny589446011</a><br>
+<small>
+Department of Biostatistics, University of Michigan
+</small></p></li>
+<li><p><strong>Lana Garmire</strong><br>
+<img src="images/orcid.svg" class="inline_icon" width="16" height="16" alt="ORCID icon" />
+<a href="https://orcid.org/0000-0003-1672-6917">0000-0003-1672-6917</a>
+· <img src="images/github.svg" class="inline_icon" width="16" height="16" alt="GitHub icon" />
+<a href="https://github.com/lanagarmire">lanagarmire</a>
+· <img src="images/twitter.svg" class="inline_icon" width="16" height="16" alt="Twitter icon" />
+<a href="https://twitter.com/GarmireGroup">GarmireGroup</a><br>
+<small>
+Department of Computational Medicine and Bioinformatics, University of Michigan
+</small></p></li>
+</ul>
+<h2 class="page_break_before" id="abstract">Abstract</h2>
+<p>Recently developed technologies to generate single-cell genomic data have made a revolutionary impact in the field of biology. Multi-omics assays offer even greater opportunities to understand cellular states and biological processes. However, the problem of integrating different -omics data with very different dimensionality and statistical properties remains quite challenging. A growing body of computational tools are being developed for this task, leveraging ideas ranging from machine translation to the theory of networks and representing a new frontier on the interface of biology and data science. Our goal in this review paper is to provide a comprehensive, up-to-date survey of computational techniques for the integration of multi-omics and alignment of multiple modalities of genomics data in the single cell research field.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Single-cell sequencing technologies have opened the door to investigating biological processes at an unprecedentedly high resolution. Techniques such as DROP-seq <span class="citation" data-cites="11pOKbwng">[<a href="#ref-11pOKbwng" role="doc-biblioref">1</a>]</span> and 10x Genomics assays are capable of measuring single-cell gene expression, or scRNA-seq, in tens of thousands of single cells simultaneously. Measurements of other data modalities are also increasingly available. For example, single-cell ATAC-seq (scATAC-seq) assesses chromatin accessibility, and single-cell bisulfite sequencing captures DNA methylation, all from single cells. However, many of such techniques are designed to measure a single modality and do not lend themselves to multi-omics measurements. The way to combine information from such measurements is then to assay different -omics from different subsets of the same samples. By assuming that cells assayed by different techniques share similar properties, one can then use alignment methods to computationally aggregate similar cells across different omics assays and draw consensus biological inference.</p>
+<p>Recently, however, a number of experimental techniques capable of assaying multiple modalities simultaneously from the same set of single cells have been developed. CITE-seq <span class="citation" data-cites="abp5rbw2">[<a href="#ref-abp5rbw2" role="doc-biblioref">2</a>]</span> and REAP-seq <span class="citation" data-cites="11eRLsmmI">[<a href="#ref-11eRLsmmI" role="doc-biblioref">3</a>]</span> measure proteins and gene expression. SNARE-seq <span class="citation" data-cites="11eRLsmmI Kmg9jLCt">[<a href="#ref-11eRLsmmI" role="doc-biblioref">3</a>,<a href="#ref-Kmg9jLCt" role="doc-biblioref">4</a>]</span>, SHARE-seq <span class="citation" data-cites="EE7ioS1z">[<a href="#ref-EE7ioS1z" role="doc-biblioref">5</a>]</span> and sci-CAR <span class="citation" data-cites="JgfOwHt0">[<a href="#ref-JgfOwHt0" role="doc-biblioref">6</a>]</span> measure gene expression and chromatin accessibility, while scGEM <span class="citation" data-cites="FSXUv1xQ">[<a href="#ref-FSXUv1xQ" role="doc-biblioref">7</a>]</span> measures gene expression and DNA methylation. For triple-omics data generation, scNMT <span class="citation" data-cites="1FWgnoNlO">[<a href="#ref-1FWgnoNlO" role="doc-biblioref">8</a>]</span> measures gene expression, chromatin accessibility and DNA methylation, and scTrio-seq <span class="citation" data-cites="FSXUv1xQ pzB7tkD3">[<a href="#ref-FSXUv1xQ" role="doc-biblioref">7</a>,<a href="#ref-pzB7tkD3" role="doc-biblioref">9</a>]</span> captures SNPs, gene expression and DNA methylation simultaneously. Integrative analysis of such data obtained from the same cells remains a challenging computational task due to a combination of reasons, such as the noise and sparsity in the assays, and different statistical distributions for different modalities. For clarity, we distinguish between integration methods that combine multiple -omics data from the set of the same single cells (Section I), from alignment methods designed to work with multi-modal data coming from the same tissue but different cells (Section II). The difference in their approaches is shown in Figure <a href="#fig:1">1</a>.</p>
+<div id="fig:1" class="fignos">
+<figure>
+<img src="images/Fig_1.png" style="width:75.0%;height:75.0%" alt="Figure 1: Multi-omics data can sometimes be sequenced from the same set of single cells (left); at other times, only the data sequenced from the same/similar sample, but different single cells are available (right). In the former case, we have the task of integrating the different data modalities (left); in the latter case, we need to first identify similar cells across the samples (right) - this is the computational task of alignment." />
+<figcaption aria-hidden="true"><span>Figure 1:</span> Multi-omics data can sometimes be sequenced from the same set of single cells (left); at other times, only the data sequenced from the same/similar sample, but different single cells are available (right). In the former case, we have the task of integrating the different data modalities (left); in the latter case, we need to first identify similar cells across the samples (right) - this is the computational task of alignment.</figcaption>
+</figure>
+</div>
+<p>The application of data fusion algorithms for multi-omics sequencing data predates the single-cell technologies; bulk-level data have been integrated using a variety of computational tools as reviewed in <span class="citation" data-cites="156UVA1sT">[<a href="#ref-156UVA1sT" role="doc-biblioref">10</a>]</span>. In this review, we aim to give a comprehensive, up-to-date summary of existing computational tools of multi-omics data integration and alignment in the single-cell field, for researchers in the field of computational biology. For more general surveys, the readers are encouraged to check other single-cell multi-omics reviews <span class="citation" data-cites="4Jvlha3z 1HWpkr3ZK 1A8BRhgKH v8EY6Y3W 9lrRlyX2 SLbB6cV8">[<a href="#ref-4Jvlha3z" role="doc-biblioref">11</a>–<a href="#ref-SLbB6cV8" role="doc-biblioref">16</a>]</span>.</p>
+<h2 id="integration-methods-handling-multi-omics-data-generated-from-the-same-single-cells">Integration methods handling multi-omics data generated from the same single cells</h2>
+<p>The integration methods for multi-modal data assayed from the same set of single cells can be broadly categorized into at least three main types by methodology: mathematical matrix factorization methods, AI (eg. neural-network) based methods and network-based methods. The scheme of these methods is illustrated in Figure <a href="#fig:2">2</a>. Additional less diversified approaches include a Bayesian statistical method and a metric learning method. The list of the currently implemented methods is summarized in Table <a href="#tbl:1">1</a>.</p>
+<div id="fig:2" class="fignos">
+<figure>
+<img src="images/Fig_2.png" style="width:75.0%;height:75.0%" alt="Figure 2: Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches." />
+<figcaption aria-hidden="true"><span>Figure 2:</span> Illustration of some common integration approaches for single-cell multi-omics: matrix factorization, neural network and network-based approaches.</figcaption>
+</figure>
+</div>
+<div id="tbl:1" class="tablenos">
+<table id="tbl:1">
+<caption><span>Table 1:</span> Summary of the methods for integrating multi-omics data from the same cells. </caption>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 13%" />
+<col style="width: 24%" />
+<col style="width: 40%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methodology Category</th>
+<th>Method</th>
+<th>Data</th>
+<th>Algorithm</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Matrix Factorization</td>
+<td>MOFA+</td>
+<td>Transcriptomic, Epigenetic</td>
+<td>Matrix Factorization with Automatic Relevance Determination</td>
+<td><span class="citation" data-cites="FSXUv1xQ">[<a href="#ref-FSXUv1xQ" role="doc-biblioref">7</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>scAI</td>
+<td>Transcriptomic, Epigenetic</td>
+<td>Matrix factorization, with custom aggregation of epigenetic data</td>
+<td><span class="citation" data-cites="156UVA1sT">[<a href="#ref-156UVA1sT" role="doc-biblioref">10</a>]</span></td>
+</tr>
+<tr class="odd">
+<td>Neural Network</td>
+<td>totalVI</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Variational autoencoder</td>
+<td><span class="citation" data-cites="1HWpkr3ZK">[<a href="#ref-1HWpkr3ZK" role="doc-biblioref">12</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>scMVAE</td>
+<td>Transcriptomic, Epigenetic</td>
+<td></td>
+<td><span class="citation" data-cites="1A8BRhgKH">[<a href="#ref-1A8BRhgKH" role="doc-biblioref">13</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>DCCA</td>
+<td>Transcriptomic, Epigenetic</td>
+<td></td>
+<td><span class="citation" data-cites="t5lJC7T4">[<a href="#ref-t5lJC7T4" role="doc-biblioref">17</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>LIBRA</td>
+<td>Transcriptomic, Proteomic, Epigenetic</td>
+<td>Split-brain autoencoder</td>
+<td><span class="citation" data-cites="SLbB6cV8">[<a href="#ref-SLbB6cV8" role="doc-biblioref">16</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>BABEL</td>
+<td>Transcriptomic, Proteomic, Epigenetic</td>
+<td>Autoencoder translating between modalities</td>
+<td><span class="citation" data-cites="luLU3n8O">[<a href="#ref-luLU3n8O" role="doc-biblioref">18</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>DeepMAPS</td>
+<td>Transcriptomic, Epigenetic, Proteomic</td>
+<td>Graph Neural Network</td>
+<td><span class="citation" data-cites="xZQR38QC">[<a href="#ref-xZQR38QC" role="doc-biblioref">19</a>]</span></td>
+</tr>
+<tr class="odd">
+<td>Network - Based</td>
+<td>citeFUSE</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Similarity network fusion</td>
+<td><span class="citation" data-cites="13FKN3V7y">[<a href="#ref-13FKN3V7y" role="doc-biblioref">20</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Seurat v4</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Weighted averaging of nearest neighbor graphs</td>
+<td><span class="citation" data-cites="aNdbBIHQ">[<a href="#ref-aNdbBIHQ" role="doc-biblioref">21</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Integrated Diffusion</td>
+<td>Transcriptomic</td>
+<td>Joint Manifold Learning through Integrated Diffusion</td>
+<td><span class="citation" data-cites="1EGetPJhg">[<a href="#ref-1EGetPJhg" role="doc-biblioref">22</a>]</span></td>
+</tr>
+<tr class="even">
+<td>Other</td>
+<td>BREM-SC</td>
+<td>Transcriptomic, Proteomic</td>
+<td>Bayesian mixture model</td>
+<td><span class="citation" data-cites="nKC0gy2d">[<a href="#ref-nKC0gy2d" role="doc-biblioref">23</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SCHEMA</td>
+<td>Transcriptomic, Epigenetic</td>
+<td>Metric Learning</td>
+<td><span class="citation" data-cites="6w16Pjmi">[<a href="#ref-6w16Pjmi" role="doc-biblioref">24</a>]</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="matrix-factorization-based-methods">Matrix Factorization based methods</h3>
+<p>Matrix factorization methods aim to describe each cell as the product between a vector that describes each -omics element (genes, epigenetic loci, proteins, etc.) and a vector of reduced and common features (“factors”) capturing its basic properties (Figure <a href="#fig:2">2</a>A). Mathematically, if we represent each -omics as matrix <span class="math inline">\(X_{i (i=1,2,\cdots)}\)</span> then matrix factorization decomposes it as the product of a shared matrix H across all omics data types, and -omics specific matrix <span class="math inline">\(W_{i (i=1,2,\cdots)}\)</span>, together with random noise <span class="math inline">\(\epsilon_{i (i=1,2,\cdots)}\)</span> as
+<span class="math display">\[X_1=W_1H+\epsilon_1, X_2=W_2H+\epsilon_2, \cdots, X_i=W_iH+\epsilon_i\]</span>
+Such methods are simple and easily interpretable since the cell and -omics factors both carry clearly discernible biological meaning, but may lack the ability to capture nonlinear effects. We describe the variations in this type of methods below:</p>
+<p><strong>MOFA+</strong> <span class="citation" data-cites="A7ouflxZ">[<a href="#ref-A7ouflxZ" role="doc-biblioref">25</a>]</span> is a sequel to the MOFA (Multi-Omics Factor Analysis) <span class="citation" data-cites="13FKN3V7y">[<a href="#ref-13FKN3V7y" role="doc-biblioref">20</a>]</span>. Both studies perform factor analysis, equipped with sparsity-inducing Bayesian elements including Automatic Relevance Determination <span class="citation" data-cites="wfwGeMRv">[<a href="#ref-wfwGeMRv" role="doc-biblioref">26</a>]</span>. MOFA+ integrates data over both views (corresponding to different modalities) and groups (corresponding to different experimental conditions). The model scales easily to large datasets. MOFA+ was applied to integrate gene expression, chromatin accessibility and DNA methylation data assayed using scNMT from mouse embryos, as well as to integrate several datasets over different experimental conditions rather than different -omics. After performing factor analysis on the mouse dataset, the most relevant factors are related to biological processes shaping embryo development. MOFA+ provides an elegant and successful general framework for integration, which could potentially be superseded in specific cases by more specialized models designed for integrating specific -omics layers.</p>
+<p><strong>scAI</strong> (“single-cell aggregation and inference”) <span class="citation" data-cites="aNdbBIHQ">[<a href="#ref-aNdbBIHQ" role="doc-biblioref">21</a>]</span> features a twist on matrix factorization and is designed specifically for integration of epigenetic (chromatin accessibility, DNA methylation) and transcriptomic data. It addresses the sparsity of epigenetic data by aggregating (averaging) such data between similar cells. This requires a notion of cell-cell similarity which is learned as a part of the model, rather than being postulated prior to the integration. Their model solves the following optimization problem
+<span class="math display">\[\min_{W_1, W_2, H, Z}\alpha||X_1-W_1H||^2_F + ||X_2(Z\cdot R-W_2H)||^2_F + \lambda||Z_H^TH||^2_F +\gamma\sum_j||H_{\cdot j}||_1^2\]</span>
+where <span class="math inline">\(X_1\)</span> represents the transcriptomic data, <span class="math inline">\(X_2\)</span> the epigenomic data, <span class="math inline">\(H\)</span> are the common (cell-specific) factors, <span class="math inline">\(W_1\)</span>, <span class="math inline">\(W_2\)</span> are the assay-specific factors, <span class="math inline">\(Z\)</span> is the cell-cell similarity matrix, and entries of are Bernoulli-distributed random variables. The twist on the usual matrix factorization is made by factoring aggregated epigenetic data <span class="math inline">\(X_2(Z\cdot R)\)</span>, rather than directly factoring the epigenetic data <span class="math inline">\(X_2\)</span>. After the learning is complete, the matrix of cell factors is used to cluster the cells and the importance of genes and epigenetic marks is ranked using the magnitude of the values in loading matrices. In order to jointly visualize different factors, scAI implements a novel VscAI algorithm utilizing Sammon mappings <span class="citation" data-cites="18QucLaYQ">[<a href="#ref-18QucLaYQ" role="doc-biblioref">27</a>]</span>. The relationships between epigenetics and gene expression can be explored using correlation analysis and nonnegative least square regression. The model was tested on simulations using MOSim <span class="citation" data-cites="9bsaBUNu">[<a href="#ref-9bsaBUNu" role="doc-biblioref">28</a>]</span>, and several real world datasets, and performed better than the earlier MOFA version, in terms of identifying natural clusters and condensing epigenetic data into meaningful factors.</p>
+<h3 id="neural-network-based-methods">Neural Network based methods</h3>
+<p>While neural networks are generally well-suited for supervised tasks, a class of neural networks called autoencoders is commonly used for unsupervised learning, such as the multi-omics integration problem in single cells. Deep autoencoders perform nonlinear dimensionality reduction by squeezing the input through a lower-dimensional hidden layer (“bottle neck”) and attempting to reconstruct the original input as the output of the neural network (Figure <a href="#fig:2">2</a>B). They consist of two parts: the “encoder” network performing the dimensionality reduction and the “decoder” network reconstructing based on the dimensionally reduced data. In principle, autoencoders generalize the principal component analysis by allowing for nonlinear transformations. Many variations of autoencoder models exist, and among them variational autoencoders
+have proven useful for analyzing single-cell data. Rather than directly encoding the data in a dimensionally reduced (“latent”) space, variational autoencoders sample from a probability distribution (usually Gaussian) in the latent space, and use the encoder network to produce the parameters of this distribution. As such, they combine deep learning and Bayesian inference to produce generative models, which not only dimensionally reduce the original data but also produce realistic synthetic data points. Below we review the methods using certain variations of the autoencoder architecture to integrate single-cell multi-omics data.</p>
+<p><strong>scMVAE</strong> (“Single Cell Multimodal Variational Autoencoder”) <span class="citation" data-cites="x2VcF9PC">[<a href="#ref-x2VcF9PC" role="doc-biblioref">29</a>]</span> was designed to integrate transcriptomic and chromatin accessibility data, using a version of a variational autoencoder. The key question in multi-omics integration is how to encode the multi-omics data into a single latent space representation. In the case of scMVAE, a combination of 3 different methods was used for this task, including a neural network acting on the concatenated input data, neural networks encoding transcriptomic and chromatin accessibility data separately prior to merging, and a “Product of Experts” technique for combining different representations <span class="citation" data-cites="11CpvywyO">[<a href="#ref-11CpvywyO" role="doc-biblioref">30</a>]</span>. At the same time, cell-specific scales used to normalize expression across cells are learned (called “library factors”). The input data are reconstructed by processing the latent representations via decoder neural networks, which calculate the probabilities of gene dropouts and predict the expression of measured genes modelled as a negative binomial distribution.</p>
+<p>This model incorporates the task of constructing shared representations of the multi-modal data with clustering. Namely, one of the latent variables is constructed to correspond to the clustering label <span class="math inline">\(c\)</span>. Furthermore, the model incorporates tools to deal with tasks such as data imputation, and can be used for studying the association between epigenetics and gene expression. scMVAE was applied to integrate two real datasets assaying mRNA and chromatin accessibility using SNARE-seq method, as well as simulated data generated by “Splatter” <span class="citation" data-cites="117yS2Kkv">[<a href="#ref-117yS2Kkv" role="doc-biblioref">31</a>]</span>. It takes into account the known relationships between appropriately located transcription factors and gene expression, and uses them to test the imputed (denoised) data. According to the authors, scMVAE performed better than MOFA in terms of clustering and enhancing the consistency between different -omics layers on several real and simulated datasets.</p>
+<p><strong>DCCA</strong>, denoting “Deep cross-omics cycle attention model”, is another method in this category for joint analysis of single-cell multi-omics data <span class="citation" data-cites="t5lJC7T4">[<a href="#ref-t5lJC7T4" role="doc-biblioref">17</a>]</span>. It uses variational autoencoders to integrate multi-omics data, and builds on the scMVAE algorithm described above. However, DCCA diverges from scMVAE in one important aspect: DCCA uses separate but coupled autoencoders to dimensionally reduce different -omics layers, while scMVAE constructs a shared dimensionally reduced representation of transcriptomic and
+epigenetic data. This strategy is inspired by the theory of machine translation, notably the so-called “attention transfer”; in this case, the “teacher network” working with the scRNA-seq data guides the learning of the “student network” working with scATAC-seq data. Their model compares favorably to scAI and MOFA+ on metrics such as clustering accuracy, denoising quality and consistency between different -omics.</p>
+<p><strong>totalVI</strong> <span class="citation" data-cites="wqtpCLXo">[<a href="#ref-wqtpCLXo" role="doc-biblioref">32</a>]</span> combines Bayesian inference and a neural network to create a generative model for data integration. It was created to handle gene expression and protein data. Joint latent space representations are learned via an encoder network and used to reconstruct the original data while accounting for the difference between the original data modalities. The model generates latent representations capturing both -omics, and at the same time models experimental conditions through an additional set of latent variables. The gene expression data are sampled from a negative binomial distribution, and the parameters are obtained as outputs of a decoder neural network. The protein data are sampled from a mixture model with two negative binomial distributions simulating the experimental background and the actual signal respectively. The model was applied to two datasets containing transcriptomic and proteomic measurements, and generated shared representations of cells with interpretable components.</p>
+<p><strong>LIBRA</strong> <span class="citation" data-cites="1Asjj6N9F">[<a href="#ref-1Asjj6N9F" role="doc-biblioref">33</a>]</span> uses an autoencoder-like neural network to “translate” between different omics. Motivated by “split-brain autoencoder”<span class="citation" data-cites="fiG9LqBq">[<a href="#ref-fiG9LqBq" role="doc-biblioref">34</a>]</span>, and “machine translation” approach, the model consists of two separate neural networks. The first network takes as input elements of the first dataset and aims to reconstruct a corresponding element of the second dataset. The second network performs an inverse task. Taken together, the bottlenecks of two networks aim to convert the two datasets into the same latent space. This method is quite general and can be applied to various pairs of -omics data. It produced clusters of similar quality compared to Seurat v4.</p>
+<p><strong>BABEL</strong> <span class="citation" data-cites="luLU3n8O">[<a href="#ref-luLU3n8O" role="doc-biblioref">18</a>]</span> also uses autoencoder-like neural networks to translate between gene expression (modeled by Negative Binomial distribution) and binarized chromatin accessibility data. There are two encoder and two decoder neural networks, each encoder/decoder handles one data type of gene expression or chromatin accessibility. As a result, four combinations between encoders and decoders are formed, and the loss function is optimized to minimize reconstruction error for four combinations of encoders and decoders. In this approach, the two encoders are prone to produce similar representations, as the encoded gene accessibility is decoded as chromatin accessibility and vice versa.
+BABEL provides a promising generic framework to multi-omics inference at a single-cell level from single-omics data, by using the model that was previously trained on multi-omics data sequenced from the same single cells. The modular nature of BABEL provides additional flexibility, as the model can be extended to work with additional modalities when the corresponding data becomes available. Despite the potential for generalization, one should be cautioned that if the training is conducted on cell types that are very different, the transfer learning using BABEL is not very successful.</p>
+<p><strong>DeepMAPS</strong> <span class="citation" data-cites="xZQR38QC">[<a href="#ref-xZQR38QC" role="doc-biblioref">19</a>]</span> integrates different data modalities by a graph transformer neural network architecture for interpretable representation learning. The data is represented using a heterogenous graph in which some of the nodes represent cells and others represent genes. An autoencoder-like graph neural network architecture is used for representation learning, with an attention mechanism. The attention mechanism learns the weights by the contribution of the neighbors to the node of interest. This not only achieves better performance, but also enhances the interpretability to identify genes most relevant to cell state differences. DeepMAPS method learns relevant gene-gene interaction networks and cell-cell similarities, which can be used for downstream steps such as clustering to infer novel cell types. It compared favorably on clustering, compared to state-of-the art techniques such as MOFA+ and totalVI.</p>
+<h3 id="network-based-methods">Network-based methods</h3>
+<p>Network-based methods represent the relationships between different cells using a weighted graph, where cells serve as nodes (Figure <a href="#fig:2">2</a>C). Integration is then accomplished by manipulating such graph representation. This approach emphasizes the neighborhood structure and sometimes pools the information between neighbors, leading to additional robustness against the noise. Below are the currently available methods.</p>
+<p><strong>citeFUSE</strong> <span class="citation" data-cites="g445TrK1">[<a href="#ref-g445TrK1" role="doc-biblioref">35</a>]</span> integrates transcriptomic and proteomic CITE-seq data using network fusion of similarity graphs corresponding to different modalities. This idea traces back to computer science work <span class="citation" data-cites="7P93YgG5">[<a href="#ref-7P93YgG5" role="doc-biblioref">36</a>]</span> on fusing multi-view networks through cross-diffusion, and to the follow-up SNF method <span class="citation" data-cites="1Hk7MyXmO">[<a href="#ref-1Hk7MyXmO" role="doc-biblioref">37</a>]</span> that was used to integrate bulk level multi-omics data. The algorithm adjusts the graph connectivities by a process of diffusion, which allows for the distance information to be aggregated between neighbors. Namely, the algorithm consists of two iterative steps: separate diffusion on different -omics layers and fusion across the -omics layers. It results in a fused consensus matrix of distances between cells, borrowing information from multiple -omics. citeFUSE used spectral clustering to identify cell types, and showed an improvement over single-modality based clusters. Additional benefits of the method include inference of ligand-receptor interactions and a novel tool for doublet detection.</p>
+<p><strong>Joint Diffusion</strong> <span class="citation" data-cites="1EGetPJhg">[<a href="#ref-1EGetPJhg" role="doc-biblioref">22</a>]</span> constructs graph representations of different -omics and then performs a joint diffusion process on the two graphs in order to denoise and integrate the data. This approach builds upon MAGIC <span class="citation" data-cites="7EPbbJtM">[<a href="#ref-7EPbbJtM" role="doc-biblioref">38</a>]</span>, a method for denoising scRNA-seq data, and generalizes it to multi-modal data. Diffusion can be conceptualized as a random walk process. In a graph diffusion algorithm, random walking on the graph can help discover the intrinsic structure of the data hidden behind the noise. In Joint Diffusion random walks are performed while allowing for transitions from one graph to another. A key idea in this work is to quantify the amount of noise in different datasets, through a spectral entropy of the corresponding graphs, and adjust the time one spends on different graphs in accordance with their relative levels of noise. In this way, the transcriptomic and epigenetic data will not be weighted equally, as the transcriptomic data is generally of better quality. This method excels at denoising and visualizations, and was shown to present an improved clustering performance compared to single-modality clustering and the one based on a more naive alternating diffusion process.</p>
+<p><strong>Seurat v4</strong> <span class="citation" data-cites="5pid8c90">[<a href="#ref-5pid8c90" role="doc-biblioref">39</a>]</span> aims to represent the data as a WNN (weighted nearest neighbor) graph in which cells that are similar according to the consensus of both modalities are connected. In the process of constructing a WNN graph, a set of cell-specific weights dictating the relative importance of different -omics data is learned. Such weights often carry important biological meaning. Specifically, Seurat v4 pipeline has the following steps: first, data corresponding to different -omics are dimensionally reduced using PCA to the same number of dimensions. Then, kNN (k nearest neighbor) graphs corresponding to different -omics are constructed. In a kNN graph, each datapoint (a node of this graph) is connected to nearest neighboring nodes. Cell-specific coefficients determining the relative importance of different -omics are then learned by considering the accuracy of inter-modality and cross-modality predictions by nearest neighbor graphs. Lastly, a linear combination of data from different omics is done, using the coefficients learned in the previous step. The nearest neighbors with respect to those linear combinations are then connected to build the WNN graph. Seurat v4 was applied to a CITE-seq based transcriptomic and proteomic dataset, and several other datasets involving mRNA, proteins and chromatin accessibility. The authors compared this method with MOFA+ and totalVI, using correlations (Pearson and Spearman) between the data corresponding to a cell and the average of its nearest latent space neighbors, and claimed that it performed better than MOFA+ or totalVI.</p>
+<h3 id="other-models">Other Models</h3>
+<p><strong>BREMSC</strong> <span class="citation" data-cites="nKC0gy2d">[<a href="#ref-nKC0gy2d" role="doc-biblioref">23</a>]</span> is a Bayesian mixture method. It integrates single-cell gene expression and protein data by modeling them as a mixture of probability distributions that share the same underlying set of parameters. The model is useful for performing joint clustering, where confidence in cluster assignments can be quantified via posterior probabilities. It performed favorably compared to single-omics clustering methods. While the MCMC procedure used to train the model can be computationally intensive, the model provides an effective way of integration by accounting the differences between the two -omics layers using probability distributions.</p>
+<p><strong>SCHEMA</strong> <span class="citation" data-cites="6w16Pjmi">[<a href="#ref-6w16Pjmi" role="doc-biblioref">24</a>]</span> is a different metric learning approach that aims to construct a notion of distances on the space of samples, taking into account different -omics data. One of the -omics (usually, scRNA-seq) is considered the primary base for distance, additional omics are then used to modify this distance. This is formulated as optimization of the quadratic function using quadratic programming. The scRNA-seq and scATAC-seq data can thus be integrated, yielding downstream insights into cell developmental trajectories. This method showed a better clustering performance than those based on clustering different modalities separately or integrating them using canonical correlation analysis. It is a useful method for asymmetrically integrating data modalities of different qualities, such as the case of scRNA-seq and scATAC-seq data.</p>
+<h2 id="alignment-methods-handling-multiple-genomics-data-generated-from-different-single-cells-of-the-same-tissue">Alignment methods handling multiple genomics data generated from different single cells of the same tissue</h2>
+<p>Compared to multi-omics data, it is experimentally much easier to obtain multiple modalities of data where each modality is obtained from similar but different cells of the same tissue. The task to harmonize these data is called alignment (Figure <a href="#fig:1">1</a>). The body of literature applying machine learning and statistical methods to this task is rich, including manifold learning, neural-network based methods, and Bayesian methods, as summarized in Table <a href="#tbl:2">2</a> and depicted in Figure <a href="#fig:3">3</a>. Note that some of the methods developed for batch-correct different scRNA-seq datasets, could in principle be repurposed for single-cell multiple omics alignment; we refer readers to previous benchmark studies <span class="citation" data-cites="Js5cG2rA">[<a href="#ref-Js5cG2rA" role="doc-biblioref">40</a>]</span>.</p>
+<div id="fig:3" class="fignos">
+<figure>
+<img src="images/Fig_3.png" style="width:75.0%;height:75.0%" alt="Figure 3: Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models." />
+<figcaption aria-hidden="true"><span>Figure 3:</span> Illustration of some common approaches for alignment of multi-omics single-cell data: Bayesian methods, manifold alignment methods and neural network based models.</figcaption>
+</figure>
+</div>
+<div id="tbl:2" class="tablenos">
+<table id="tbl:2">
+<caption><span>Table 2:</span> Summary of the computational methods for aligning multiple omics data from different single cells. </caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 7%" />
+<col style="width: 41%" />
+<col style="width: 30%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Methodology Category</th>
+<th>Method</th>
+<th>Algorithm</th>
+<th>Data</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Manifold Alignment</td>
+<td>UNION - Com</td>
+<td>Topological Alignment</td>
+<td>Transcriptomic, Epigenetic</td>
+<td><span class="citation" data-cites="o6WcqBOB">[<a href="#ref-o6WcqBOB" role="doc-biblioref">41</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>MATCHER</td>
+<td>Pseudotime Reconstruction and Manifold Alignment</td>
+<td>Transcriptomic, Epigenetic</td>
+<td><span class="citation" data-cites="15rNNPBvj">[<a href="#ref-15rNNPBvj" role="doc-biblioref">42</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>MMD-MA</td>
+<td>Manifold Alignment</td>
+<td>Transcriptomic, Epigenetic (DNAme)</td>
+<td><span class="citation" data-cites="f7oZLO6m">[<a href="#ref-f7oZLO6m" role="doc-biblioref">43</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>SCOT</td>
+<td>Gromov-Wasserstein optimal transport</td>
+<td>Transcriptomic, Epigenetic (DNAme, accessibility)</td>
+<td><span class="citation" data-cites="1GcML6z0G">[<a href="#ref-1GcML6z0G" role="doc-biblioref">44</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Pamona</td>
+<td>Partial Gromov-Wasserstein optimal transport</td>
+<td>Transcriptomic, Epigenetic</td>
+<td><span class="citation" data-cites="18ODrqWPv">[<a href="#ref-18ODrqWPv" role="doc-biblioref">45</a>]</span></td>
+</tr>
+<tr class="even">
+<td>Neural Network</td>
+<td>MAGAN</td>
+<td>Generative Adversarial Network</td>
+<td>Transcriptomic, Proteomic</td>
+<td><span class="citation" data-cites="yUMFrt2e">[<a href="#ref-yUMFrt2e" role="doc-biblioref">46</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>SCIM</td>
+<td>Adversarial autoencoder</td>
+<td>Transcriptomic, Proteomic (CyTOF)</td>
+<td><span class="citation" data-cites="mS7x1QWD">[<a href="#ref-mS7x1QWD" role="doc-biblioref">47</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Multigrate</td>
+<td>Variational Autoencoder</td>
+<td>Transcriptomic, Proteomic</td>
+<td><span class="citation" data-cites="hPrUvgmM">[<a href="#ref-hPrUvgmM" role="doc-biblioref">48</a>]</span></td>
+</tr>
+<tr class="odd">
+<td>Bayesian</td>
+<td>clonealign</td>
+<td>Bayesian latent variable model</td>
+<td>RNA-seq, DNA</td>
+<td><span class="citation" data-cites="13iVSlhcW">[<a href="#ref-13iVSlhcW" role="doc-biblioref">49</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>MUSIC</td>
+<td>Topic models</td>
+<td>RNA, CRISPR</td>
+<td><span class="citation" data-cites="VIuxeSfj">[<a href="#ref-VIuxeSfj" role="doc-biblioref">50</a>]</span></td>
+</tr>
+<tr class="odd">
+<td>Other</td>
+<td>Seurat v3</td>
+<td>Canonical Correlation Analysis and Mutual Nearest Neighbors analysis</td>
+<td>RNA-seq, ATAC-seq</td>
+<td><span class="citation" data-cites="bOT9Zmn2">[<a href="#ref-bOT9Zmn2" role="doc-biblioref">51</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>bindSC</td>
+<td>Canonical Correlation Analysis</td>
+<td>RNA-seq, ATAC-seq</td>
+<td><span class="citation" data-cites="K5EUSf10">[<a href="#ref-K5EUSf10" role="doc-biblioref">52</a>]</span></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>MAESTRO</td>
+<td></td>
+<td>RNA-seq, ATAC-seq</td>
+<td><span class="citation" data-cites="19RITe4ae">[<a href="#ref-19RITe4ae" role="doc-biblioref">53</a>]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>LIGER</td>
+<td>Matrix factorization</td>
+<td>RNA-seq, methylation</td>
+<td><span class="citation" data-cites="bOT9Zmn2 MaZsghuS">[<a href="#ref-bOT9Zmn2" role="doc-biblioref">51</a>,<a href="#ref-MaZsghuS" role="doc-biblioref">54</a>]</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="bayesian-methods">Bayesian Methods</h3>
+<p><strong>Clonealign</strong> <span class="citation" data-cites="13iVSlhcW">[<a href="#ref-13iVSlhcW" role="doc-biblioref">49</a>]</span> integrates single-cell RNA and DNA sequencing data from heterogeneous populations by assigning cells measured by RNA-seq to clones derived from DNA-seq data. Clonealign is based on a Bayesian latent variable model, where a categorical variable is used to specify cell assignment. The model maps the copy number of a gene to its expression value by introducing a copy number dosage effect on the gene expression. The model is also flexible enough to allow for additional covariates such as batch effects or biological information that can be inferred from the gene expression (cell cycle, etc.). In addition to simulation studies that demonstrated robustness, Clonealign was also applied on real cancer datasets to discover novel clone-specific dysregulated biological pathways.</p>
+<p><strong>MUSIC</strong> <span class="citation" data-cites="VIuxeSfj">[<a href="#ref-VIuxeSfj" role="doc-biblioref">50</a>]</span> is an unsupervised topic modeling method for integrative analysis of single-cell RNA data and pooled CRISPR screening data <span class="citation" data-cites="i8ILJavt">[<a href="#ref-i8ILJavt" role="doc-biblioref">55</a>]</span>. The model links the gene expression profile of the cells and specific biological function by delineating perturbation effects,, allowing for better understanding of perturbation functions in single cell CRISPR data. In the perturbation effect prioritizing step, MUSIC utilizes the output from the topic model and estimates individual gene perturbation effects on cell phenotypes. It takes three different schemes in modeling combined single-cell and CRISPR data: an overall perturbation effect which represents the gene perturbation effect, a topic model which specifies the function of perturbation effectsway, and with respect to relationships between different perturbation effects. MUSIC was applied to 14 real single-cell CRISPR screening datasets and accurately quantified and prioritized the individual gene perturbation effect on cell phenotypes, with tolerance for substantial noise.</p>
+<h3 id="manifold-alignment-methods">Manifold Alignment Methods</h3>
+<p>Manifold alignment methods aim to infer a lower-dimensional structure within multiple complex datasets (Figure <a href="#fig:3">3</a>B). Once this is done, points can be matched across the datasets. This is a very broad class of algorithms, and we here review several representative ones based on distinct ideas, such as the use of pseudotime trajectories, Kernel methods and distance-based matching of cells. The distance-based matching (Figure <a href="#fig:4">4</a>) is a general idea containing several different realizations, such as <strong>UNION-Com</strong> <span class="citation" data-cites="o6WcqBOB">[<a href="#ref-o6WcqBOB" role="doc-biblioref">41</a>]</span>, <strong>SCOT</strong> <span class="citation" data-cites="1GcML6z0G">[<a href="#ref-1GcML6z0G" role="doc-biblioref">44</a>]</span> and <strong>Pamona</strong> <span class="citation" data-cites="18ODrqWPv">[<a href="#ref-18ODrqWPv" role="doc-biblioref">45</a>]</span>, which are reviewed below, among other methods.</p>
+<div id="fig:4" class="fignos">
+<figure>
+<img src="images/Fig_4.png" style="width:75.0%;height:75.0%" alt="Figure 4: Summary of the distance-based alignment algorithm: cells are represented by nodes in two different graph representations and matched in order to preserve a notion of the distance on the graph." />
+<figcaption aria-hidden="true"><span>Figure 4:</span> Summary of the distance-based alignment algorithm: cells are represented by nodes in two different graph representations and matched in order to preserve a notion of the distance on the graph.</figcaption>
+</figure>
+</div>
+<p><strong>MATCHER</strong> <span class="citation" data-cites="15rNNPBvj">[<a href="#ref-15rNNPBvj" role="doc-biblioref">42</a>]</span> is the first manifold alignment technique to align different forms of single-cell data. Their approach builds on trajectory inference <span class="citation" data-cites="TQz6w3oh">[<a href="#ref-TQz6w3oh" role="doc-biblioref">56</a>]</span>. It constructs pseudotime trajectories corresponding to cellular processes for each omic first, and then aligns them between different -omics. Pseudotime trajectory models the corresponding cellular process as a Gaussian process and infers the latent variable corresponding to pseudotime. This results in a set of curves capturing the biological processes, one for each -omics layer. Such curves are then projected onto a reference line so that different cells can be matched across -omics. The model makes a strong assumption that there is only one common biological process to be modeled.</p>
+<p><strong>MMD-MA</strong> <span class="citation" data-cites="f7oZLO6m">[<a href="#ref-f7oZLO6m" role="doc-biblioref">43</a>]</span>, or Maximum Mean Discrepancy - Manifold Alignment, is a completely unsupervised method. The alignment is performed by matching low-dimensional representations of different -omics, constructed through a kernel-based technique that minimizes the MMD (Maximum Mean Discrepancy) <span class="citation" data-cites="P34I4gWW">[<a href="#ref-P34I4gWW" role="doc-biblioref">57</a>]</span> between the two datasets. Additionally, the representations are constructed by taking into account the distortion of the distances in the original data while keeping the transformation as simple as possible. The model was evaluated on data containing gene expression and methylation values from the same single cells; the known cell correspondence information was hidden and MMD-MA was able to successfully reconstruct this information.</p>
+<p><strong>UNION-Com</strong> <span class="citation" data-cites="o6WcqBOB">[<a href="#ref-o6WcqBOB" role="doc-biblioref">41</a>]</span> performs unsupervised alignment of different -omics datasets by matching the structure of the datasets. The idea is that, if different -omics layers indeed correspond to similar samples of cells, then the distance matrices of any two -omics layers will become very similar after rearranging the cell indices. A matching matrix connecting points across datasets is learned by optimizing the similarity of distance matrices after cell permutation. This approach of matching is an extension of GUMA (“Generalized Unsupervised Manifold Alignment”) <span class="citation" data-cites="KqoNc2vO">[<a href="#ref-KqoNc2vO" role="doc-biblioref">58</a>]</span> with newly allowed soft matchings. Subsequently, this method performs a version of t-SNE <span class="citation" data-cites="TGyu2Woj">[<a href="#ref-TGyu2Woj" role="doc-biblioref">59</a>]</span> adopted for multi-modal data represented in the same latent space. This approach takes the overall structure of all datasets into account while matching the cells, without the requirement of identical distributions of different modalities. UNION-Com compared favorably with Seurat v3 and MMD-MA when evaluated on the quality of labels transferred between gene expression, methylation and chromatin accessibility data.</p>
+<p><strong>SCOT</strong> <span class="citation" data-cites="1GcML6z0G">[<a href="#ref-1GcML6z0G" role="doc-biblioref">44</a>]</span> is similar to UNION-Com in terms of distance comparison across the -omics layers. However, it is formulated as a different optimization problem per the theory of optimal transport. It starts by considering k-nearest neighbor graphs in different -omics layers and uses those to compute distances between cells from different -omics, like UNION-Com. The soft matchings are applied here as well, with points matched probabilistically across datasets. Unlike UNION-Com, such matchings are obtained by considering a version of optimal transport given by the Gromov-Wasserstein distance, which generalizes the “earth-mover” Wasserstein distance to optimal transport between different spaces <span class="citation" data-cites="27AZv5p5">[<a href="#ref-27AZv5p5" role="doc-biblioref">60</a>]</span>. SCOT compared favorably to MMD-MA and UNION-Com on several real and simulated datasets containing transcriptomic and epigenetic (DNAme or chromatin accessibility) data. The model contains only two hyperparameters, making it particularly simple to tune.</p>
+<p><strong>Pamona</strong> <span class="citation" data-cites="18ODrqWPv">[<a href="#ref-18ODrqWPv" role="doc-biblioref">45</a>]</span> uses a similar approach to SCOT, but with a modification of optimal transport based on Partial Gromov-Wasserstein distance <span class="citation" data-cites="Pamj8t78">[<a href="#ref-Pamj8t78" role="doc-biblioref">61</a>]</span>, which accounts for data points that do not have appropriate matches across datasets. By doing so, the authors can allow for possible imperfect alignment between the datasets, tolerating cell types present in one dataset only. After the alignment is found, the data corresponding to different modalities is projected down to a dimensionally reduced space using Laplacian Eigenmaps <span class="citation" data-cites="MxPEnWF1">[<a href="#ref-MxPEnWF1" role="doc-biblioref">62</a>]</span>. Benchmarked on several datasets containing transcriptomic and epigenetic data, their model outperformed SCOT, MMD-MA and Seurat v3.</p>
+<h3 id="neural-network-based-methods-1">Neural Network-Based Methods</h3>
+<p>Neural networks, including autoencoders and generative adversarial networks (GAN), have been used for the unsupervised task of the alignment of -omics datasets. Autoencoders have been described earlier. GANs typically consist of two parts: the generator network and the discriminator network. While the generator tries to produce outputs of a form resembling a certain target dataset, the discriminator learns the difference between the generator’s outputs and the elements of the target dataset. In this section, we summarize the relevant neural network methods below.</p>
+<p><strong>SCIM</strong> <span class="citation" data-cites="mS7x1QWD">[<a href="#ref-mS7x1QWD" role="doc-biblioref">47</a>]</span> builds on a multi-domain translation approach <span class="citation" data-cites="QohFF3mG">[<a href="#ref-QohFF3mG" role="doc-biblioref">63</a>]</span> to integrate multi-omics data in an unsupervised fashion. It uses a separate variational autoencoder for each modality in order to map the data onto reduced latent space representations. Such representations are then aligned to have a similar structure, by using a discriminator network in addition to autoencoders which learns to distinguish between the latent space representations of different -omics. The two autoencoders and the discriminator network are trained simultaneously, resulting in the two latent spaces being maximally alike. Once both datasets are encoded into approximately corresponding representations, the points with similar latent representations are matched across the datasets. This model was tested on simulations from PROSSTT (“Probabilistic Simulation of Single-Cell RNA-seq Tree-Like Topologies”) <span class="citation" data-cites="lDufdqUw">[<a href="#ref-lDufdqUw" role="doc-biblioref">64</a>]</span> as well as datasets containing gene expression and proteins, and performed favorably to MATCHER when applied to simulated data exhibiting a complex cellular differentiation process.</p>
+<p><strong>MULTIGRATE</strong> <span class="citation" data-cites="hPrUvgmM">[<a href="#ref-hPrUvgmM" role="doc-biblioref">48</a>]</span> uses a multi-modal variational autoencoder structure to project multi-omics data onto
+a shared latent space. While somewhat similar to the scMVAE model <span class="citation" data-cites="x2VcF9PC">[<a href="#ref-x2VcF9PC" role="doc-biblioref">29</a>]</span>, this framework brings additional flexibility and can be used for integration of the paired and unpaired single-cell data. Furthermore, this model can integrate data from a multi-omics assay such as CITE-seq with data from a single-omics assay such as scRNA-seq. Data corresponding to different -omics are first passed through separate neural networks, before being combined by the Product of Experts technique <span class="citation" data-cites="11CpvywyO">[<a href="#ref-11CpvywyO" role="doc-biblioref">30</a>]</span> to form the latent distribution. The decoder networks then aim to reconstruct all of the -omics from this unified representation. To better align cells, Maximum Mean Discrepancy is added to the loss function, penalizing the misalignment between the point clouds belonging to different assays. Their model was used for the creation of multi-modal atlases, and mapping a COVID-19 single-cell dataset onto a multi-modal reference.</p>
+<p><strong>MAGAN</strong> <span class="citation" data-cites="yUMFrt2e">[<a href="#ref-yUMFrt2e" role="doc-biblioref">46</a>]</span> utilizes generative adversarial networks (GANs) to align data from different domains. MAGAN uses two tied GANs to translate between the -omics layers, while tying their parameters and requiring that their combination maps any point onto itself. Namely, if the first generator maps data point A to data point B, then the second generator should map B back to A. It is conceptually very similar to the CycleGAN <span class="citation" data-cites="CVC309tx">[<a href="#ref-CVC309tx" role="doc-biblioref">65</a>]</span> model from computer vision, but with a key innovation that allowed it to more efficiently align and integrate single-cell data. The novelty here was noting that while the CycleGAN framework was very good at aligning the datasets in aggregate, it would not necessarily correctly match individual points. This is a particularly important problem for single-cell data. To address this problem, MAGAN is augmented with a correspondence loss measuring the difference between points before and after being mapped by generators. This model was tested on a variety of datasets, ranging from a simulated dataset to MNIST handwritten digits to molecular data. The method was applied to combine transcriptomic and proteomic data in single cells. The model was shown to meaningfully align the datasets even when the correspondence information was not available.</p>
+<h3 id="other-methods">Other Methods</h3>
+<p><strong>CCA</strong> (Canonical Correlation Analysis) based methods reduce the dimensionality of data by selecting for the degrees of freedom that are correlated between the datasets. Seurat v3 <span class="citation" data-cites="bOT9Zmn2">[<a href="#ref-bOT9Zmn2" role="doc-biblioref">51</a>]</span> combines CCA with network concepts in order to align and integrate single-cell multi-omics data. After performing the CCA, the algorithm identifies anchors between the datasets and scores the quality of those anchors. Anchors are identified by MNNs (mutual nearest neighbors), and their quality is scored by considering the overlap between the neighborhoods of anchors. Similar to Seurat v3, MAESTRO <span class="citation" data-cites="19RITe4ae">[<a href="#ref-19RITe4ae" role="doc-biblioref">53</a>]</span> also utilized canonical correlation analysis for the integration of transcriptomic and epigenetic data, and provided a comprehensive analysis pipeline. bindSC <span class="citation" data-cites="K5EUSf10">[<a href="#ref-K5EUSf10" role="doc-biblioref">52</a>]</span> also uses canonical correlation analysis to construct shared representations of the data, iteratively optimized using a custom procedure.</p>
+<p><strong>LIGER</strong> <span class="citation" data-cites="MaZsghuS">[<a href="#ref-MaZsghuS" role="doc-biblioref">54</a>]</span> performs an iNMF (integrative non-negative matrix factorization) to learn factors explaining the variation within and across datasets. Data such as DNA methylation are first aggregated over genes. Cells corresponding to different datasets are described by separate sets of cell-specific factors. Gene factors consist of two components: one that is shared across datasets and one that is dataset specific; the model aims to make the dataset-specific portion as small as possible. After performing the matrix factorization, the shared factor neighborhood graph is formed, in which cells are connected based on the similarity of their factors, and used for aligning the cells across modalities. Recently, this nonnegative matrix factorization approach has been extended to incorporate the idea of online learning. It iteratively updates the model in real-time, and leads to better scalability and computational efficiency <span class="citation" data-cites="NXjOwGSH">[<a href="#ref-NXjOwGSH" role="doc-biblioref">66</a>]</span>.</p>
+<h2 id="concluding-remarks">Concluding Remarks</h2>
+<p>The landscape of experimental techniques for -omics sequencing and analyzing the data has grown significantly last few years. Accompanying the thrust of technological advancement, an increasing body of computational methods to handle multi-omics data integration or alignment have been proposed. Geared towards computational biologists and genomics scientists, here we reviewed in-depth and extensively these computational methods by their working principles. Among these methods, AI and machine learning based methods account for the majority, demonstrating the influence in single cell computational biology. Other approaches using matrix factorization and or Bayesian’s methods have also been proposed. As demonstrated in a range of methods, the integration of multi-omics data at the single-cell level improves the quality of downstream biological interpretation steps, such as clustering. With the advent of technologies for sequencing multi-omics data from the same single cells, efficient multi-omics integration methods to provide further biological and medical insights at larger scales will be of continued demand.</p>
+<p>Meanwhile the rapidly growing number of computational methods pose an urgent need for benchmarking studies on their performances, in order to provide guidelines to choose appropriate methods for specific datasets. Current comparisons are either incomplete, or using a small set of benchmark datasets, with inconsistent metrics in various studies, impeding the selection of appropriate methods for the dataset to analyze. This is made more difficult by the generally unsupervised nature of the integration task, where commonly required ground truths are not known for certain. Moreover, different methods have different prerequisites regarding preprocessing steps, normalization, etc and as a result, careful consideration of these steps and their impacts on the model performances is needed. Oftentimes, the integration methods were developed with one specific application/assay in mind, generalization of these methods with the emergence of new technologies needs to be demonstrated. Fortunately, some benchmarking studies have been conducted in other sub-fields of single cell computational biology for reference, such as those focused on the integration of data from different cells and atlas study <span class="citation" data-cites="tQFj5Lpa">[<a href="#ref-tQFj5Lpa" role="doc-biblioref">67</a>]</span>, cell-type annotation <span class="citation" data-cites="CFPXGWxZ">[<a href="#ref-CFPXGWxZ" role="doc-biblioref">68</a>]</span>, and integration algorithms to spatial transcriptomics <span class="citation" data-cites="QNuJ0p1i">[<a href="#ref-QNuJ0p1i" role="doc-biblioref">69</a>]</span>. Creating standardized high-quality benchmarking datasets would aid such efforts, as proposed in <span class="citation" data-cites="hl3mL0h">[<a href="#ref-hl3mL0h" role="doc-biblioref">70</a>]</span> for scRNA-seq data. Finally, comprehensive and flexible benchmarking pipelines that can accommodate the ever-increasing body of integration methods will be extremely useful, in keeping the field up-to-date on multi-omics integration. One such example is the dynverse <span class="citation" data-cites="9HFbKAgB">[<a href="#ref-9HFbKAgB" role="doc-biblioref">71</a>]</span>.</p>
+<h2 id="competing-interests">Competing Interests</h2>
+<p>The authors declare no competing interests.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>This work was supported by R01 LM012373 and LM012907 awarded by NLM, and R01 HD084633 awarded by NICHD to L.X. Garmire.</p>
+<h2 class="page_break_before" id="references">References</h2>
+<!-- Explicitly insert bibliography here -->
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-11pOKbwng" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Macosko Evan Z, Basu A, Satija R, Nemesh J, Shekhar K, Goldman M, et al. Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets. Cell 2015;161:1202–14. <a href="https://doi.org/10.1016/j.cell.2015.05.002">https://doi.org/10.1016/j.cell.2015.05.002</a>.</div>
+</div>
+<div id="ref-abp5rbw2" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Stoeckius M, Hafemeister C, Stephenson W, Houck-Loomis B, Chattopadhyay PK, Swerdlow H, et al. Simultaneous epitope and transcriptome measurement in single cells. Nat Methods 2017;14:865–8. <a href="https://doi.org/10.1038/nmeth.4380">https://doi.org/10.1038/nmeth.4380</a>.</div>
+</div>
+<div id="ref-11eRLsmmI" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">Peterson VM, Zhang KX, Kumar N, Wong J, Li L, Wilson DC, et al. Multiplexed quantification of proteins and transcripts in single cells. Nat Biotechnol 2017;35:936–9. <a href="https://doi.org/10.1038/nbt.3973">https://doi.org/10.1038/nbt.3973</a>.</div>
+</div>
+<div id="ref-Kmg9jLCt" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Chen S, Lake BB, Zhang K. High-throughput sequencing of the transcriptome and chromatin accessibility in the same cell. Nat Biotechnol 2019;37:1452–7. <a href="https://doi.org/10.1038/s41587-019-0290-0">https://doi.org/10.1038/s41587-019-0290-0</a>.</div>
+</div>
+<div id="ref-EE7ioS1z" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Clyde D. SHARE-seq reveals chromatin potential. Nat Rev Genet 2020;22:2–2. <a href="https://doi.org/10.1038/s41576-020-00308-6">https://doi.org/10.1038/s41576-020-00308-6</a>.</div>
+</div>
+<div id="ref-JgfOwHt0" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Cao J, Cusanovich DA, Ramani V, Aghamirzaie D, Pliner HA, Hill AJ, et al. Joint profiling of chromatin accessibility and gene expression in thousands of single cells. Science 2018;361:1380–5. <a href="https://doi.org/10.1126/science.aau0730">https://doi.org/10.1126/science.aau0730</a>.</div>
+</div>
+<div id="ref-FSXUv1xQ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">Cheow LF, Courtois ET, Tan Y, Viswanathan R, Xing Q, Tan RZ, et al. Single-cell multimodal profiling reveals cellular epigenetic heterogeneity. Nat Methods 2016;13:833–6. <a href="https://doi.org/10.1038/nmeth.3961">https://doi.org/10.1038/nmeth.3961</a>.</div>
+</div>
+<div id="ref-1FWgnoNlO" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">Clark SJ, Argelaguet R, Kapourani C-A, Stubbs TM, Lee HJ, Alda-Catalinas C, et al. scNMT-seq enables joint profiling of chromatin accessibility DNA methylation and transcription in single cells. Nat Commun 2018;9. <a href="https://doi.org/10.1038/s41467-018-03149-4">https://doi.org/10.1038/s41467-018-03149-4</a>.</div>
+</div>
+<div id="ref-pzB7tkD3" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">Bian S, Hou Y, Zhou X, Li X, Yong J, Wang Y, et al. Single-cell multiomics sequencing and analyses of human colorectal cancer. Science 2018;362:1060–3. <a href="https://doi.org/10.1126/science.aao3791">https://doi.org/10.1126/science.aao3791</a>.</div>
+</div>
+<div id="ref-156UVA1sT" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">Huang S, Chaudhary K, Garmire LX. More Is Better: Recent Progress in Multi-Omics Data Integration Methods. Front Genet 2017;8. <a href="https://doi.org/10.3389/fgene.2017.00084">https://doi.org/10.3389/fgene.2017.00084</a>.</div>
+</div>
+<div id="ref-4Jvlha3z" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">Colomé-Tatché M, Theis FJ. Statistical single cell multi-omics integration. Current Opinion in Systems Biology 2018;7:54–9. <a href="https://doi.org/10.1016/j.coisb.2018.01.003">https://doi.org/10.1016/j.coisb.2018.01.003</a>.</div>
+</div>
+<div id="ref-1HWpkr3ZK" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">Ma A, McDermaid A, Xu J, Chang Y, Ma Q. Integrative Methods and Practical Challenges for Single-Cell Multi-omics. Trends in Biotechnology 2020;38:1007–22. <a href="https://doi.org/10.1016/j.tibtech.2020.02.013">https://doi.org/10.1016/j.tibtech.2020.02.013</a>.</div>
+</div>
+<div id="ref-1A8BRhgKH" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">Forcato M, Romano O, Bicciato S. Computational methods for the integrative analysis of single-cell data. Briefings in Bioinformatics 2020;22. <a href="https://doi.org/10.1093/bib/bbaa042">https://doi.org/10.1093/bib/bbaa042</a>.</div>
+</div>
+<div id="ref-v8EY6Y3W" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">Argelaguet R, Cuomo ASE, Stegle O, Marioni JC. Computational principles and challenges in single-cell data integration. Nat Biotechnol 2021;39:1202–15. <a href="https://doi.org/10.1038/s41587-021-00895-7">https://doi.org/10.1038/s41587-021-00895-7</a>.</div>
+</div>
+<div id="ref-9lrRlyX2" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">Adossa N, Khan S, Rytkönen KT, Elo LL. Computational strategies for single-cell multi-omics integration. Computational and Structural Biotechnology Journal 2021;19:2588–96. <a href="https://doi.org/10.1016/j.csbj.2021.04.060">https://doi.org/10.1016/j.csbj.2021.04.060</a>.</div>
+</div>
+<div id="ref-SLbB6cV8" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">Miao Z, Humphreys BD, McMahon AP, Kim J. Multi-omics integration in the age of million single-cell data. Nat Rev Nephrol 2021;17:710–24. <a href="https://doi.org/10.1038/s41581-021-00463-x">https://doi.org/10.1038/s41581-021-00463-x</a>.</div>
+</div>
+<div id="ref-t5lJC7T4" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">Zuo C, Dai H, Chen L. Deep cross-omics cycle attention model for joint analysis of single-cell multi-omics data. Bioinformatics 2021. <a href="https://doi.org/10.1093/bioinformatics/btab403">https://doi.org/10.1093/bioinformatics/btab403</a>.</div>
+</div>
+<div id="ref-luLU3n8O" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">Wu KE, Yost KE, Chang HY, Zou J. BABEL enables cross-modality translation between multi-omic profiles at single-cell resolution 2020. <a href="https://doi.org/10.1101/2020.11.09.375550">https://doi.org/10.1101/2020.11.09.375550</a>.</div>
+</div>
+<div id="ref-xZQR38QC" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">Ma A, Wang X, Wang C, Li J, Xiao T, Wang J, et al. DeepMAPS: Single-cell biological network inference using heterogeneous graph transformer 2021. <a href="https://doi.org/10.1101/2021.10.31.466658">https://doi.org/10.1101/2021.10.31.466658</a>.</div>
+</div>
+<div id="ref-13FKN3V7y" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">Argelaguet R, Velten B, Arnol D, Dietrich S, Zenz T, Marioni JC, et al. Multi‐Omics Factor Analysis—a framework for unsupervised integration of multi‐omics data sets. Mol Syst Biol 2018;14. <a href="https://doi.org/10.15252/msb.20178124">https://doi.org/10.15252/msb.20178124</a>.</div>
+</div>
+<div id="ref-aNdbBIHQ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">Jin S, Zhang L, Nie Q. scAI: an unsupervised approach for the integrative analysis of parallel single-cell transcriptomic and epigenomic profiles. Genome Biol 2020;21. <a href="https://doi.org/10.1186/s13059-020-1932-8">https://doi.org/10.1186/s13059-020-1932-8</a>.</div>
+</div>
+<div id="ref-1EGetPJhg" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">Kuchroo M, Godavarthi A, Tong A, Wolf G, Krishnaswamy S. Multimodal Data Visualization and Denoising with Integrated Diffusion 2021. <a href="https://doi.org/10.48550/arxiv.2102.06757">https://doi.org/10.48550/arxiv.2102.06757</a>.</div>
+</div>
+<div id="ref-nKC0gy2d" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">Wang X, Sun Z, Zhang Y, Xu Z, Xin H, Huang H, et al. BREM-SC: a bayesian random effects mixture model for joint clustering single cell multi-omics data. Nucleic Acids Research 2020;48:5814–24. <a href="https://doi.org/10.1093/nar/gkaa314">https://doi.org/10.1093/nar/gkaa314</a>.</div>
+</div>
+<div id="ref-6w16Pjmi" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">Singh R, Hie BL, Narayan A, Berger B. Schema: metric learning enables interpretable synthesis of heterogeneous single-cell modalities. Genome Biol 2021;22. <a href="https://doi.org/10.1186/s13059-021-02313-2">https://doi.org/10.1186/s13059-021-02313-2</a>.</div>
+</div>
+<div id="ref-A7ouflxZ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">Argelaguet R, Arnol D, Bredikhin D, Deloro Y, Velten B, Marioni JC, et al. MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data. Genome Biol 2020;21. <a href="https://doi.org/10.1186/s13059-020-02015-1">https://doi.org/10.1186/s13059-020-02015-1</a>.</div>
+</div>
+<div id="ref-wfwGeMRv" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">Neal RM. Bayesian learning for neural networks. New York: Springer; 1996.</div>
+</div>
+<div id="ref-18QucLaYQ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">Sammon JW. A Nonlinear Mapping for Data Structure Analysis. IEEE Trans Comput 1969;C-18:401–9. <a href="https://doi.org/10.1109/t-c.1969.222678">https://doi.org/10.1109/t-c.1969.222678</a>.</div>
+</div>
+<div id="ref-9bsaBUNu" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">Martínez-Mira C, Conesa A, Tarazona S. MOSim: Multi-Omics Simulation in R 2018. <a href="https://doi.org/10.1101/421834">https://doi.org/10.1101/421834</a>.</div>
+</div>
+<div id="ref-x2VcF9PC" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">Zuo C, Chen L. Deep-joint-learning analysis model of single cell transcriptome and open chromatin accessibility data. Briefings in Bioinformatics 2020;22. <a href="https://doi.org/10.1093/bib/bbaa287">https://doi.org/10.1093/bib/bbaa287</a>.</div>
+</div>
+<div id="ref-11CpvywyO" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">Hinton GE. Training Products of Experts by Minimizing Contrastive Divergence. Neural Computation 2002;14:1771–800. <a href="https://doi.org/10.1162/089976602760128018">https://doi.org/10.1162/089976602760128018</a>.</div>
+</div>
+<div id="ref-117yS2Kkv" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">Zappia L, Phipson B, Oshlack A. Splatter: simulation of single-cell RNA sequencing data. Genome Biol 2017;18. <a href="https://doi.org/10.1186/s13059-017-1305-0">https://doi.org/10.1186/s13059-017-1305-0</a>.</div>
+</div>
+<div id="ref-wqtpCLXo" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">Gayoso A, Lopez R, Steier Z, Regier J, Streets A, Yosef N. A Joint Model of RNA Expression and Surface Protein Abundance in Single Cells 2019. <a href="https://doi.org/10.1101/791947">https://doi.org/10.1101/791947</a>.</div>
+</div>
+<div id="ref-1Asjj6N9F" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">Martinez-de-Morentin X, Khan SA, Lehmann R, Tegner J, Gomez-Cabrero D. Machine Translation between paired Single Cell Multi Omics Data 2021. <a href="https://doi.org/10.1101/2021.01.27.428400">https://doi.org/10.1101/2021.01.27.428400</a>.</div>
+</div>
+<div id="ref-fiG9LqBq" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline">Split-Brain Autoencoders: Unsupervised Learning by Cross-Channel Prediction n.d. <a href="https://ieeexplore.ieee.org/document/8099559">https://ieeexplore.ieee.org/document/8099559</a> (accessed April 5, 2022).</div>
+</div>
+<div id="ref-g445TrK1" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[35] </div><div class="csl-right-inline">Kim HJ, Lin Y, Geddes TA, Yang J, Yang P. CiteFuse enables multi-modal analysis of CITE-seq data 2019. <a href="https://doi.org/10.1101/854299">https://doi.org/10.1101/854299</a>.</div>
+</div>
+<div id="ref-7P93YgG5" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[36] </div><div class="csl-right-inline">Unsupervised Metric Fusion Over Multiview Data by Graph Random Walk-Based Cross-View Diffusion n.d. <a href="https://ieeexplore.ieee.org/document/7348699">https://ieeexplore.ieee.org/document/7348699</a> (accessed April 5, 2022).</div>
+</div>
+<div id="ref-1Hk7MyXmO" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[37] </div><div class="csl-right-inline">Wang B, Mezlini AM, Demir F, Fiume M, Tu Z, Brudno M, et al. Similarity network fusion for aggregating data types on a genomic scale. Nat Methods 2014;11:333–7. <a href="https://doi.org/10.1038/nmeth.2810">https://doi.org/10.1038/nmeth.2810</a>.</div>
+</div>
+<div id="ref-7EPbbJtM" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[38] </div><div class="csl-right-inline">van Dijk D, Sharma R, Nainys J, Yim K, Kathail P, Carr AJ, et al. Recovering Gene Interactions from Single-Cell Data Using Data Diffusion. Cell 2018;174:716–729.e27. <a href="https://doi.org/10.1016/j.cell.2018.05.061">https://doi.org/10.1016/j.cell.2018.05.061</a>.</div>
+</div>
+<div id="ref-5pid8c90" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[39] </div><div class="csl-right-inline">Hao Y, Hao S, Andersen-Nissen E, Mauck WM III, Zheng S, Butler A, et al. Integrated analysis of multimodal single-cell data 2020. <a href="https://doi.org/10.1101/2020.10.12.335331">https://doi.org/10.1101/2020.10.12.335331</a>.</div>
+</div>
+<div id="ref-Js5cG2rA" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[40] </div><div class="csl-right-inline">Tran HTN, Ang KS, Chevrier M, Zhang X, Lee NYS, Goh M, et al. A benchmark of batch-effect correction methods for single-cell RNA sequencing data. Genome Biol 2020;21. <a href="https://doi.org/10.1186/s13059-019-1850-9">https://doi.org/10.1186/s13059-019-1850-9</a>.</div>
+</div>
+<div id="ref-o6WcqBOB" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[41] </div><div class="csl-right-inline">Cao K, Bai X, Hong Y, Wan L. Unsupervised topological alignment for single-cell multi-omics integration. Bioinformatics 2020;36:i48–56. <a href="https://doi.org/10.1093/bioinformatics/btaa443">https://doi.org/10.1093/bioinformatics/btaa443</a>.</div>
+</div>
+<div id="ref-15rNNPBvj" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[42] </div><div class="csl-right-inline">Welch JD, Hartemink AJ, Prins JF. MATCHER: manifold alignment reveals correspondence between single cell transcriptome and epigenome dynamics. Genome Biol 2017;18. <a href="https://doi.org/10.1186/s13059-017-1269-0">https://doi.org/10.1186/s13059-017-1269-0</a>.</div>
+</div>
+<div id="ref-f7oZLO6m" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[43] </div><div class="csl-right-inline">Liu J, Huang Y, Singh R, Vert J-P, Noble WS. Jointly embedding multiple single-cell omics measurements 2019. <a href="https://doi.org/10.1101/644310">https://doi.org/10.1101/644310</a>.</div>
+</div>
+<div id="ref-1GcML6z0G" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[44] </div><div class="csl-right-inline">Demetci P, Santorella R, Sandstede B, Noble WS, Singh R. Gromov-Wasserstein optimal transport to align single-cell multi-omics data 2020. <a href="https://doi.org/10.1101/2020.04.28.066787">https://doi.org/10.1101/2020.04.28.066787</a>.</div>
+</div>
+<div id="ref-18ODrqWPv" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[45] </div><div class="csl-right-inline">Cao K, Hong Y, Wan L. Manifold alignment for heterogeneous single-cell multi-omics data integration using Pamona. Bioinformatics 2021;38:211–9. <a href="https://doi.org/10.1093/bioinformatics/btab594">https://doi.org/10.1093/bioinformatics/btab594</a>.</div>
+</div>
+<div id="ref-yUMFrt2e" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[46] </div><div class="csl-right-inline">Amodio M, Krishnaswamy S. MAGAN: Aligning Biological Manifolds. arXiv 2018. <a href="https://doi.org/10.48550/arxiv.1803.00385">https://doi.org/10.48550/arxiv.1803.00385</a>.</div>
+</div>
+<div id="ref-mS7x1QWD" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[47] </div><div class="csl-right-inline">Stark SG, Ficek J, Locatello F, Bonilla X, Chevrier S, Singer F, et al. SCIM: universal single-cell matching with unpaired feature sets. Bioinformatics 2020;36:i919–27. <a href="https://doi.org/10.1093/bioinformatics/btaa843">https://doi.org/10.1093/bioinformatics/btaa843</a>.</div>
+</div>
+<div id="ref-hPrUvgmM" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[48] </div><div class="csl-right-inline">Lotfollahi M, Litinetskaya A, Theis FJ. Multigrate: single-cell multi-omic data integration 2022. <a href="https://doi.org/10.1101/2022.03.16.484643">https://doi.org/10.1101/2022.03.16.484643</a>.</div>
+</div>
+<div id="ref-13iVSlhcW" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[49] </div><div class="csl-right-inline">Campbell KR, Steif A, Laks E, Zahn H, Lai D, McPherson A, et al. clonealign: statistical integration of independent single-cell RNA and DNA sequencing data from human cancers. Genome Biol 2019;20. <a href="https://doi.org/10.1186/s13059-019-1645-z">https://doi.org/10.1186/s13059-019-1645-z</a>.</div>
+</div>
+<div id="ref-VIuxeSfj" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[50] </div><div class="csl-right-inline">Duan B, Zhou C, Zhu C, Yu Y, Li G, Zhang S, et al. Model-based understanding of single-cell CRISPR screening. Nat Commun 2019;10. <a href="https://doi.org/10.1038/s41467-019-10216-x">https://doi.org/10.1038/s41467-019-10216-x</a>.</div>
+</div>
+<div id="ref-bOT9Zmn2" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[51] </div><div class="csl-right-inline">Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, Mauck WM III, et al. Comprehensive Integration of Single-Cell Data. Cell 2019;177:1888–1902.e21. <a href="https://doi.org/10.1016/j.cell.2019.05.031">https://doi.org/10.1016/j.cell.2019.05.031</a>.</div>
+</div>
+<div id="ref-K5EUSf10" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[52] </div><div class="csl-right-inline">Dou J, Liang S, Mohanty V, Cheng X, Kim S, Choi J, et al. Unbiased integration of single cell multi-omics data 2020. <a href="https://doi.org/10.1101/2020.12.11.422014">https://doi.org/10.1101/2020.12.11.422014</a>.</div>
+</div>
+<div id="ref-19RITe4ae" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[53] </div><div class="csl-right-inline">Wang C, Sun D, Huang X, Wan C, Li Z, Han Y, et al. Integrative analyses of single-cell transcriptome and regulome using MAESTRO. Genome Biol 2020;21. <a href="https://doi.org/10.1186/s13059-020-02116-x">https://doi.org/10.1186/s13059-020-02116-x</a>.</div>
+</div>
+<div id="ref-MaZsghuS" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[54] </div><div class="csl-right-inline">Welch JD, Kozareva V, Ferreira A, Vanderburg C, Martin C, Macosko EZ. Single-Cell Multi-omic Integration Compares and Contrasts Features of Brain Cell Identity. Cell 2019;177:1873–1887.e17. <a href="https://doi.org/10.1016/j.cell.2019.05.006">https://doi.org/10.1016/j.cell.2019.05.006</a>.</div>
+</div>
+<div id="ref-i8ILJavt" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[55] </div><div class="csl-right-inline">Blei DM, Lafferty JD. A correlated topic model of Science. Ann Appl Stat 2007;1. <a href="https://doi.org/10.1214/07-aoas114">https://doi.org/10.1214/07-aoas114</a>.</div>
+</div>
+<div id="ref-TQz6w3oh" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[56] </div><div class="csl-right-inline">Trapnell C, Cacchiarelli D, Grimsby J, Pokharel P, Li S, Morse M, et al. The dynamics and regulators of cell fate decisions are revealed by pseudotemporal ordering of single cells. Nat Biotechnol 2014;32:381–6. <a href="https://doi.org/10.1038/nbt.2859">https://doi.org/10.1038/nbt.2859</a>.</div>
+</div>
+<div id="ref-P34I4gWW" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[57] </div><div class="csl-right-inline">Gretton A, Borgwardt KM, Rasch MJ, Schölkopf B, Smola A. <a href="https://dl.acm.org/doi/10.5555/2188385.2188410">A kernel two-sample test</a>. The Journal of Machine Learning Research 2012;13:723–73.</div>
+</div>
+<div id="ref-KqoNc2vO" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[58] </div><div class="csl-right-inline">Cui Z, Chang H, Shan S, Chen X. <a href="https://dl.acm.org/doi/10.5555/2969033.2969098">Generalized Unsupervised Manifold Alignment</a>. Proceedings of the 27th International Conference on Neural Information Processing Systems - Volume 2, Cambridge, MA, USA: MIT Press; 2014, p. 2429–37.</div>
+</div>
+<div id="ref-TGyu2Woj" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[59] </div><div class="csl-right-inline">Maaten L van der, Hinton G. <a href="http://jmlr.org/papers/v9/vandermaaten08a.html">Visualizing Data using t-SNE</a>. Journal of Machine Learning Research 2008;9:2579–605.</div>
+</div>
+<div id="ref-27AZv5p5" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[60] </div><div class="csl-right-inline">Mémoli F. Gromov–Wasserstein Distances and the Metric Approach to Object Matching. Found Comput Math 2011;11:417–87. <a href="https://doi.org/10.1007/s10208-011-9093-5">https://doi.org/10.1007/s10208-011-9093-5</a>.</div>
+</div>
+<div id="ref-Pamj8t78" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[61] </div><div class="csl-right-inline">Chapel L, Alaya MZ, Gasso G. Partial Optimal Transport with Applications on Positive-Unlabeled Learning. arXiv:200208276 [Cs, Stat] 2020. <a href="https://doi.org/10.48550/arxiv.2002.08276">https://doi.org/10.48550/arxiv.2002.08276</a>.</div>
+</div>
+<div id="ref-MxPEnWF1" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[62] </div><div class="csl-right-inline">Belkin M, Niyogi P. Laplacian Eigenmaps for Dimensionality Reduction and Data Representation. Neural Computation 2003;15:1373–96. <a href="https://doi.org/10.1162/089976603321780317">https://doi.org/10.1162/089976603321780317</a>.</div>
+</div>
+<div id="ref-QohFF3mG" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[63] </div><div class="csl-right-inline">Yang KD, Uhler C. Multi-Domain Translation by Learning Uncoupled Autoencoders 2019. <a href="https://doi.org/10.48550/arxiv.1902.03515">https://doi.org/10.48550/arxiv.1902.03515</a>.</div>
+</div>
+<div id="ref-lDufdqUw" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[64] </div><div class="csl-right-inline">Papadopoulos N, Gonzalo PR, Söding J. PROSSTT: probabilistic simulation of single-cell RNA-seq data for complex differentiation processes. Bioinformatics 2019;35:3517–9. <a href="https://doi.org/10.1093/bioinformatics/btz078">https://doi.org/10.1093/bioinformatics/btz078</a>.</div>
+</div>
+<div id="ref-CVC309tx" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[65] </div><div class="csl-right-inline">Zhu J-Y, Park T, Isola P, Efros AA. Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks 2017. <a href="https://doi.org/10.48550/arxiv.1703.10593">https://doi.org/10.48550/arxiv.1703.10593</a>.</div>
+</div>
+<div id="ref-NXjOwGSH" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[66] </div><div class="csl-right-inline">Gao C, Liu J, Kriebel AR, Preissl S, Luo C, Castanon R, et al. Iterative single-cell multi-omic integration using online learning. Nat Biotechnol 2021;39:1000–7. <a href="https://doi.org/10.1038/s41587-021-00867-x">https://doi.org/10.1038/s41587-021-00867-x</a>.</div>
+</div>
+<div id="ref-tQFj5Lpa" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[67] </div><div class="csl-right-inline">Luecken M, Büttner M, Chaichoompu K, Danese A, Interlandi M, Mueller M, et al. Benchmarking atlas-level data integration in single-cell genomics 2020. <a href="https://doi.org/10.1101/2020.05.22.111161">https://doi.org/10.1101/2020.05.22.111161</a>.</div>
+</div>
+<div id="ref-CFPXGWxZ" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[68] </div><div class="csl-right-inline">Huang Q, Liu Y, Du Y, Garmire LX. Evaluation of Cell Type Annotation R Packages on Single-cell RNA-seq Data. Genomics, Proteomics &amp;Amp; Bioinformatics 2021;19:267–81. <a href="https://doi.org/10.1016/j.gpb.2020.07.004">https://doi.org/10.1016/j.gpb.2020.07.004</a>.</div>
+</div>
+<div id="ref-QNuJ0p1i" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[69] </div><div class="csl-right-inline">Li Y, Stanojevic S, He B, Jing Z, Huang Q, Kang J, et al. Benchmarking Computational Integration Methods for Spatial Transcriptomics Data 2021. <a href="https://doi.org/10.1101/2021.08.27.457741">https://doi.org/10.1101/2021.08.27.457741</a>.</div>
+</div>
+<div id="ref-hl3mL0h" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[70] </div><div class="csl-right-inline">Swechha, Mendonca D, Focsa O, Díaz-Mejía JJ, Cooper S. scMARK an ‘MNIST’ like benchmark to evaluate and optimize models for unifying scRNA data 2021. <a href="https://doi.org/10.1101/2021.12.08.471773">https://doi.org/10.1101/2021.12.08.471773</a>.</div>
+</div>
+<div id="ref-9HFbKAgB" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[71] </div><div class="csl-right-inline">:: dynverse n.d. <a href="https://dynverse.org/">https://dynverse.org/</a> (accessed April 5, 2022).</div>
+</div>
+</div>
+<!-- default theme -->
+
+<style>
+  /* import google fonts */
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+  @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+
+  /* -------------------------------------------------- */
+  /* global */
+  /* -------------------------------------------------- */
+
+  /* all elements */
+  * {
+    /* force sans-serif font unless specified otherwise */
+    font-family: "Open Sans", "Helvetica", sans-serif;
+
+    /* prevent text inflation on some mobile browsers */
+    -webkit-text-size-adjust: none !important;
+    -moz-text-size-adjust: none !important;
+    -o-text-size-adjust: none !important;
+    text-size-adjust: none !important;
+  }
+
+  @media only screen {
+    /* "page" element */
+    body {
+      position: relative;
+      box-sizing: border-box;
+      font-size: 12pt;
+      line-height: 1.5;
+      max-width: 8.5in;
+      margin: 20px auto;
+      padding: 40px;
+      border-radius: 5px;
+      border: solid 1px #bdbdbd;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      background: #ffffff;
+    }
+  }
+
+  /* when on screen < 8.5in wide */
+  @media only screen and (max-width: 8.5in) {
+    /* "page" element */
+    body {
+      padding: 20px;
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05) inset;
+      background: none;
+    }
+  }
+
+  /* -------------------------------------------------- */
+  /* headings */
+  /* -------------------------------------------------- */
+
+  /* all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 20px 0;
+    padding: 0;
+    font-weight: bold;
+  }
+
+  /* biggest heading */
+  h1 {
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  /* second biggest heading */
+  h2 {
+    margin-top: 30px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px #bdbdbd;
+  }
+
+  /* heading font sizes */
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  h3 {
+    font-size: 1.35em;
+  }
+  h4 {
+    font-size: 1.25em;
+  }
+  h5 {
+    font-size: 1.15em;
+  }
+  h6 {
+    font-size: 1em;
+  }
+
+  /* -------------------------------------------------- */
+  /* manuscript header */
+  /* -------------------------------------------------- */
+
+  /* manuscript title */
+  header > h1 {
+    margin: 0;
+  }
+
+  /* manuscript title caption text (ie "automatically generated on") */
+  header + p {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* -------------------------------------------------- */
+  /* text elements */
+  /* -------------------------------------------------- */
+
+  /* links */
+  a {
+    color: #2196f3;
+    overflow-wrap: break-word;
+  }
+
+  /* superscripts and subscripts */
+  sub,
+  sup {
+    /* prevent from affecting line height */
+    line-height: 0;
+  }
+
+  /* unordered and ordered lists*/
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+
+  /* class for styling text semibold */
+  .semibold {
+    font-weight: 600;
+  }
+
+  /* class for styling elements horizontally left aligned */
+  .left {
+    display: block;
+    text-align: left;
+    margin-left: auto;
+    margin-right: 0;
+    justify-content: left;
+  }
+
+  /* class for styling elements horizontally centered */
+  .center {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  /* class for styling elements horizontally right aligned */
+  .right {
+    display: block;
+    text-align: right;
+    margin-left: 0;
+    margin-right: auto;
+    justify-content: right;
+  }
+
+  /* -------------------------------------------------- */
+  /* section elements */
+  /* -------------------------------------------------- */
+
+  /* horizontal divider line */
+  hr {
+    border: none;
+    height: 1px;
+    background: #bdbdbd;
+  }
+
+  /* paragraphs, horizontal dividers, figures, tables, code */
+  p,
+  hr,
+  figure,
+  table,
+  pre {
+    /* treat all as "paragraphs", with consistent vertical margins */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* -------------------------------------------------- */
+  /* figures */
+  /* -------------------------------------------------- */
+
+  /* figure */
+  figure {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* figure caption */
+  figcaption {
+    padding: 0;
+    padding-top: 10px;
+  }
+
+  /* figure image element */
+  figure > img,
+  figure > svg {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* figure auto-number */
+  img + figcaption > span:first-of-type,
+  svg + figcaption > span:first-of-type {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  /* -------------------------------------------------- */
+  /* tables */
+  /* -------------------------------------------------- */
+
+  /* table */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* table cells */
+  th,
+  td {
+    border: solid 1px #bdbdbd;
+    padding: 10px;
+    /* squash table if too wide for page by forcing line breaks */
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* header row and even rows */
+  th,
+  tr:nth-child(2n) {
+    background-color: #fafafa;
+  }
+
+  /* odd rows */
+  tr:nth-child(2n + 1) {
+    background-color: #ffffff;
+  }
+
+  /* table caption */
+  caption {
+    text-align: left;
+    padding: 0;
+    padding-bottom: 10px;
+  }
+
+  /* table auto-number */
+  table > caption > span:first-of-type {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  /* -------------------------------------------------- */
+  /* code */
+  /* -------------------------------------------------- */
+
+  /* multi-line code block */
+  pre {
+    padding: 10px;
+    background-color: #eeeeee;
+    color: #000000;
+    border-radius: 5px;
+    break-inside: avoid;
+    text-align: left;
+  }
+
+  /* inline code, ie code within normal text */
+  :not(pre) > code {
+    padding: 0 4px;
+    background-color: #eeeeee;
+    color: #000000;
+    border-radius: 5px;
+  }
+
+  /* code text */
+  /* apply all children, to reach syntax highlighting sub-elements */
+  code,
+  code * {
+    /* force monospace font */
+    font-family: "Source Code Pro", "Courier New", monospace;
+  }
+
+  /* -------------------------------------------------- */
+  /* quotes */
+  /* -------------------------------------------------- */
+
+  /* quoted text */
+  blockquote {
+    margin: 0;
+    padding: 0;
+    border-left: 4px solid #bdbdbd;
+    padding-left: 16px;
+    break-inside: avoid;
+  }
+
+  /* -------------------------------------------------- */
+  /* banners */
+  /* -------------------------------------------------- */
+
+  /* info banners */
+  .banner {
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* paragraph in banner */
+  .banner > p {
+    margin: 0;
+  }
+
+  /* -------------------------------------------------- */
+  /* highlight colors */
+  /* -------------------------------------------------- */
+
+  .white {
+    background: #ffffff;
+  }
+  .lightgrey {
+    background: #eeeeee;
+  }
+  .grey {
+    background: #757575;
+  }
+  .darkgrey {
+    background: #424242;
+  }
+  .black {
+    background: #000000;
+  }
+  .lightred {
+    background: #ffcdd2;
+  }
+  .lightyellow {
+    background: #ffecb3;
+  }
+  .lightgreen {
+    background: #dcedc8;
+  }
+  .lightblue {
+    background: #e3f2fd;
+  }
+  .lightpurple {
+    background: #f3e5f5;
+  }
+  .red {
+    background: #f44336;
+  }
+  .orange {
+    background: #ff9800;
+  }
+  .yellow {
+    background: #ffeb3b;
+  }
+  .green {
+    background: #4caf50;
+  }
+  .blue {
+    background: #2196f3;
+  }
+  .purple {
+    background: #9c27b0;
+  }
+  .white,
+  .lightgrey,
+  .lightred,
+  .lightyellow,
+  .lightgreen,
+  .lightblue,
+  .lightpurple,
+  .orange,
+  .yellow,
+  .white a,
+  .lightgrey a,
+  .lightred a,
+  .lightyellow a,
+  .lightgreen a,
+  .lightblue a,
+  .lightpurple a,
+  .orange a,
+  .yellow a {
+    color: #000000;
+  }
+  .grey,
+  .darkgrey,
+  .black,
+  .red,
+  .green,
+  .blue,
+  .purple,
+  .grey a,
+  .darkgrey a,
+  .black a,
+  .red a,
+  .green a,
+  .blue a,
+  .purple a {
+    color: #ffffff;
+  }
+
+  /* -------------------------------------------------- */
+  /* buttons */
+  /* -------------------------------------------------- */
+
+  /* class for styling links like buttons */
+  .button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    background: none;
+    color: #2196f3;
+    border: solid 1px #bdbdbd;
+    border-radius: 5px;
+  }
+
+  /* buttons when hovered */
+  .button:hover:not([disabled]),
+  .icon_button:hover:not([disabled]) {
+    cursor: pointer;
+    background: #f5f5f5;
+  }
+
+  /* buttons when disabled */
+  .button[disabled],
+  .icon_button[disabled] {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* class for styling buttons containg only single icon */
+  .icon_button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 5px;
+    border: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+  }
+
+  /* icon button inner svg image */
+  .icon_button > svg {
+    height: 16px;
+  }
+
+  /* -------------------------------------------------- */
+  /* icons */
+  /* -------------------------------------------------- */
+
+  /* class for styling icons inline with text */
+  .inline_icon {
+    height: 1em;
+    position: relative;
+    top: 0.125em;
+  }
+
+  /* -------------------------------------------------- */
+  /* references */
+  /* -------------------------------------------------- */
+
+  .csl-entry {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  /* -------------------------------------------------- */
+  /* print control */
+  /* -------------------------------------------------- */
+
+  @media print {
+    @page {
+      /* suggested printing margin */
+      margin: 0.5in;
+    }
+
+    /* document and "page" elements */
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* "page" element */
+    body {
+      font-size: 11pt !important;
+      line-height: 1.35;
+    }
+
+    /* all headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 15px 0;
+    }
+
+    /* figures and tables */
+    figure,
+    table {
+      font-size: 0.85em;
+    }
+
+    /* table cells */
+    th,
+    td {
+      padding: 5px;
+    }
+
+    /* shrink font awesome icons */
+    i.fas,
+    i.fab,
+    i.far,
+    i.fal {
+      transform: scale(0.85);
+    }
+
+    /* decrease banner margins */
+    .banner {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 15px;
+    }
+
+    /* class for centering an element vertically on its own page */
+    .page_center {
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      break-before: page;
+      break-after: page;
+    }
+
+    /* always insert a page break before the element */
+    .page_break_before {
+      break-before: page;
+    }
+
+    /* always insert a page break after the element */
+    .page_break_after {
+      break-after: page;
+    }
+
+    /* avoid page break before the element */
+    .page_break_before_avoid {
+      break-before: avoid;
+    }
+
+    /* avoid page break after the element */
+    .page_break_after_avoid {
+      break-after: avoid;
+    }
+
+    /* avoid page break inside the element */
+    .page_break_inside_avoid {
+      break-inside: avoid;
+    }
+  }
+
+  /* -------------------------------------------------- */
+  /* override pandoc css quirks */
+  /* -------------------------------------------------- */
+
+  .sourceCode {
+    /* prevent unsightly overflow in wide code blocks */
+    overflow: auto !important;
+  }
+
+  div.sourceCode {
+    /* prevent background fill on top-most code block  container */
+    background: none !important;
+  }
+
+  .sourceCode * {
+    /* force consistent line spacing */
+    line-height: 1.5 !important;
+  }
+
+  div.sourceCode {
+    /* style code block margins same as <pre> element */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* -------------------------------------------------- */
+  /* tablenos */
+  /* -------------------------------------------------- */
+
+  /* tablenos wrapper */
+  .tablenos {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .tablenos > table {
+    /* move margins from table to table_wrapper to allow margin collapsing */
+    margin: 0;
+  }
+
+  @media only screen {
+    /* tablenos wrapper */
+    .tablenos {
+      /* show scrollbar on tables if necessary to prevent overflow */
+      overflow-x: auto !important;
+    }
+
+    .tablenos th,
+    .tablenos td {
+      overflow-wrap: unset !important;
+      word-break: unset !important;
+    }
+
+    /* table in wrapper */
+    .tablenos table,
+    .tablenos table * {
+      /* don't break table words */
+      overflow-wrap: normal !important;
+    }
+  }
+</style>
+<!-- 
+    Plugin Core
+
+    Functions needed for and shared across all first-party plugins.
+-->
+
+<script>
+  // get element that is target of hash (from link element or url)
+  function getHashTarget(link) {
+    const hash = link ? link.hash : window.location.hash;
+    const id = hash.slice(1);
+    let target = document.querySelector(`[id="${id}"]`);
+    if (!target) return;
+
+    // if figure or table, modify target to get expected element
+    if (id.indexOf("fig:") === 0) target = target.querySelector("figure");
+    if (id.indexOf("tbl:") === 0) target = target.querySelector("table");
+
+    return target;
+  }
+
+  // get position/dimensions of element or viewport
+  function getRectInView(element) {
+    let rect = {};
+    rect.left = 0;
+    rect.top = 0;
+    rect.right = document.documentElement.clientWidth;
+    rect.bottom = document.documentElement.clientHeight;
+    let style = {};
+
+    if (element instanceof HTMLElement) {
+      rect = element.getBoundingClientRect();
+      style = window.getComputedStyle(element);
+    }
+
+    const margin = {};
+    margin.left = parseFloat(style.marginLeftWidth) || 0;
+    margin.top = parseFloat(style.marginTopWidth) || 0;
+    margin.right = parseFloat(style.marginRightWidth) || 0;
+    margin.bottom = parseFloat(style.marginBottomWidth) || 0;
+
+    const border = {};
+    border.left = parseFloat(style.borderLeftWidth) || 0;
+    border.top = parseFloat(style.borderTopWidth) || 0;
+    border.right = parseFloat(style.borderRightWidth) || 0;
+    border.bottom = parseFloat(style.borderBottomWidth) || 0;
+
+    const newRect = {};
+    newRect.left = rect.left + margin.left + border.left;
+    newRect.top = rect.top + margin.top + border.top;
+    newRect.right = rect.right + margin.right + border.right;
+    newRect.bottom = rect.bottom + margin.bottom + border.bottom;
+    newRect.width = newRect.right - newRect.left;
+    newRect.height = newRect.bottom - newRect.top;
+
+    return newRect;
+  }
+
+  // get position of element relative to page
+  function getRectInPage(element) {
+    const rect = getRectInView(element);
+    const body = getRectInView(document.body);
+
+    const newRect = {};
+    newRect.left = rect.left - body.left;
+    newRect.top = rect.top - body.top;
+    newRect.right = rect.right - body.left;
+    newRect.bottom = rect.bottom - body.top;
+    newRect.width = rect.width;
+    newRect.height = rect.height;
+
+    return newRect;
+  }
+
+  // get closest element before specified element that matches query
+  function firstBefore(element, query) {
+    while (element && element !== document.body && !element.matches(query))
+      element = element.previousElementSibling || element.parentNode;
+
+    return element;
+  }
+
+  // check if element is part of collapsed heading
+  function isCollapsed(element) {
+    while (element && element !== document.body) {
+      if (element.dataset.collapsed === "true") return true;
+      element = element.parentNode;
+    }
+    return false;
+  }
+
+  // expand any collapsed parent containers of element if necessary
+  function expandElement(element) {
+    if (isCollapsed(element)) {
+      // accordion plugin
+      const heading = firstBefore(element, "h2");
+      if (heading) heading.click();
+      // details/summary HTML element
+      const summary = firstBefore(element, "summary");
+      if (summary) summary.click();
+    }
+  }
+
+  // scroll to and focus element
+  function goToElement(element, offset) {
+    // expand accordion section if collapsed
+    expandElement(element);
+    const y =
+      getRectInView(element).top -
+      getRectInView(document.documentElement).top -
+      (offset || 0);
+
+    // trigger any function listening for "onscroll" event
+    window.dispatchEvent(new Event("scroll"));
+    window.scrollTo(0, y);
+    document.activeElement.blur();
+    element.focus();
+  }
+
+  // get list of elements after a start element up to element matching query
+  function nextUntil(element, query, exclude) {
+    const elements = [];
+    while (((element = element.nextElementSibling), element)) {
+      if (element.matches(query)) break;
+      if (!element.matches(exclude)) elements.push(element);
+    }
+    return elements;
+  }
+</script>
+<!--
+  Accordion Plugin
+
+  Allows sections of content under h2 headings to be collapsible.
+-->
+
+<script type="module">
+  // whether to always start expanded ('false'), always start collapsed
+  // ('true'), or start collapsed when screen small ('auto')
+  const startCollapsed = "auto";
+
+  // start script
+  function start() {
+    // run through each <h2> heading
+    const headings = document.querySelectorAll("h2");
+    for (const heading of headings) {
+      addArrow(heading);
+
+      // start expanded/collapsed based on option
+      if (
+        startCollapsed === "true" ||
+        (startCollapsed === "auto" && isSmallScreen()) ||
+        heading.dataset.collapsed === "true"
+      )
+        collapseHeading(heading);
+      else expandElement(heading);
+    }
+
+    // attach hash change listener to window
+    window.addEventListener("hashchange", onHashChange);
+  }
+
+  // when hash (eg manuscript.html#introduction) changes
+  function onHashChange() {
+    const target = getHashTarget();
+    if (target) goToElement(target);
+  }
+
+  // add arrow to heading
+  function addArrow(heading) {
+    // add arrow button
+    const arrow = document.createElement("button");
+    arrow.innerHTML = document.querySelector(".icon_angle_down").innerHTML;
+    arrow.classList.add("icon_button", "accordion_arrow");
+    heading.insertBefore(arrow, heading.firstChild);
+
+    // attach click listener to heading and button
+    heading.addEventListener("click", onHeadingClick);
+    arrow.addEventListener("click", onArrowClick);
+  }
+
+  // determine if on mobile-like device with small screen
+  function isSmallScreen() {
+    return Math.min(window.innerWidth, window.innerHeight) < 480;
+  }
+
+  // when <h2> heading is clicked
+  function onHeadingClick(event) {
+    // only collapse if <h2> itself is target of click (eg, user did
+    // not click on anchor within <h2>)
+    if (event.target === this) toggleCollapse(this);
+  }
+
+  // when arrow button is clicked
+  function onArrowClick() {
+    toggleCollapse(this.parentNode);
+  }
+
+  // collapse section if expanded, expand if collapsed
+  function toggleCollapse(heading) {
+    if (heading.dataset.collapsed === "false") collapseHeading(heading);
+    else expandElement(heading);
+  }
+
+  // elements to exclude from collapse, such as table of contents panel,
+  // hypothesis panel, etc
+  const exclude = "#toc_panel, div.annotator-frame, #lightbox_overlay";
+
+  // collapse section
+  function collapseHeading(heading) {
+    heading.setAttribute("data-collapsed", "true");
+    const children = getChildren(heading);
+    for (const child of children) child.setAttribute("data-collapsed", "true");
+  }
+
+  // expand section
+  function expandElement(heading) {
+    heading.setAttribute("data-collapsed", "false");
+    const children = getChildren(heading);
+    for (const child of children) child.setAttribute("data-collapsed", "false");
+  }
+
+  // get list of elements between this <h2> and next <h2> or <h1>
+  // ("children" of the <h2> section)
+  function getChildren(heading) {
+    return nextUntil(heading, "h2, h1", exclude);
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<!-- angle down icon -->
+
+<template class="icon_angle_down">
+  <!-- modified from: https://fontawesome.com/icons/angle-down -->
+  <svg width="16" height="16" viewBox="0 0 448 512">
+    <path
+      fill="currentColor"
+      d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+    ></path>
+  </svg>
+</template>
+
+<style>
+  @media only screen {
+    /* accordion arrow button */
+    .accordion_arrow {
+      margin-right: 10px;
+    }
+
+    /* arrow icon when <h2> data-collapsed attribute true */
+    h2[data-collapsed="true"] > .accordion_arrow > svg {
+      transform: rotate(-90deg);
+    }
+
+    /* all elements (except <h2>'s) when data-collapsed attribute true */
+    *:not(h2)[data-collapsed="true"] {
+      display: none;
+    }
+
+    /* accordion arrow button when hovered and <h2>'s when hovered */
+    .accordion_arrow:hover,
+    h2[data-collapsed="true"]:hover,
+    h2[data-collapsed="false"]:hover {
+      cursor: pointer;
+    }
+  }
+
+  /* always hide accordion arrow button on print */
+  @media only print {
+    .accordion_arrow {
+      display: none;
+    }
+  }
+</style>
+<!--
+  Anchors Plugin
+
+  Adds an anchor next to each of a certain type of element that provides a
+  human-readable url to that specific item/position in the document (e.g.
+  "manuscript.html#abstract"). It also makes it such that scrolling out of view
+  of a target removes its identifier from the url.
+-->
+
+<script type="module">
+  // which types of elements to add anchors next to, in "document.querySelector"
+  // format
+  const typesQuery =
+    'h1, h2, h3, div[id^="fig:"], div[id^="tbl:"], span[id^="eq:"]';
+
+  // start script
+  function start() {
+    // add anchor to each element of specified types
+    const elements = document.querySelectorAll(typesQuery);
+    for (const element of elements) addAnchor(element);
+
+    // attach scroll listener to window
+    window.addEventListener("scroll", onScroll);
+  }
+
+  // when window is scrolled
+  function onScroll() {
+    // if url has hash and user has scrolled out of view of hash
+    // target, remove hash from url
+    const tolerance = 100;
+    const target = getHashTarget();
+    if (target) {
+      if (
+        target.getBoundingClientRect().top > window.innerHeight + tolerance ||
+        target.getBoundingClientRect().bottom < 0 - tolerance
+      )
+        history.pushState(null, null, " ");
+    }
+  }
+
+  // add anchor to element
+  function addAnchor(element) {
+    let addTo; // element to add anchor button to
+
+    // if figure or table, modify withId and addTo to get expected
+    // elements
+    if (element.id.indexOf("fig:") === 0) {
+      addTo = element.querySelector("figcaption");
+    } else if (element.id.indexOf("tbl:") === 0) {
+      addTo = element.querySelector("caption");
+    } else if (element.id.indexOf("eq:") === 0) {
+      addTo = element.querySelector(".eqnos-number");
+    }
+
+    addTo = addTo || element;
+    const id = element.id || null;
+
+    // do not add anchor if element doesn't have assigned id.
+    // id is generated by pandoc and is assumed to be unique and
+    // human-readable
+    if (!id) return;
+
+    // create anchor button
+    const anchor = document.createElement("a");
+    anchor.innerHTML = document.querySelector(".icon_link").innerHTML;
+    anchor.title = "Link to this part of the document";
+    anchor.classList.add("icon_button", "anchor");
+    anchor.dataset.ignore = "true";
+    anchor.href = "#" + id;
+    addTo.appendChild(anchor);
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<!-- link icon -->
+
+<template class="icon_link">
+  <!-- modified from: https://fontawesome.com/icons/link -->
+  <svg width="16" height="16" viewBox="0 0 512 512">
+    <path
+      fill="currentColor"
+      d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"
+    ></path>
+  </svg>
+</template>
+
+<style>
+  @media only screen {
+    /* anchor button */
+    .anchor {
+      opacity: 0;
+      margin-left: 5px;
+    }
+
+    /* anchor buttons within <h2>'s */
+    h2 .anchor {
+      margin-left: 10px;
+    }
+
+    /* anchor buttons when hovered/focused and anything containing an anchor button when hovered */
+    *:hover > .anchor,
+    .anchor:hover,
+    .anchor:focus {
+      opacity: 1;
+    }
+
+    /* anchor button when hovered */
+    .anchor:hover {
+      cursor: pointer;
+    }
+  }
+
+  /* always show anchor button on devices with no mouse/hover ability */
+  @media (hover: none) {
+    .anchor {
+      opacity: 1;
+    }
+  }
+
+  /* always hide anchor button on print */
+  @media only print {
+    .anchor {
+      display: none;
+    }
+  }
+</style>
+<!-- 
+    Attributes Plugin
+
+    Allows arbitrary HTML attributes to be attached to (almost) any element.
+    Place an HTML comment inside or next to the desired element with the content:
+    $attribute="value"
+-->
+
+<script type="module">
+  // start script
+  function start() {
+    // get list of comments in document
+    const comments = findComments();
+
+    for (const comment of comments)
+      if (comment.parentElement)
+        addAttributes(comment.parentElement, comment.nodeValue.trim());
+  }
+
+  // add html attributes to specified element based on string of
+  // html attributes and values
+  function addAttributes(element, text) {
+    // regex's for finding attribute/value pairs in the format of
+    // attribute="value" or attribute='value
+    const regex2 = /\$([a-zA-Z\-]+)?=\"(.+?)\"/;
+    const regex1 = /\$([a-zA-Z\-]+)?=\'(.+?)\'/;
+
+    // loop through attribute/value pairs
+    let match;
+    while ((match = text.match(regex2) || text.match(regex1))) {
+      // get attribute and value from regex capture groups
+      let attribute = match[1];
+      let value = match[2];
+
+      // remove from string
+      text = text.substring(match.index + match[0].length);
+
+      if (!attribute || !value) break;
+
+      // set attribute of parent element
+      try {
+        element.setAttribute(attribute, value);
+      } catch (error) {
+        console.log(error);
+      }
+
+      // special case for colspan
+      if (attribute === "colspan") removeTableCells(element, value);
+    }
+  }
+
+  // get list of comment elements in document
+  function findComments() {
+    const comments = [];
+
+    // iterate over comment nodes in document
+    function acceptNode(node) {
+      return NodeFilter.FILTER_ACCEPT;
+    }
+    const iterator = document.createNodeIterator(
+      document.body,
+      NodeFilter.SHOW_COMMENT,
+      acceptNode
+    );
+    let node;
+    while ((node = iterator.nextNode())) comments.push(node);
+
+    return comments;
+  }
+
+  // remove certain number of cells after specified cell
+  function removeTableCells(cell, number) {
+    number = parseInt(number);
+    if (!number) return;
+
+    // remove elements
+    for (; number > 1; number--) {
+      if (cell.nextElementSibling) cell.nextElementSibling.remove();
+    }
+  }
+
+  // start script on DOMContentLoaded instead of load to ensure this plugins
+  // runs before other plugins
+  window.addEventListener("DOMContentLoaded", start);
+</script>
+<!--
+  Jump to First Plugin
+
+  Adds a button next to each reference entry, figure, and table that jumps the
+  page to the first occurrence of a link to that item in the manuscript.
+-->
+
+<script type="module">
+  // whether to add buttons next to reference entries
+  const references = "true";
+  // whether to add buttons next to figures
+  const figures = "true";
+  // whether to add buttons next to tables
+  const tables = "true";
+
+  // start script
+  function start() {
+    if (references !== "false")
+      makeButtons(`div[id^="ref-"]`, ".csl-left-margin", "reference");
+    if (figures !== "false")
+      makeButtons(`div[id^="fig:"]`, "figcaption", "figure");
+    if (tables !== "false") makeButtons(`div[id^="tbl:"]`, "caption", "table");
+  }
+
+  // when jump button clicked
+  function onButtonClick() {
+    const first = getFirstOccurrence(this.dataset.id);
+    if (!first) return;
+
+    // update url hash so navigating "back" in history will return user to button
+    window.location.hash = this.dataset.id;
+    // scroll to link
+    const timeout = function () {
+      goToElement(first, window.innerHeight * 0.5);
+    };
+    window.setTimeout(timeout, 0);
+  }
+
+  // get first occurrence of link to item in document
+  function getFirstOccurrence(id) {
+    let query = "a";
+    query += '[href="#' + id + '"]';
+    // exclude buttons, anchor links, toc links, etc
+    query += ":not(.button):not(.icon_button):not(.anchor):not(.toc_link)";
+    return document.querySelector(query);
+  }
+
+  // add button next to each reference entry, figure, or table
+  function makeButtons(query, containerQuery, subject) {
+    const elements = document.querySelectorAll(query);
+    for (const element of elements) {
+      const id = element.id;
+      const buttonContainer = element.querySelector(containerQuery);
+      const first = getFirstOccurrence(id);
+
+      // if can't find link to reference or place to put button, ignore
+      if (!first || !buttonContainer) continue;
+
+      // make jump button
+      let button = document.createElement("button");
+      button.classList.add("icon_button", "jump_arrow");
+      button.title = `Jump to the first occurrence of this ${subject} in the document`;
+      const icon = document.querySelector(".icon_angle_double_up");
+      button.innerHTML = icon.innerHTML;
+      button.dataset.id = id;
+      button.dataset.ignore = "true";
+      button.addEventListener("click", onButtonClick);
+      buttonContainer.prepend(button);
+    }
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<!-- angle double up icon -->
+
+<template class="icon_angle_double_up">
+  <!-- modified from: https://fontawesome.com/icons/angle-double-up -->
+  <svg width="16" height="16" viewBox="0 0 320 512">
+    <path
+      fill="currentColor"
+      d="M177 255.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 351.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 425.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1zm-34-192L7 199.7c-9.4 9.4-9.4 24.6 0 33.9l22.6 22.6c9.4 9.4 24.6 9.4 33.9 0l96.4-96.4 96.4 96.4c9.4 9.4 24.6 9.4 33.9 0l22.6-22.6c9.4-9.4 9.4-24.6 0-33.9l-136-136c-9.2-9.4-24.4-9.4-33.8 0z"
+    ></path>
+  </svg>
+</template>
+
+<style>
+  @media only screen {
+    /* jump button */
+    .jump_arrow {
+      position: relative;
+      top: 0.125em;
+      margin-right: 5px;
+    }
+  }
+
+  /* always hide jump button on print */
+  @media only print {
+    .jump_arrow {
+      display: none;
+    }
+  }
+</style>
+<!-- 
+    Lightbox Plugin
+
+    Makes it such that when a user clicks on an image, the image fills the
+    screen and the user can pan/drag/zoom the image and navigate between other
+    images in the document.
+-->
+
+<script type="module">
+  // list of possible zoom/scale factors
+  const zooms =
+    "0.1, 0.25, 0.333333, 0.5, 0.666666, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8";
+  // whether to fit image to view ('fit'), display at 100% and shrink if
+  // necessary ('shrink'), or always display at 100% ('100')
+  const defaultZoom = "fit";
+  // whether to zoom in/out toward center of view ('true') or mouse ('false')
+  const centerZoom = "false";
+
+  // start script
+  function start() {
+    // run through each <img> element
+    const imgs = document.querySelectorAll("figure > img");
+    let count = 1;
+    for (const img of imgs) {
+      img.classList.add("lightbox_document_img");
+      img.dataset.number = count;
+      img.dataset.total = imgs.length;
+      img.addEventListener("click", openLightbox);
+      count++;
+    }
+
+    // attach mouse and key listeners to window
+    window.addEventListener("mousemove", onWindowMouseMove);
+    window.addEventListener("keyup", onKeyUp);
+  }
+
+  // when mouse is moved anywhere in window
+  function onWindowMouseMove(event) {
+    window.mouseX = event.clientX;
+    window.mouseY = event.clientY;
+  }
+
+  // when key pressed
+  function onKeyUp(event) {
+    if (!event || !event.key) return;
+
+    switch (event.key) {
+      // trigger click of prev button
+      case "ArrowLeft":
+        const prevButton = document.getElementById("lightbox_prev_button");
+        if (prevButton) prevButton.click();
+        break;
+      // trigger click of next button
+      case "ArrowRight":
+        const nextButton = document.getElementById("lightbox_next_button");
+        if (nextButton) nextButton.click();
+        break;
+      // close on esc
+      case "Escape":
+        closeLightbox();
+        break;
+    }
+  }
+
+  // open lightbox
+  function openLightbox() {
+    const lightbox = makeLightbox(this);
+    if (!lightbox) return;
+
+    blurBody(lightbox);
+    document.body.appendChild(lightbox);
+  }
+
+  // make lightbox
+  function makeLightbox(img) {
+    // delete lightbox if it exists, start fresh
+    closeLightbox();
+
+    // create screen overlay containing lightbox
+    const overlay = document.createElement("div");
+    overlay.id = "lightbox_overlay";
+
+    // create image info boxes
+    const numberInfo = document.createElement("div");
+    const zoomInfo = document.createElement("div");
+    numberInfo.id = "lightbox_number_info";
+    zoomInfo.id = "lightbox_zoom_info";
+
+    // create container for image
+    const imageContainer = document.createElement("div");
+    imageContainer.id = "lightbox_image_container";
+    const lightboxImg = makeLightboxImg(
+      img,
+      imageContainer,
+      numberInfo,
+      zoomInfo
+    );
+    imageContainer.appendChild(lightboxImg);
+
+    // create bottom container for caption and navigation buttons
+    const bottomContainer = document.createElement("div");
+    bottomContainer.id = "lightbox_bottom_container";
+    const caption = makeCaption(img);
+    const prevButton = makePrevButton(img);
+    const nextButton = makeNextButton(img);
+    bottomContainer.appendChild(prevButton);
+    bottomContainer.appendChild(caption);
+    bottomContainer.appendChild(nextButton);
+
+    // attach top middle and bottom to overlay
+    overlay.appendChild(numberInfo);
+    overlay.appendChild(zoomInfo);
+    overlay.appendChild(imageContainer);
+    overlay.appendChild(bottomContainer);
+
+    return overlay;
+  }
+
+  // make <img> object that is intuitively draggable and zoomable
+  function makeLightboxImg(sourceImg, container, numberInfoBox, zoomInfoBox) {
+    // create copy of source <img>
+    const img = sourceImg.cloneNode(true);
+    img.classList.remove("lightbox_document_img");
+    img.removeAttribute("id");
+    img.removeAttribute("width");
+    img.removeAttribute("height");
+    img.style.position = "unset";
+    img.style.margin = "0";
+    img.style.padding = "0";
+    img.style.width = "";
+    img.style.height = "";
+    img.style.minWidth = "";
+    img.style.minHeight = "";
+    img.style.maxWidth = "";
+    img.style.maxHeight = "";
+    img.id = "lightbox_img";
+
+    // build sorted list of zoomSteps
+    const zoomSteps = zooms.split(/[^0-9.]/).map((step) => parseFloat(step));
+    zoomSteps.sort((a, b) => a - b);
+
+    // <img> object property variables
+    let zoom = 1;
+    let translateX = 0;
+    let translateY = 0;
+    let clickMouseX = undefined;
+    let clickMouseY = undefined;
+    let clickTranslateX = undefined;
+    let clickTranslateY = undefined;
+
+    updateNumberInfo();
+
+    // update image numbers displayed in info box
+    function updateNumberInfo() {
+      numberInfoBox.innerHTML =
+        sourceImg.dataset.number + " of " + sourceImg.dataset.total;
+    }
+
+    // update zoom displayed in info box
+    function updateZoomInfo() {
+      let zoomInfo = zoom * 100;
+      if (!Number.isInteger(zoomInfo)) zoomInfo = zoomInfo.toFixed(2);
+      zoomInfoBox.innerHTML = zoomInfo + "%";
+    }
+
+    // move to closest zoom step above current zoom
+    const zoomIn = function () {
+      for (const zoomStep of zoomSteps) {
+        if (zoomStep > zoom) {
+          zoom = zoomStep;
+          break;
+        }
+      }
+      updateTransform();
+    };
+
+    // move to closest zoom step above current zoom
+    const zoomOut = function () {
+      zoomSteps.reverse();
+      for (const zoomStep of zoomSteps) {
+        if (zoomStep < zoom) {
+          zoom = zoomStep;
+          break;
+        }
+      }
+      zoomSteps.reverse();
+
+      updateTransform();
+    };
+
+    // update display of <img> based on scale/translate properties
+    const updateTransform = function () {
+      // set transform
+      img.style.transform =
+        "translate(" +
+        (translateX || 0) +
+        "px," +
+        (translateY || 0) +
+        "px) scale(" +
+        (zoom || 1) +
+        ")";
+
+      // get new width/height after scale
+      const rect = img.getBoundingClientRect();
+      // limit translate
+      translateX = Math.max(translateX, -rect.width / 2);
+      translateX = Math.min(translateX, rect.width / 2);
+      translateY = Math.max(translateY, -rect.height / 2);
+      translateY = Math.min(translateY, rect.height / 2);
+
+      // set transform
+      img.style.transform =
+        "translate(" +
+        (translateX || 0) +
+        "px," +
+        (translateY || 0) +
+        "px) scale(" +
+        (zoom || 1) +
+        ")";
+
+      updateZoomInfo();
+    };
+
+    // fit <img> to container
+    const fit = function () {
+      // no x/y offset, 100% zoom by default
+      translateX = 0;
+      translateY = 0;
+      zoom = 1;
+
+      // widths of <img> and container
+      const imgWidth = img.naturalWidth;
+      const imgHeight = img.naturalHeight;
+      const containerWidth = parseFloat(
+        window.getComputedStyle(container).width
+      );
+      const containerHeight = parseFloat(
+        window.getComputedStyle(container).height
+      );
+
+      // how much zooming is needed to fit <img> to container
+      const xRatio = imgWidth / containerWidth;
+      const yRatio = imgHeight / containerHeight;
+      const maxRatio = Math.max(xRatio, yRatio);
+      const newZoom = 1 / maxRatio;
+
+      // fit <img> to container according to option
+      if (defaultZoom === "shrink") {
+        if (maxRatio > 1) zoom = newZoom;
+      } else if (defaultZoom === "fit") zoom = newZoom;
+
+      updateTransform();
+    };
+
+    // when mouse wheel is rolled anywhere in container
+    const onContainerWheel = function (event) {
+      if (!event) return;
+
+      // let ctrl + mouse wheel to zoom behave as normal
+      if (event.ctrlKey) return;
+
+      // prevent normal scroll behavior
+      event.preventDefault();
+      event.stopPropagation();
+
+      // point around which to scale img
+      const viewRect = container.getBoundingClientRect();
+      const viewX = (viewRect.left + viewRect.right) / 2;
+      const viewY = (viewRect.top + viewRect.bottom) / 2;
+      const originX = centerZoom === "true" ? viewX : mouseX;
+      const originY = centerZoom === "true" ? viewY : mouseY;
+
+      // get point on image under origin
+      const oldRect = img.getBoundingClientRect();
+      const oldPercentX = (originX - oldRect.left) / oldRect.width;
+      const oldPercentY = (originY - oldRect.top) / oldRect.height;
+
+      // increment/decrement zoom
+      if (event.deltaY < 0) zoomIn();
+      if (event.deltaY > 0) zoomOut();
+
+      // get offset between previous image point and origin
+      const newRect = img.getBoundingClientRect();
+      const offsetX = originX - (newRect.left + newRect.width * oldPercentX);
+      const offsetY = originY - (newRect.top + newRect.height * oldPercentY);
+
+      // translate image to keep image point under origin
+      translateX += offsetX;
+      translateY += offsetY;
+
+      // perform translate
+      updateTransform();
+    };
+
+    // when container is clicked
+    function onContainerClick(event) {
+      // if container itself is target of click, and not other
+      // element above it
+      if (event.target === this) closeLightbox();
+    }
+
+    // when mouse button is pressed on image
+    const onImageMouseDown = function (event) {
+      // store original mouse position relative to image
+      clickMouseX = window.mouseX;
+      clickMouseY = window.mouseY;
+      clickTranslateX = translateX;
+      clickTranslateY = translateY;
+      event.stopPropagation();
+      event.preventDefault();
+    };
+
+    // when mouse button is released anywhere in window
+    const onWindowMouseUp = function (event) {
+      // reset original mouse position
+      clickMouseX = undefined;
+      clickMouseY = undefined;
+      clickTranslateX = undefined;
+      clickTranslateY = undefined;
+
+      // remove global listener if lightbox removed from document
+      if (!document.body.contains(container))
+        window.removeEventListener("mouseup", onWindowMouseUp);
+    };
+
+    // when mouse is moved anywhere in window
+    const onWindowMouseMove = function (event) {
+      if (
+        clickMouseX === undefined ||
+        clickMouseY === undefined ||
+        clickTranslateX === undefined ||
+        clickTranslateY === undefined
+      )
+        return;
+
+      // offset image based on original and current mouse position
+      translateX = clickTranslateX + window.mouseX - clickMouseX;
+      translateY = clickTranslateY + window.mouseY - clickMouseY;
+      updateTransform();
+      event.preventDefault();
+
+      // remove global listener if lightbox removed from document
+      if (!document.body.contains(container))
+        window.removeEventListener("mousemove", onWindowMouseMove);
+    };
+
+    // when window is resized
+    const onWindowResize = function (event) {
+      fit();
+
+      // remove global listener if lightbox removed from document
+      if (!document.body.contains(container))
+        window.removeEventListener("resize", onWindowResize);
+    };
+
+    // attach the necessary event listeners
+    img.addEventListener("dblclick", fit);
+    img.addEventListener("mousedown", onImageMouseDown);
+    container.addEventListener("wheel", onContainerWheel);
+    container.addEventListener("mousedown", onContainerClick);
+    container.addEventListener("touchstart", onContainerClick);
+    window.addEventListener("mouseup", onWindowMouseUp);
+    window.addEventListener("mousemove", onWindowMouseMove);
+    window.addEventListener("resize", onWindowResize);
+
+    // run fit() after lightbox atttached to document and <img> Loaded
+    // so needed container and img dimensions available
+    img.addEventListener("load", fit);
+
+    return img;
+  }
+
+  // make caption
+  function makeCaption(img) {
+    const caption = document.createElement("div");
+    caption.id = "lightbox_caption";
+    const captionSource = img.nextElementSibling;
+    if (captionSource.tagName.toLowerCase() === "figcaption") {
+      const captionCopy = makeCopy(captionSource);
+      caption.innerHTML = captionCopy.innerHTML;
+    }
+
+    caption.addEventListener("touchstart", function (event) {
+      event.stopPropagation();
+    });
+
+    return caption;
+  }
+
+  // make carbon copy of html dom element
+  function makeCopy(source) {
+    const sourceCopy = source.cloneNode(true);
+
+    // delete elements marked with ignore (eg anchor and jump buttons)
+    const deleteFromCopy = sourceCopy.querySelectorAll('[data-ignore="true"]');
+    for (const element of deleteFromCopy) element.remove();
+
+    // delete certain element attributes
+    const attributes = [
+      "id",
+      "data-collapsed",
+      "data-selected",
+      "data-highlighted",
+      "data-glow",
+    ];
+    for (const attribute of attributes) {
+      sourceCopy.removeAttribute(attribute);
+      const elements = sourceCopy.querySelectorAll("[" + attribute + "]");
+      for (const element of elements) element.removeAttribute(attribute);
+    }
+
+    return sourceCopy;
+  }
+
+  // make button to jump to previous image in document
+  function makePrevButton(img) {
+    const prevButton = document.createElement("button");
+    prevButton.id = "lightbox_prev_button";
+    prevButton.title = "Jump to the previous image in the document [←]";
+    prevButton.classList.add("icon_button", "lightbox_button");
+    prevButton.innerHTML = document.querySelector(".icon_caret_left").innerHTML;
+
+    // attach click listeners to button
+    prevButton.addEventListener("click", function () {
+      getPrevImg(img).click();
+    });
+
+    return prevButton;
+  }
+
+  // make button to jump to next image in document
+  function makeNextButton(img) {
+    const nextButton = document.createElement("button");
+    nextButton.id = "lightbox_next_button";
+    nextButton.title = "Jump to the next image in the document [→]";
+    nextButton.classList.add("icon_button", "lightbox_button");
+    nextButton.innerHTML = document.querySelector(
+      ".icon_caret_right"
+    ).innerHTML;
+
+    // attach click listeners to button
+    nextButton.addEventListener("click", function () {
+      getNextImg(img).click();
+    });
+
+    return nextButton;
+  }
+
+  // get previous image in document
+  function getPrevImg(img) {
+    const imgs = document.querySelectorAll(".lightbox_document_img");
+
+    // find index of provided img
+    let index;
+    for (index = 0; index < imgs.length; index++) {
+      if (imgs[index] === img) break;
+    }
+
+    // wrap index to other side if < 1
+    if (index - 1 >= 0) index--;
+    else index = imgs.length - 1;
+    return imgs[index];
+  }
+
+  // get next image in document
+  function getNextImg(img) {
+    const imgs = document.querySelectorAll(".lightbox_document_img");
+
+    // find index of provided img
+    let index;
+    for (index = 0; index < imgs.length; index++) {
+      if (imgs[index] === img) break;
+    }
+
+    // wrap index to other side if > total
+    if (index + 1 <= imgs.length - 1) index++;
+    else index = 0;
+    return imgs[index];
+  }
+
+  // close lightbox
+  function closeLightbox() {
+    focusBody();
+
+    const lightbox = document.getElementById("lightbox_overlay");
+    if (lightbox) lightbox.remove();
+  }
+
+  // make all elements behind lightbox non-focusable
+  function blurBody(overlay) {
+    const all = document.querySelectorAll("*");
+    for (const element of all) element.tabIndex = -1;
+    document.body.classList.add("body_no_scroll");
+  }
+
+  // make all elements focusable again
+  function focusBody() {
+    const all = document.querySelectorAll("*");
+    for (const element of all) element.removeAttribute("tabIndex");
+    document.body.classList.remove("body_no_scroll");
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<!-- caret left icon -->
+
+<template class="icon_caret_left">
+  <!-- modified from: https://fontawesome.com/icons/caret-left -->
+  <svg width="16" height="16" viewBox="0 0 192 512">
+    <path
+      fill="currentColor"
+      d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"
+    ></path>
+  </svg>
+</template>
+
+<!-- caret right icon -->
+
+<template class="icon_caret_right">
+  <!-- modified from: https://fontawesome.com/icons/caret-right -->
+  <svg width="16" height="16" viewBox="0 0 192 512">
+    <path
+      fill="currentColor"
+      d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"
+    ></path>
+  </svg>
+</template>
+
+<style>
+  @media only screen {
+    /* regular <img> in document when hovered */
+    img.lightbox_document_img:hover {
+      cursor: pointer;
+    }
+
+    .body_no_scroll {
+      overflow: hidden !important;
+    }
+
+    /* screen overlay */
+    #lightbox_overlay {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 3;
+    }
+
+    /* middle area containing lightbox image */
+    #lightbox_image_container {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    /* bottom area containing caption */
+    #lightbox_bottom_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      min-height: 100px;
+      max-height: 100px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* image number info text box */
+    #lightbox_number_info {
+      position: absolute;
+      color: #ffffff;
+      font-weight: 600;
+      left: 2px;
+      top: 0;
+      z-index: 4;
+    }
+
+    /* zoom info text box */
+    #lightbox_zoom_info {
+      position: absolute;
+      color: #ffffff;
+      font-weight: 600;
+      right: 2px;
+      top: 0;
+      z-index: 4;
+    }
+
+    /* copy of image caption */
+    #lightbox_caption {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 100%;
+      max-height: 100%;
+      padding: 10px 0;
+      text-align: center;
+      overflow-y: auto;
+      color: #ffffff;
+    }
+
+    /* navigation previous/next button */
+    .lightbox_button {
+      width: 100px;
+      height: 100%;
+      min-width: 100px;
+      min-height: 100%;
+      color: #ffffff;
+    }
+
+    /* navigation previous/next button when hovered */
+    .lightbox_button:hover {
+      background: none !important;
+    }
+
+    /* navigation button icon */
+    .lightbox_button > svg {
+      height: 25px;
+    }
+
+    /* figure auto-number */
+    #lightbox_caption > span:first-of-type {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    /* lightbox image when hovered */
+    #lightbox_img:hover {
+      cursor: grab;
+    }
+
+    /* lightbox image when grabbed */
+    #lightbox_img:active {
+      cursor: grabbing;
+    }
+  }
+
+  /* when on screen < 480px wide */
+  @media only screen and (max-width: 480px) {
+    /* make navigation buttons skinnier on small screens to make more room for caption text */
+    .lightbox_button {
+      width: 50px;
+      min-width: 50px;
+    }
+  }
+
+  /* always hide lightbox on print */
+  @media only print {
+    #lightbox_overlay {
+      display: none;
+    }
+  }
+</style>
+<!-- 
+  Link Highlight Plugin
+
+  Makes it such that when a user hovers or focuses a link, other links that have
+  the same target will be highlighted. It also makes it such that when clicking
+  a link, the target of the link (eg reference, figure, table) is briefly
+  highlighted.
+-->
+
+<script type="module">
+  // whether to also highlight links that go to external urls
+  const externalLinks = "false";
+  // whether user must click off to unhighlight instead of just
+  // un-hovering
+  const clickUnhighlight = "false";
+  // whether to also highlight links that are unique
+  const highlightUnique = "true";
+
+  // start script
+  function start() {
+    const links = getLinks();
+    for (const link of links) {
+      // attach mouse and focus listeners to link
+      link.addEventListener("mouseenter", onLinkFocus);
+      link.addEventListener("focus", onLinkFocus);
+      link.addEventListener("mouseleave", onLinkUnhover);
+    }
+
+    // attach click and hash change listeners to window
+    window.addEventListener("click", onClick);
+    window.addEventListener("touchstart", onClick);
+    window.addEventListener("hashchange", onHashChange);
+
+    // run hash change on window load in case user has navigated
+    // directly to hash
+    onHashChange();
+  }
+
+  // when link is focused (tabbed to) or hovered
+  function onLinkFocus() {
+    highlight(this);
+  }
+
+  // when link is unhovered
+  function onLinkUnhover() {
+    if (clickUnhighlight !== "true") unhighlightAll();
+  }
+
+  // when the mouse is clicked anywhere in window
+  function onClick(event) {
+    unhighlightAll();
+  }
+
+  // when hash (eg manuscript.html#introduction) changes
+  function onHashChange() {
+    const target = getHashTarget();
+    if (target) glowElement(target);
+  }
+
+  // start glow sequence on an element
+  function glowElement(element) {
+    const startGlow = function () {
+      onGlowEnd();
+      element.dataset.glow = "true";
+      element.addEventListener("animationend", onGlowEnd);
+    };
+    const onGlowEnd = function () {
+      element.removeAttribute("data-glow");
+      element.removeEventListener("animationend", onGlowEnd);
+    };
+    startGlow();
+  }
+
+  // highlight link and all others with same target
+  function highlight(link) {
+    // force unhighlight all to start fresh
+    unhighlightAll();
+
+    // get links with same target
+    if (!link) return;
+    const sameLinks = getSameLinks(link);
+
+    // if link unique and option is off, exit and don't highlight
+    if (sameLinks.length <= 1 && highlightUnique !== "true") return;
+
+    // highlight all same links, and "select" (special highlight) this
+    // one
+    for (const sameLink of sameLinks) {
+      if (sameLink === link) sameLink.setAttribute("data-selected", "true");
+      else sameLink.setAttribute("data-highlighted", "true");
+    }
+  }
+
+  // unhighlight all links
+  function unhighlightAll() {
+    const links = getLinks();
+    for (const link of links) {
+      link.setAttribute("data-selected", "false");
+      link.setAttribute("data-highlighted", "false");
+    }
+  }
+
+  // get links with same target
+  function getSameLinks(link) {
+    const results = [];
+    const links = getLinks();
+    for (const otherLink of links) {
+      if (otherLink.getAttribute("href") === link.getAttribute("href"))
+        results.push(otherLink);
+    }
+    return results;
+  }
+
+  // get all links of types we wish to handle
+  function getLinks() {
+    let query = "a";
+    if (externalLinks !== "true") query += '[href^="#"]';
+    // exclude buttons, anchor links, toc links, etc
+    query += ":not(.button):not(.icon_button):not(.anchor):not(.toc_link)";
+    return document.querySelectorAll(query);
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<style>
+  @media only screen {
+    /* anything with data-highlighted attribute true */
+    [data-highlighted="true"] {
+      background: #ffeb3b;
+    }
+
+    /* anything with data-selected attribute true */
+    [data-selected="true"] {
+      background: #ff8a65 !important;
+    }
+
+    /* animation definition for glow */
+    @keyframes highlight_glow {
+      0% {
+        background: none;
+      }
+      10% {
+        background: #bbdefb;
+      }
+      100% {
+        background: none;
+      }
+    }
+
+    /* anything with data-glow attribute true */
+    [data-glow="true"] {
+      animation: highlight_glow 2s;
+    }
+  }
+</style>
+<!--
+  Table of Contents Plugin
+
+  Provides a "table of contents" (toc) panel on the side of the document that
+  allows the user to conveniently navigate between sections of the document.
+-->
+
+<script type="module">
+  // which types of elements to add links for, in "document.querySelector" format
+  const typesQuery = "h1, h2, h3";
+  // whether toc starts open. use 'true' or 'false', or 'auto' to
+  // use 'true' behavior when screen wide enough and 'false' when not
+  const startOpen = "false";
+  // whether toc closes when clicking on toc link. use 'true' or
+  // 'false', or 'auto' to use 'false' behavior when screen wide
+  // enough and 'true' when not
+  const clickClose = "auto";
+  // if list item is more than this many characters, text will be
+  // truncated
+  const charLimit = "50";
+  // whether or not to show bullets next to each toc item
+  const bullets = "false";
+
+  // start script
+  function start() {
+    // make toc panel and populate with entries (links to document
+    // sections)
+    const panel = makePanel();
+    if (!panel) return;
+    makeEntries(panel);
+    // attach panel to document after making entries, so 'toc' heading
+    // in panel isn't included in toc
+    document.body.insertBefore(panel, document.body.firstChild);
+
+    // initial panel state
+    if (startOpen === "true" || (startOpen === "auto" && !isSmallScreen()))
+      openPanel();
+    else closePanel();
+
+    // attach click, scroll, and hash change listeners to window
+    window.addEventListener("click", onClick);
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("hashchange", onScroll);
+    window.addEventListener("keyup", onKeyUp);
+    onScroll();
+
+    // add class to push document body down out of way of toc button
+    document.body.classList.add("toc_body_nudge");
+  }
+
+  // determine if screen wide enough to fit toc panel
+  function isSmallScreen() {
+    // in default theme:
+    // 816px = 8.5in = width of "page" (<body>) element
+    // 260px = min width of toc panel (*2 for both sides of <body>)
+    return window.innerWidth < 816 + 260 * 2;
+  }
+
+  // when mouse is clicked anywhere in window
+  function onClick() {
+    if (isSmallScreen()) closePanel();
+  }
+
+  // when window is scrolled or hash changed
+  function onScroll() {
+    highlightViewed();
+  }
+
+  // when key pressed
+  function onKeyUp(event) {
+    if (!event || !event.key) return;
+
+    // close on esc
+    if (event.key === "Escape") closePanel();
+  }
+
+  // find entry of currently viewed document section in toc and highlight
+  function highlightViewed() {
+    const firstId = getFirstInView(typesQuery);
+
+    // get toc entries (links), unhighlight all, then highlight viewed
+    const list = document.getElementById("toc_list");
+    if (!firstId || !list) return;
+    const links = list.querySelectorAll("a");
+    for (const link of links) link.dataset.viewing = "false";
+    const link = list.querySelector('a[href="#' + firstId + '"]');
+    if (!link) return;
+    link.dataset.viewing = "true";
+  }
+
+  // get first or previous toc listed element in top half of view
+  function getFirstInView(query) {
+    // get all elements matching query and with id
+    const elements = document.querySelectorAll(query);
+    const elementsWithIds = [];
+    for (const element of elements) {
+      if (element.id) elementsWithIds.push(element);
+    }
+
+    // get first or previous element in top half of view
+    for (let i = 0; i < elementsWithIds.length; i++) {
+      const element = elementsWithIds[i];
+      const prevElement = elementsWithIds[Math.max(0, i - 1)];
+      if (element.getBoundingClientRect().top >= 0) {
+        if (element.getBoundingClientRect().top < window.innerHeight / 2)
+          return element.id;
+        else return prevElement.id;
+      }
+    }
+  }
+
+  // make panel
+  function makePanel() {
+    // create panel
+    const panel = document.createElement("div");
+    panel.id = "toc_panel";
+    if (bullets === "true") panel.dataset.bullets = "true";
+
+    // create header
+    const header = document.createElement("div");
+    header.id = "toc_header";
+
+    // create toc button
+    const button = document.createElement("button");
+    button.id = "toc_button";
+    button.innerHTML = document.querySelector(".icon_th_list").innerHTML;
+    button.title = "Table of Contents";
+    button.classList.add("icon_button");
+
+    // create header text
+    const text = document.createElement("h4");
+    text.innerHTML = "Table of Contents";
+
+    // create container for toc list
+    const list = document.createElement("div");
+    list.id = "toc_list";
+
+    // attach click listeners
+    panel.addEventListener("click", onPanelClick);
+    header.addEventListener("click", onHeaderClick);
+    button.addEventListener("click", onButtonClick);
+
+    // attach elements
+    header.appendChild(button);
+    header.appendChild(text);
+    panel.appendChild(header);
+    panel.appendChild(list);
+
+    return panel;
+  }
+
+  // create toc entries (links) to each element of the specified types
+  function makeEntries(panel) {
+    const elements = document.querySelectorAll(typesQuery);
+    for (const element of elements) {
+      // do not add link if element doesn't have assigned id
+      if (!element.id) continue;
+
+      // create link/list item
+      const link = document.createElement("a");
+      link.classList.add("toc_link");
+      switch (element.tagName.toLowerCase()) {
+        case "h1":
+          link.dataset.level = "1";
+          break;
+        case "h2":
+          link.dataset.level = "2";
+          break;
+        case "h3":
+          link.dataset.level = "3";
+          break;
+        case "h4":
+          link.dataset.level = "4";
+          break;
+      }
+      link.title = element.innerText;
+      let text = element.innerText;
+      if (text.length > charLimit) text = text.slice(0, charLimit) + "...";
+      link.innerHTML = text;
+      link.href = "#" + element.id;
+      link.addEventListener("click", onLinkClick);
+
+      // attach link
+      panel.querySelector("#toc_list").appendChild(link);
+    }
+  }
+
+  // when panel is clicked
+  function onPanelClick(event) {
+    // stop click from propagating to window/document and closing panel
+    event.stopPropagation();
+  }
+
+  // when header itself is clicked
+  function onHeaderClick(event) {
+    togglePanel();
+  }
+
+  // when button is clicked
+  function onButtonClick(event) {
+    togglePanel();
+    // stop header underneath button from also being clicked
+    event.stopPropagation();
+  }
+
+  // when link is clicked
+  function onLinkClick(event) {
+    if (clickClose === "true" || (clickClose === "auto" && isSmallScreen()))
+      closePanel();
+    else openPanel();
+  }
+
+  // open panel if closed, close if opened
+  function togglePanel() {
+    const panel = document.getElementById("toc_panel");
+    if (!panel) return;
+
+    if (panel.dataset.open === "true") closePanel();
+    else openPanel();
+  }
+
+  // open panel
+  function openPanel() {
+    const panel = document.getElementById("toc_panel");
+    if (panel) panel.dataset.open = "true";
+  }
+
+  // close panel
+  function closePanel() {
+    const panel = document.getElementById("toc_panel");
+    if (panel) panel.dataset.open = "false";
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<!-- th list icon -->
+
+<template class="icon_th_list">
+  <!-- modified from: https://fontawesome.com/icons/th-list -->
+  <svg width="16" height="16" viewBox="0 0 512 512" tabindex="-1">
+    <path
+      fill="currentColor"
+      d="M96 96c0 26.51-21.49 48-48 48S0 122.51 0 96s21.49-48 48-48 48 21.49 48 48zM48 208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm0 160c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm96-236h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+      tabindex="-1"
+    ></path>
+  </svg>
+</template>
+
+<style>
+  @media only screen {
+    /* toc panel */
+    #toc_panel {
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #ffffff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      z-index: 2;
+    }
+
+    /* toc panel when closed */
+    #toc_panel[data-open="false"] {
+      min-width: 60px;
+      width: 60px;
+      height: 60px;
+      border-right: solid 1px #bdbdbd;
+      border-bottom: solid 1px #bdbdbd;
+    }
+
+    /* toc panel when open */
+    #toc_panel[data-open="true"] {
+      min-width: 260px;
+      max-width: 480px;
+      /* keep panel edge consistent distance away from "page" edge */
+      width: calc(((100vw - 8.5in) / 2) - 30px - 40px);
+      bottom: 0;
+      border-right: solid 1px #bdbdbd;
+    }
+
+    /* toc panel header */
+    #toc_header {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 60px;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* toc panel header when hovered */
+    #toc_header:hover {
+      cursor: pointer;
+    }
+
+    /* toc panel header when panel open */
+    #toc_panel[data-open="true"] > #toc_header {
+      border-bottom: solid 1px #bdbdbd;
+    }
+
+    /* toc open/close header button */
+    #toc_button {
+      margin-right: 20px;
+    }
+
+    /* hide toc list and header text when closed */
+    #toc_panel[data-open="false"] > #toc_header > *:not(#toc_button),
+    #toc_panel[data-open="false"] > #toc_list {
+      display: none;
+    }
+
+    /* toc list of entries */
+    #toc_list {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 20px;
+      position: absolute;
+      top: calc(60px + 1px);
+      bottom: 0;
+      overflow: auto;
+    }
+
+    /* toc entry, link to section in document */
+    .toc_link {
+      display: block;
+      padding: 5px;
+      position: relative;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* toc entry when hovered or when "viewed" */
+    .toc_link:hover,
+    .toc_link[data-viewing="true"] {
+      background: #f5f5f5;
+    }
+
+    /* toc entry, level 1 indentation */
+    .toc_link[data-level="1"] {
+      margin-left: 0;
+    }
+
+    /* toc entry, level 2 indentation */
+    .toc_link[data-level="2"] {
+      margin-left: 20px;
+    }
+
+    /* toc entry, level 3 indentation */
+    .toc_link[data-level="3"] {
+      margin-left: 40px;
+    }
+
+    /* toc entry, level 4 indentation */
+    .toc_link[data-level="4"] {
+      margin-left: 60px;
+    }
+
+    /* toc entry bullets */
+    #toc_panel[data-bullets="true"] .toc_link[data-level]:before {
+      position: absolute;
+      left: -15px;
+      top: -1px;
+      font-size: 1.5em;
+    }
+
+    /* toc entry, level 2 bullet */
+    #toc_panel[data-bullets="true"] .toc_link[data-level="2"]:before {
+      content: "\2022";
+    }
+
+    /* toc entry, level 3 bullet */
+    #toc_panel[data-bullets="true"] .toc_link[data-level="3"]:before {
+      content: "\25AB";
+    }
+
+    /* toc entry, level 4 bullet */
+    #toc_panel[data-bullets="true"] .toc_link[data-level="4"]:before {
+      content: "-";
+    }
+  }
+
+  /* when on screen < 8.5in wide */
+  @media only screen and (max-width: 8.5in) {
+    /* push <body> ("page") element down to make room for toc icon */
+    .toc_body_nudge {
+      padding-top: 60px;
+    }
+
+    /* toc icon when panel closed and not hovered */
+    #toc_panel[data-open="false"]:not(:hover) {
+      background: rgba(255, 255, 255, 0.75);
+    }
+  }
+
+  /* always hide toc panel on print */
+  @media only print {
+    #toc_panel {
+      display: none;
+    }
+  }
+</style>
+<!-- 
+  Tooltips Plugin
+
+  Makes it such that when the user hovers or focuses a link to a citation or
+  figure, a tooltip appears with a preview of the reference content, along with
+  arrows to navigate between instances of the same reference in the document.
+-->
+
+<script type="module">
+  // whether user must click off to close tooltip instead of just un-hovering
+  const clickClose = "false";
+  // delay (in ms) between opening and closing tooltip
+  const delay = "100";
+
+  // start script
+  function start() {
+    const links = getLinks();
+    for (const link of links) {
+      // attach hover and focus listeners to link
+      link.addEventListener("mouseover", onLinkHover);
+      link.addEventListener("mouseleave", onLinkUnhover);
+      link.addEventListener("focus", onLinkFocus);
+      link.addEventListener("touchend", onLinkTouch);
+    }
+
+    // attach mouse, key, and resize listeners to window
+    window.addEventListener("mousedown", onClick);
+    window.addEventListener("touchstart", onClick);
+    window.addEventListener("keyup", onKeyUp);
+    window.addEventListener("resize", onResize);
+  }
+
+  // when link is hovered
+  function onLinkHover() {
+    // function to open tooltip
+    const delayOpenTooltip = function () {
+      openTooltip(this);
+    }.bind(this);
+
+    // run open function after delay
+    this.openTooltipTimer = window.setTimeout(delayOpenTooltip, delay);
+  }
+
+  // when mouse leaves link
+  function onLinkUnhover() {
+    // cancel opening tooltip
+    window.clearTimeout(this.openTooltipTimer);
+
+    // don't close on unhover if option specifies
+    if (clickClose === "true") return;
+
+    // function to close tooltip
+    const delayCloseTooltip = function () {
+      // if tooltip open and if mouse isn't over tooltip, close
+      const tooltip = document.getElementById("tooltip");
+      if (tooltip && !tooltip.matches(":hover")) closeTooltip();
+    };
+
+    // run close function after delay
+    this.closeTooltipTimer = window.setTimeout(delayCloseTooltip, delay);
+  }
+
+  // when link is focused (tabbed to)
+  function onLinkFocus(event) {
+    openTooltip(this);
+  }
+
+  // when link is touched on touch screen
+  function onLinkTouch(event) {
+    // attempt to force hover state on first tap always, and trigger
+    // regular link click (and navigation) on second tap
+    if (event.target === document.activeElement) event.target.click();
+    else {
+      document.activeElement.blur();
+      event.target.focus();
+    }
+    if (event.cancelable) event.preventDefault();
+    event.stopPropagation();
+    return false;
+  }
+
+  // when mouse is clicked anywhere in window
+  function onClick(event) {
+    closeTooltip();
+  }
+
+  // when key pressed
+  function onKeyUp(event) {
+    if (!event || !event.key) return;
+
+    switch (event.key) {
+      // trigger click of prev button
+      case "ArrowLeft":
+        const prevButton = document.getElementById("tooltip_prev_button");
+        if (prevButton) prevButton.click();
+        break;
+      // trigger click of next button
+      case "ArrowRight":
+        const nextButton = document.getElementById("tooltip_next_button");
+        if (nextButton) nextButton.click();
+        break;
+      // close on esc
+      case "Escape":
+        closeTooltip();
+        break;
+    }
+  }
+
+  // when window is resized or zoomed
+  function onResize() {
+    closeTooltip();
+  }
+
+  // get all links of types we wish to handle
+  function getLinks() {
+    const queries = [];
+    // exclude buttons, anchor links, toc links, etc
+    const exclude =
+      ":not(.button):not(.icon_button):not(.anchor):not(.toc_link)";
+    queries.push('a[href^="#ref-"]' + exclude); // citation links
+    queries.push('a[href^="#fig:"]' + exclude); // figure links
+    const query = queries.join(", ");
+    return document.querySelectorAll(query);
+  }
+
+  // get links with same target, get index of link in set, get total
+  // same links
+  function getSameLinks(link) {
+    const sameLinks = [];
+    const links = getLinks();
+    for (const otherLink of links) {
+      if (otherLink.getAttribute("href") === link.getAttribute("href"))
+        sameLinks.push(otherLink);
+    }
+
+    return {
+      elements: sameLinks,
+      index: sameLinks.indexOf(link),
+      total: sameLinks.length,
+    };
+  }
+
+  // open tooltip
+  function openTooltip(link) {
+    // delete tooltip if it exists, start fresh
+    closeTooltip();
+
+    // make tooltip element
+    const tooltip = makeTooltip(link);
+
+    // if source couldn't be found and tooltip not made, exit
+    if (!tooltip) return;
+
+    // make navbar elements
+    const navBar = makeNavBar(link);
+    if (navBar) tooltip.firstElementChild.appendChild(navBar);
+
+    // attach tooltip to page
+    document.body.appendChild(tooltip);
+
+    // position tooltip
+    const position = function () {
+      positionTooltip(link);
+    };
+    position();
+
+    // if tooltip contains images, position again after they've loaded
+    const imgs = tooltip.querySelectorAll("img");
+    for (const img of imgs) img.addEventListener("load", position);
+  }
+
+  // close (delete) tooltip
+  function closeTooltip() {
+    const tooltip = document.getElementById("tooltip");
+    if (tooltip) tooltip.remove();
+  }
+
+  // make tooltip
+  function makeTooltip(link) {
+    // get target element that link points to
+    const source = getSource(link);
+
+    // if source can't be found, exit
+    if (!source) return;
+
+    // create new tooltip
+    const tooltip = document.createElement("div");
+    tooltip.id = "tooltip";
+    const tooltipContent = document.createElement("div");
+    tooltipContent.id = "tooltip_content";
+    tooltip.appendChild(tooltipContent);
+
+    // make copy of source node and put in tooltip
+    const sourceCopy = makeCopy(source);
+    tooltipContent.appendChild(sourceCopy);
+
+    // attach mouse event listeners
+    tooltip.addEventListener("click", onTooltipClick);
+    tooltip.addEventListener("mousedown", onTooltipClick);
+    tooltip.addEventListener("touchstart", onTooltipClick);
+    tooltip.addEventListener("mouseleave", onTooltipUnhover);
+
+    // (for interaction with lightbox plugin)
+    // transfer click on tooltip copied img to original img
+    const sourceImg = source.querySelector("img");
+    const sourceCopyImg = sourceCopy.querySelector("img");
+    if (sourceImg && sourceCopyImg) {
+      const clickImg = function () {
+        sourceImg.click();
+        closeTooltip();
+      };
+      sourceCopyImg.addEventListener("click", clickImg);
+    }
+
+    return tooltip;
+  }
+
+  // make carbon copy of html dom element
+  function makeCopy(source) {
+    const sourceCopy = source.cloneNode(true);
+
+    // delete elements marked with ignore (eg anchor and jump buttons)
+    const deleteFromCopy = sourceCopy.querySelectorAll('[data-ignore="true"]');
+    for (const element of deleteFromCopy) element.remove();
+
+    // delete certain element attributes
+    const attributes = [
+      "id",
+      "data-collapsed",
+      "data-selected",
+      "data-highlighted",
+      "data-glow",
+      "class",
+    ];
+    for (const attribute of attributes) {
+      sourceCopy.removeAttribute(attribute);
+      const elements = sourceCopy.querySelectorAll("[" + attribute + "]");
+      for (const element of elements) element.removeAttribute(attribute);
+    }
+
+    return sourceCopy;
+  }
+
+  // when tooltip is clicked
+  function onTooltipClick(event) {
+    // when user clicks on tooltip, stop click from transferring
+    // outside of tooltip (eg, click off to close tooltip, or eg click
+    // off to unhighlight same refs)
+    event.stopPropagation();
+  }
+
+  // when tooltip is unhovered
+  function onTooltipUnhover(event) {
+    if (clickClose === "true") return;
+
+    // make sure new mouse/touch/focus no longer over tooltip or any
+    // element within it
+    const tooltip = document.getElementById("tooltip");
+    if (!tooltip) return;
+    if (this.contains(event.relatedTarget)) return;
+
+    closeTooltip();
+  }
+
+  // make nav bar to go betwen prev/next instances of same reference
+  function makeNavBar(link) {
+    // find other links to the same source
+    const sameLinks = getSameLinks(link);
+
+    // don't show nav bar when singular reference
+    if (sameLinks.total <= 1) return;
+
+    // find prev/next links with same target
+    const prevLink = getPrevLink(link, sameLinks);
+    const nextLink = getNextLink(link, sameLinks);
+
+    // create nav bar
+    const navBar = document.createElement("div");
+    navBar.id = "tooltip_nav_bar";
+    const text = sameLinks.index + 1 + " of " + sameLinks.total;
+
+    // create nav bar prev/next buttons
+    const prevButton = document.createElement("button");
+    const nextButton = document.createElement("button");
+    prevButton.id = "tooltip_prev_button";
+    nextButton.id = "tooltip_next_button";
+    prevButton.title =
+      "Jump to the previous occurence of this item in the document [←]";
+    nextButton.title =
+      "Jump to the next occurence of this item in the document [→]";
+    prevButton.classList.add("icon_button");
+    nextButton.classList.add("icon_button");
+    prevButton.innerHTML = document.querySelector(".icon_caret_left").innerHTML;
+    nextButton.innerHTML =
+      document.querySelector(".icon_caret_right").innerHTML;
+    navBar.appendChild(prevButton);
+    navBar.appendChild(document.createTextNode(text));
+    navBar.appendChild(nextButton);
+
+    // attach click listeners to buttons
+    prevButton.addEventListener("click", function () {
+      onPrevNextClick(link, prevLink);
+    });
+    nextButton.addEventListener("click", function () {
+      onPrevNextClick(link, nextLink);
+    });
+
+    return navBar;
+  }
+
+  // get previous link with same target
+  function getPrevLink(link, sameLinks) {
+    if (!sameLinks) sameLinks = getSameLinks(link);
+    // wrap index to other side if < 1
+    let index;
+    if (sameLinks.index - 1 >= 0) index = sameLinks.index - 1;
+    else index = sameLinks.total - 1;
+    return sameLinks.elements[index];
+  }
+
+  // get next link with same target
+  function getNextLink(link, sameLinks) {
+    if (!sameLinks) sameLinks = getSameLinks(link);
+    // wrap index to other side if > total
+    let index;
+    if (sameLinks.index + 1 <= sameLinks.total - 1) index = sameLinks.index + 1;
+    else index = 0;
+    return sameLinks.elements[index];
+  }
+
+  // get element that is target of link or url hash
+  function getSource(link) {
+    const hash = link ? link.hash : window.location.hash;
+    const id = hash.slice(1);
+    let target = document.querySelector('[id="' + id + '"]');
+    if (!target) return;
+
+    // if ref or figure, modify target to get expected element
+    if (id.indexOf("ref-") === 0) target = target.querySelector(":nth-child(2)");
+    else if (id.indexOf("fig:") === 0) target = target.querySelector("figure");
+
+    return target;
+  }
+
+  // when prev/next arrow button is clicked
+  function onPrevNextClick(link, prevNextLink) {
+    if (link && prevNextLink)
+      goToElement(prevNextLink, window.innerHeight * 0.5);
+  }
+
+  // scroll to and focus element
+  function goToElement(element, offset) {
+    // expand accordion section if collapsed
+    expandElement(element);
+    const y =
+      getRectInView(element).top -
+      getRectInView(document.documentElement).top -
+      (offset || 0);
+    // trigger any function listening for "onscroll" event
+    window.dispatchEvent(new Event("scroll"));
+    window.scrollTo(0, y);
+    document.activeElement.blur();
+    element.focus();
+  }
+
+  // determine position to place tooltip based on link position in
+  // viewport and tooltip size
+  function positionTooltip(link, left, top) {
+    const tooltipElement = document.getElementById("tooltip");
+    if (!tooltipElement) return;
+
+    // get convenient vars for position/dimensions of
+    // link/tooltip/page/view
+    link = getRectInPage(link);
+    const tooltip = getRectInPage(tooltipElement);
+    const view = getRectInPage();
+
+    // horizontal positioning
+    if (left)
+      // use explicit value
+      left = left;
+    else if (link.left + tooltip.width < view.right)
+      // fit tooltip to right of link
+      left = link.left;
+    else if (link.right - tooltip.width > view.left)
+      // fit tooltip to left of link
+      left = link.right - tooltip.width;
+    // center tooltip in view
+    else left = (view.right - view.left) / 2 - tooltip.width / 2;
+
+    // vertical positioning
+    if (top)
+      // use explicit value
+      top = top;
+    else if (link.top - tooltip.height > view.top)
+      // fit tooltip above link
+      top = link.top - tooltip.height;
+    else if (link.bottom + tooltip.height < view.bottom)
+      // fit tooltip below link
+      top = link.bottom;
+    else {
+      // center tooltip in view
+      top = view.top + view.height / 2 - tooltip.height / 2;
+      // nudge off of link to left/right if possible
+      if (link.right + tooltip.width < view.right) left = link.right;
+      else if (link.left - tooltip.width > view.left)
+        left = link.left - tooltip.width;
+    }
+
+    tooltipElement.style.left = left + "px";
+    tooltipElement.style.top = top + "px";
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<!-- caret left icon -->
+
+<template class="icon_caret_left">
+  <!-- modified from: https://fontawesome.com/icons/caret-left -->
+  <svg width="16" height="16" viewBox="0 0 192 512">
+    <path
+      fill="currentColor"
+      d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"
+    ></path>
+  </svg>
+</template>
+
+<!-- caret right icon -->
+
+<template class="icon_caret_right">
+  <!-- modified from: https://fontawesome.com/icons/caret-right -->
+  <svg width="16" height="16" viewBox="0 0 192 512">
+    <path
+      fill="currentColor"
+      d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"
+    ></path>
+  </svg>
+</template>
+
+<style>
+  @media only screen {
+    /* tooltip container */
+    #tooltip {
+      position: absolute;
+      width: 50%;
+      min-width: 240px;
+      max-width: 75%;
+      z-index: 1;
+    }
+
+    /* tooltip content */
+    #tooltip_content {
+      margin-bottom: 5px;
+      padding: 20px;
+      border-radius: 5px;
+      border: solid 1px #bdbdbd;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      background: #ffffff;
+      overflow-wrap: break-word;
+    }
+
+    /* tooltip copy of paragraphs and figures */
+    #tooltip_content > p,
+    #tooltip_content > figure {
+      margin: 0;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    /* tooltip copy of <img> */
+    #tooltip_content > figure > img,
+    #tooltip_content > figure > svg {
+      max-height: 260px;
+    }
+
+    /* navigation bar */
+    #tooltip_nav_bar {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* navigation bar previous/next buton */
+    #tooltip_nav_bar > .icon_button {
+      position: relative;
+      top: 3px;
+    }
+
+    /* navigation bar previous button */
+    #tooltip_nav_bar > .icon_button:first-of-type {
+      margin-right: 5px;
+    }
+
+    /* navigation bar next button */
+    #tooltip_nav_bar > .icon_button:last-of-type {
+      margin-left: 5px;
+    }
+  }
+
+  /* always hide tooltip on print */
+  @media only print {
+    #tooltip {
+      display: none;
+    }
+  }
+</style>
+<!--
+  Analytics Plugin (third-party) 
+  
+  Copy and paste code from Google Analytics or similar service here.
+-->
+<!-- 
+  Annotations Plugin
+
+  Allows public annotation of the  manuscript. See https://web.hypothes.is/.
+-->
+
+<script type="module">
+  // configuration
+  window.hypothesisConfig = function () {
+    return {
+      branding: {
+        accentColor: "#2196f3",
+        appBackgroundColor: "#f8f8f8",
+        ctaBackgroundColor: "#f8f8f8",
+        ctaTextColor: "#000000",
+        selectionFontFamily: "Open Sans, Helvetica, sans serif",
+        annotationFontFamily: "Open Sans, Helvetica, sans serif",
+      },
+    };
+  };
+
+  // hypothesis client script
+  const embed = "https://hypothes.is/embed.js";
+  // hypothesis annotation count query url
+  const query = "https://api.hypothes.is/api/search?limit=0&url=";
+
+  // start script
+  function start() {
+    const button = makeButton();
+    document.body.insertBefore(button, document.body.firstChild);
+    insertCount(button);
+  }
+
+  // make button
+  function makeButton() {
+    // create button
+    const button = document.createElement("button");
+    button.id = "hypothesis_button";
+    button.innerHTML = document.querySelector(".icon_hypothesis").innerHTML;
+    button.title = "Hypothesis annotations";
+    button.classList.add("icon_button");
+
+    function onClick(event) {
+      onButtonClick(event, button);
+    }
+
+    // attach click listeners
+    button.addEventListener("click", onClick);
+
+    return button;
+  }
+
+  // insert annotations count
+  async function insertCount(button) {
+    // get annotation count from Hypothesis based on url
+    let count = "-";
+    try {
+      const canonical = document.querySelector('link[rel="canonical"]');
+      const location = window.location;
+      const url = encodeURIComponent((canonical || location).href);
+      const response = await fetch(query + url);
+      const json = await response.json();
+      count = json.total || "-";
+    } catch (error) {
+      console.log(error);
+    }
+
+    // put count into button
+    const counter = document.createElement("span");
+    counter.id = "hypothesis_count";
+    counter.innerHTML = count;
+    button.title = "View " + count + " Hypothesis annotations";
+    button.append(counter);
+  }
+
+  // when button is clicked
+  function onButtonClick(event, button) {
+    const script = document.createElement("script");
+    script.src = embed;
+    document.body.append(script);
+    button.remove();
+  }
+
+  // start script when document is finished loading
+  window.addEventListener("load", start);
+</script>
+
+<!-- hypothesis icon -->
+
+<template class="icon_hypothesis">
+  <!-- modified from: https://simpleicons.org/icons/hypothesis.svg / https://git.io/Jf1VB -->
+  <svg width="16" height="16" viewBox="0 0 24 24" tabindex="-1">
+    <path
+      fill="currentColor"
+      d="M3.43 0C2.5 0 1.72 .768 1.72 1.72V18.86C1.72 19.8 2.5 20.57 3.43 20.57H9.38L12 24L14.62 20.57H20.57C21.5 20.57 22.29 19.8 22.29 18.86V1.72C22.29 .77 21.5 0 20.57 0H3.43M5.14 3.43H7.72V9.43S8.58 7.72 10.28 7.72C12 7.72 13.74 8.57 13.74 11.24V17.14H11.16V12C11.16 10.61 10.28 10.07 9.43 10.29C8.57 10.5 7.72 11.41 7.72 13.29V17.14H5.14V3.43M18 13.72C18.95 13.72 19.72 14.5 19.72 15.42A1.71 1.71 0 0 1 18 17.13A1.71 1.71 0 0 1 16.29 15.42C16.29 14.5 17.05 13.71 18 13.71Z"
+      tabindex="-1"
+    ></path>
+  </svg>
+</template>
+
+<style>
+  /* hypothesis activation button */
+  #hypothesis_button {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border-radius: 0;
+    border-left: solid 1px #bdbdbd;
+    border-bottom: solid 1px #bdbdbd;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+  }
+
+  /* hypothesis button svg */
+  #hypothesis_button > svg {
+    position: relative;
+    top: -4px;
+  }
+
+  /* hypothesis annotation count */
+  #hypothesis_count {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5px;
+  }
+
+  /* side panel */
+  .annotator-frame {
+    width: 280px !important;
+  }
+
+  /* match highlight color to rest of theme */
+  .annotator-highlights-always-on .annotator-hl {
+    background-color: #ffeb3b !important;
+  }
+
+  /* match focused color to rest of theme */
+  .annotator-hl.annotator-hl-focused {
+    background-color: #ff8a65 !important;
+  }
+
+  /* match bucket bar color to rest of theme */
+  .annotator-bucket-bar {
+    background: #f5f5f5 !important;
+  }
+
+  /* always hide button, toolbar, and tooltip on print */
+  @media only print {
+    #hypothesis_button {
+      display: none;
+    }
+
+    .annotator-frame {
+      display: none !important;
+    }
+
+    hypothesis-adder {
+      display: none !important;
+    }
+  }
+</style>
+<!-- 
+  Mathjax Plugin (third-party) 
+
+  Allows the proper rendering of math/equations written in LaTeX.
+  See https://www.mathjax.org/.
+-->
+
+<script type="text/x-mathjax-config">
+  // configuration
+  MathJax.Hub.Config({
+    "CommonHTML": { linebreaks: { automatic: true } },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+    "SVG": { linebreaks: { automatic: true } },
+    "fast-preview": { disabled: true }
+  });
+</script>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
+  integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A=="
+  crossorigin="anonymous"
+></script>
+
+<style>
+  /* mathjax containers */
+  .math.display > span:not(.MathJax_Preview) {
+    /* turn inline element (no dimensions) into block (allows fixed width and thus scrolling) */
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
+  }
+
+  /* right click menu */
+  .MathJax_Menu {
+    border-radius: 5px !important;
+    border: solid 1px #bdbdbd !important;
+    box-shadow: none !important;
+  }
+
+  /* equation auto-number */
+  span[id^="eq:"] > span.math.display + span {
+    font-weight: 600;
+  }
+
+  /* equation */
+  span[id^="eq:"] > span.math.display > span {
+    /* nudge to make room for equation auto-number and anchor */
+    margin-right: 60px !important;
+  }
+</style>
+</body>
+</html>
