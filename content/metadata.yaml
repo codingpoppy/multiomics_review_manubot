@@ -7,8 +7,10 @@ keywords:
   - Integration
 lang: en-US
 authors:
-  - name: Stefan Stanojevic
+  - github: stefs92
+    name: Stefan Stanojevic
     initials: SS
+    orcid: 0000-0002-9692-5301
     email: stanojes@med.umich.edu
     affiliations:
       - Department of Computational Medicine and Bioinformatics, University of Michigan
