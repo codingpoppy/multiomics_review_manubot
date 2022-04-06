@@ -1,6 +1,6 @@
 ATAC
 autoencoder
-autoencoders
+Autoencoders
 Benchmarked
 benchmarking
 binarized
@@ -12,7 +12,7 @@ BREM
 BREMSC
 CCA
 citeFUSE
-Clonealign
+clonealign
 codingpoppy
 connectivities
 covariates
@@ -99,11 +99,12 @@ SNF
 SNPs
 Spearman
 Stanojevic
+stefs
 Topologies
 totalVI
 Transcriptomic
 transcriptomics
-Variational
+variational
 VscAI
 Wasserstein
 WNN

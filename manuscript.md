@@ -6,7 +6,7 @@ keywords:
 - Machine learning
 - Integration
 lang: en-US
-date-meta: '2022-04-03'
+date-meta: '2022-04-06'
 author-meta:
 - Stefan Stanojevic
 - Yijun Li
@@ -21,8 +21,8 @@ header-includes: |-
   <meta name="citation_title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
   <meta property="og:title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
   <meta property="twitter:title" content="Computational Methods for Single-Cell Multi-Omics Integration and Alignment" />
-  <meta name="dc.date" content="2022-04-03" />
-  <meta name="citation_publication_date" content="2022-04-03" />
+  <meta name="dc.date" content="2022-04-06" />
+  <meta name="citation_publication_date" content="2022-04-06" />
   <meta name="dc.language" content="en-US" />
   <meta name="citation_language" content="en-US" />
   <meta name="dc.relation.ispartof" content="Manubot" />
@@ -31,6 +31,7 @@ header-includes: |-
   <meta name="citation_technical_report_institution" content="Manubot" />
   <meta name="citation_author" content="Stefan Stanojevic" />
   <meta name="citation_author_institution" content="Department of Computational Medicine and Bioinformatics, University of Michigan" />
+  <meta name="citation_author_orcid" content="0000-0002-9692-5301" />
   <meta name="citation_author" content="Yijun Li" />
   <meta name="citation_author_institution" content="Department of Biostatistics, University of Michigan" />
   <meta name="citation_author_orcid" content="0000-0003-0513-9565" />
@@ -45,13 +46,13 @@ header-includes: |-
   <meta name="citation_fulltext_html_url" content="https://codingpoppy.github.io/multiomics_review_manubot/" />
   <meta name="citation_pdf_url" content="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
   <link rel="alternate" type="application/pdf" href="https://codingpoppy.github.io/multiomics_review_manubot/manuscript.pdf" />
-  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/" />
-  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/" />
-  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/manuscript.pdf" />
+  <link rel="alternate" type="text/html" href="https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/" />
+  <meta name="manubot_html_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/" />
+  <meta name="manubot_pdf_url_versioned" content="https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/manuscript.pdf" />
   <meta property="og:type" content="article" />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/409a41161091da8d14116425d6ce3e4d606f4e9f/content/images/thumbnail.png" />
-  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/409a41161091da8d14116425d6ce3e4d606f4e9f/content/images/thumbnail.png" />
+  <meta property="og:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/78d938414582e69b63e3c4495e31fcfdc513c72e/content/images/thumbnail.png" />
+  <meta property="twitter:image" content="https://github.com/codingpoppy/multiomics_review_manubot/raw/78d938414582e69b63e3c4495e31fcfdc513c72e/content/images/thumbnail.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="https://manubot.org/favicon-192x192.png" />
   <link rel="mask-icon" href="https://manubot.org/safari-pinned-tab.svg" color="#ad1457" />
   <meta name="theme-color" content="#ad1457" />
@@ -71,17 +72,21 @@ manubot-clear-requests-cache: false
 
 <small><em>
 This manuscript
-([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/409a41161091da8d14116425d6ce3e4d606f4e9f/))
+([permalink](https://codingpoppy.github.io/multiomics_review_manubot/v/78d938414582e69b63e3c4495e31fcfdc513c72e/))
 was automatically generated
-from [codingpoppy/multiomics_review_manubot@409a411](https://github.com/codingpoppy/multiomics_review_manubot/tree/409a41161091da8d14116425d6ce3e4d606f4e9f)
-on April 3, 2022.
+from [codingpoppy/multiomics_review_manubot@78d9384](https://github.com/codingpoppy/multiomics_review_manubot/tree/78d938414582e69b63e3c4495e31fcfdc513c72e)
+on April 6, 2022.
 </em></small>
 
 ## Authors
 
 
 
-+ **Stefan Stanojevic**<br><br>
++ **Stefan Stanojevic**<br>
+    ![ORCID icon](images/orcid.svg){.inline_icon width=16 height=16}
+    [0000-0002-9692-5301](https://orcid.org/0000-0002-9692-5301)
+    · ![GitHub icon](images/github.svg){.inline_icon width=16 height=16}
+    [stefs92](https://github.com/stefs92)<br>
   <small>
      Department of Computational Medicine and Bioinformatics, University of Michigan
   </small>
